@@ -1,6 +1,7 @@
 header{
   background-color: #D43F3F;
-  box-shadow: 0 0.5px 2px 1px #F6F6E8;
+  /*box-shadow: 0 0.5px 2px 1px #F6F6E8;*/
+  border-bottom : 1px solid #F6F6E8 ; 
   color: #F6F6E8;
   display: block;
   overflow: hidden;
