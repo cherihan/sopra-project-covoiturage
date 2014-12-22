@@ -6,7 +6,7 @@
 body{
   background-color:#404040;
   font-family:sans-serif;
-  
+  color : #F6F6E8; 
 }
 
 .a{
@@ -29,6 +29,8 @@ body{
   background: #404040;
   -webkit-box-shadow:  0px 0px 15px 0px #00ACE9;        
   box-shadow:  0px 2px 2px 0px #00ACE9;  
+  
+  color : #F6F6E8;
 }
 
 .module ul{
@@ -45,7 +47,7 @@ body{
   text-align:center;
   cursor:pointer;
   transition:background .1s;
-  
+  color : #F6F6E8;
 }
 
 
@@ -55,6 +57,7 @@ body{
 
 .activeTab{
   background:#404040;  
+  color : #F6F6E8;
 }
 
 .sleepyTab{
@@ -84,6 +87,7 @@ height:24px;
   width:100%;
   box-sizing:border-box;
   padding:2%;
+  color : #F6F6E8;
 }
 
 .textbox{
