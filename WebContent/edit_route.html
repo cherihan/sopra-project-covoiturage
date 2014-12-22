@@ -40,8 +40,38 @@
       <li class="tab sleepyTab" ><a href="edit_infos.html"><img src="./images/customers.png" alt="" class="icon"/></a></li>
       <li class="tab sleepyTab" ><a href="edit_parameters.html"><img src="./images/settings.png" alt="" class="icon"/></a></li>
     </ul>
+    
     	<form class="form">
-      <input type="button" href="profile.html" value="Save changes" class="button" />
+    	Create a new route :
+    	<br><br>
+    	Point 1 :
+    	<select>
+  			<option value="31000">31000 - Toulouse</option>
+ 			<option value="31100">31200 - Toulouse</option>
+ 			<option value="31200">31300 - Toulouse</option>
+  			<option value="31300">31400 - Toulouse</option>
+  			<option value="31400">31500 - Toulouse</option>
+		</select>  
+		<br>	
+		Point 2 :
+    	<select>
+  			<option value="dest1">Destination 1</option>
+ 			<option value="dest2">Destination 2</option>
+ 			<option value="dest3">Destination 3</option>
+  			<option value="dest4">Destination 4</option>
+  			<option value="dest5">Destination 5</option>
+		</select><br>
+		<INPUT type="radio" name="aller-simple" value="aller-sopra"> One way <i>( 1 >> 2 )</i><br>
+		<INPUT type="radio" name="aller-simple" value="aller-maison"> One way <i>( 1 << 2 )</i><br>
+		<INPUT type="radio" name="aller-simple" value="aller-retour"> Both way <br>
+		<br>
+		I want to :<br>
+		<i><p style="font-size:10px">you can select both options</p></i>
+		<INPUT type="checkbox" name="conducteur" value="conducteur"> drive <br>
+		<INPUT type="checkbox" name="passager" value="passager"> be a passenger <br>
+		
+				
+      <input type="button" href="profile.html" value="Add a route" class="button" />
     </form>
   </div>
 </div>
