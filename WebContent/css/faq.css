@@ -1,0 +1,11 @@
+question { 
+	margin: 50px;
+	font-size : 20px;
+	font-weight : bold;
+	color:#F6F6E8;
+	 }
+	 
+answer {
+	margin : 80px;
+	color:#F6F6E0;
+}
