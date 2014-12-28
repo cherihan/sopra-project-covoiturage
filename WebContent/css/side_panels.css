@@ -10,4 +10,15 @@ left_side{
 	bottom : 0;
 }
 
+right_side {
+	background-color : #D43F3F ;
+	height : 100%;
+	width : 20%;
+	border-left : 1px solid #F6F6E8 ; 
+	margin-right : 0 ;
+	float : right ;
+	color: #F6F6E8;
+	overflow: hidden;
+	bottom : 0;	
+}
 

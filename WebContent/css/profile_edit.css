@@ -108,23 +108,3 @@ height:24px;
    box-shadow: -0.5px -0.5px 2px 1px #00ACE9;
    
 }
-
-.button{
-  height:50px;
-  width:30%;
-  border:#80b438 1px solid;
-  box-sizing:border-box;
-  padding:10px;
-  margin-bottom:30px;
-  margin-left : 15%;
-  background:#6A9A1F;
-  color:#FFF;
-  font-weight:bold;
-  font-size: 12pt;
-  transition:background .4s;
-  cursor:pointer;
-}
-
-.button:hover{
-  background:#80b438;
-}
