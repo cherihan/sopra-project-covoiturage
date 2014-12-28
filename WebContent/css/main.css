@@ -1,6 +1,6 @@
 body {
 	background-color: #404040;
-	color: #222;
+	color: #F6F6E8;
 	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 	font-weight: 300;
 	font-size: 15px;
@@ -10,15 +10,13 @@ body {
 }
 
 .button{
-  height:50px;
-  width:30%;
-  border:#80b438 1px solid;
-  box-sizing:border-box;
-  padding:5px;
-  margin-bottom:3 0px;
-  margin-left : 5%;
+  border:#6A9A1F 1px solid;
+  padding:8px;
   background: #6A9A1F;
-  color:#FFF;
+  margin-top : 10px;
+  margin-left : 40%;
+  margin-bottom : 5px;
+  color:#F6F6E8;
   font-weight:bold;
   font-size: 12pt;
   transition:background .4s;
@@ -26,5 +24,5 @@ body {
 }
 
 .button:hover{
-  background:#80b438;
+  background:#7bb524;
 }
