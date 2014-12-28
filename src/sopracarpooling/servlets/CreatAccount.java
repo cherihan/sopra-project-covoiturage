@@ -1,31 +1,23 @@
 package sopracarpooling.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.*;
-
-import com.google.gson.Gson;
-
-import java.util.*;
-
 /**
- * Servlet implementation class Home
+ * Servlet implementation class CreatAccount
  */
-@WebServlet("/Home")
-public class Home extends HttpServlet {
+@WebServlet("/CreatAccount")
+public class CreatAccount extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Home() {
+    public CreatAccount() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,10 +27,6 @@ public class Home extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		PrintWriter out = response.getWriter();
-		out.println("hello this is a home page");
-		
-		
 	}
 
 	/**
@@ -46,16 +34,13 @@ public class Home extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("hello");
-		Map<String, String> options = new LinkedHashMap<String, String>();
-	    options.put("value1", "label1");
-	    options.put("value2", "label2");
-	    options.put("value3", "label3");
-	    String json = "lalalalalala";
-	    //response.setContentType("application/json");
-	    response.setCharacterEncoding("UTF-8");
-	    response.getWriter().write(json);
-	
+		
+		//Grabe all the attributes and test if there are not null
+		
+		//call Melinas methode to creat an account 
+		
+		//if everithing went well send the user to the rides page. 
+		
 	}
 
 }
