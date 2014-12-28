@@ -1,31 +1,32 @@
 package sopracarpooling.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.*;
+/**
+ * Servlet implementation class Login
+ */
+@WebServlet("/Login")
 
-import com.google.gson.Gson;
 
-import java.util.*;
 
 /**
- * Servlet implementation class Home
+ * This Servlets aims to check that you really are a registered user of site. If you are you will be redirected to 
+ * your rides proposition. Otherwise you will be sent back to the login page. 
+ * @author Tristan
+ *
  */
-@WebServlet("/Home")
-public class Home extends HttpServlet {
+public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Home() {
+    public Login() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,10 +36,7 @@ public class Home extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		PrintWriter out = response.getWriter();
-		out.println("hello this is a home page");
-		
-		
+		//this servlets is not accessible form a the get methode
 	}
 
 	/**
@@ -46,16 +44,14 @@ public class Home extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("hello");
-		Map<String, String> options = new LinkedHashMap<String, String>();
-	    options.put("value1", "label1");
-	    options.put("value2", "label2");
-	    options.put("value3", "label3");
-	    String json = "lalalalalala";
-	    //response.setContentType("application/json");
-	    response.setCharacterEncoding("UTF-8");
-	    response.getWriter().write(json);
-	
+		
+		//retreive the parameters 		
+		//if the parameters are valide (ask melina if they are good)
+			//set the cookies 
+			//redirect to the rides pages 
+		//else parameters not valide or not a user
+			//send to the home page 
+		
 	}
 
 }
