@@ -1,11 +1,13 @@
 left_side{
-	background-color : #D43F3F ;
+	background-color : #f6f6f6;
 	height : 100%;
 	width : 20%;
 	border-right : 1px solid #F6F6E8 ; 
 	margin-right : 0 ;
 	float : left ;
-	color: #F6F6E8;
+	color: #404040;
 	overflow: hidden;
 	bottom : 0;
+	
+     
 }
