@@ -52,6 +52,7 @@ public class Home extends HttpServlet {
 	    options.put("value2", "label2");
 	    options.put("value3", "label3");
 	    String json = "lalalalalala";
+	    Gson son = new Gson();
 	    //response.setContentType("application/json");
 	    response.setCharacterEncoding("UTF-8");
 	    response.getWriter().write(json);
