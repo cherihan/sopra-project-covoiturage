@@ -12,7 +12,6 @@ body{
 .a{
   display:block;
   color:#F6F6E8  
-  text-decoration:none;
   font-weight:bold;
   margin-top:40px;
   text-align:center;
@@ -20,14 +19,11 @@ body{
 
 .route_module{
   position:relative;
-  top:0%;    
   width:79%;
   height:100%;
-  border-left: #545353 10px solid;
+  border-left:rgba(255,255,255,1) 5px solid;
   margin-left:20%;
-  background: #404040;
-  -webkit-box-shadow:  0px 0px 15px 0px #00ACE9;        
-  box-shadow:  0px 2px 2px 0px #00ACE9;  
+  background: transparent; 
   color : #F6F6E8;
 }
 
