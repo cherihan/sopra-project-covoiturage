@@ -23,7 +23,7 @@ body{
   top:0%;    
   height:100%;
   width:80%;
-  border-left:rgba(255,255,255,1) 5px solid;
+  border-left:rgba(255,255,255,1) 1px solid;
   margin-left:20%;
   margin-right:0;
   background: #404040;
@@ -56,11 +56,13 @@ body{
 .activeTab{
   background-color:transparent;  
   color : #F6F6E8;
-  border-bottom: rgba(255,255,255,1) 5px dotted ; 
+  /*border-bottom: rgba(255,255,255,1) 1px dotted ; */
+  border-right: rgba(255,255,255,1) 1px dotted ;
+  border-left: rgba(255,255,255,1) 1px dotted ;
 }
 
 .sleepyTab{
-	border-bottom: rgba(255,255,255,1) 5px solid ; 
+	border-bottom: rgba(255,255,255,1) 1px solid ; 
 }
 
 .tab .icon{
