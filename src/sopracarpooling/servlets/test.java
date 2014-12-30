@@ -1,23 +1,26 @@
 package sopracarpooling.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class CreatAccount
+ * Servlet implementation class test
  */
-@WebServlet("/CreatAccount")
-public class CreatAccount extends HttpServlet {
+@WebServlet("/test")
+public class test extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreatAccount() {
+    public test() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,6 +30,18 @@ public class CreatAccount extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+	
+		
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		HttpSession s = request.getSession();
+		String admin = (String) s.getAttribute("isAdmin");
+		String user = (String) s.getAttribute("userID");
+		boolean newS =  s.isNew();
+		out.println("<html><body><h2>"+user+"</h2><br><p>"+admin+"</p><br></body></html>");
+		
+		
 	}
 
 	/**
@@ -34,15 +49,6 @@ public class CreatAccount extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		//Grabe all the attributes and test if there are not null
-		
-		//call Melinas methode to creat an account 
-		
-		//if everithing went well send the user to the rides page. 
-		
-		
-		
 	}
 
 }

@@ -35,8 +35,16 @@ public class Home extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		PrintWriter out = response.getWriter();
-		out.println("hello this is a home page");
+		List<String> list = new ArrayList<String>();
+	    list.add("item1");
+	    list.add("item2");
+	    list.add("item3");
+	    String json = new Gson().toJson(list);
+
+	    response.setContentType("application/json");
+	    response.setCharacterEncoding("UTF-8");
+	    response.getWriter().write(json);
+		
 		
 		
 	}
@@ -52,10 +60,11 @@ public class Home extends HttpServlet {
 	    options.put("value2", "label2");
 	    options.put("value3", "label3");
 	    String json = "lalalalalala";
-	    Gson son = new Gson();
-	    //response.setContentType("application/json");
+	    String son = new Gson().toJson(options);
+	    
+	    response.setContentType("application/json");
 	    response.setCharacterEncoding("UTF-8");
-	    response.getWriter().write(json);
+	    response.getWriter().write(son);
 	
 	}
 

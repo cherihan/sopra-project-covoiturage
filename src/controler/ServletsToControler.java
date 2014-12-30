@@ -12,6 +12,19 @@ public interface ServletsToControler {
 	
 	
 	*/
+	/**
+	 * If user is in the data base this function sends back it's userID, otherwise it returns -1
+	 * @param userName
+	 * @param pwd
+	 * @return userID or -1 if not a correct user
+	 */
+	public int userIdAndPasswordAregood(String userName, String pwd);
 	
+	/**
+	 * Checks if the user is an admin of not 
+	 * @param userID
+	 * @return true if is a admin of the site
+	 */
+	public boolean isAdmin(int userID);
 	
 }
