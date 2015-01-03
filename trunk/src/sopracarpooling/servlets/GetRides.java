@@ -27,6 +27,8 @@ public class GetRides extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		//pour moi c'est home ça
+		
 	}
 
 	/**
@@ -35,12 +37,6 @@ public class GetRides extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		//this has to be determinded by the groupe 
-		
-		//grabe the sess id ==> if valid it's cool bro
-		//get the user id ==> if it's ok ask melina to give me the rides (format to be fixes)
-		
-		//creat a valide Gson file to send back to the web nav
 		
 	}
 
