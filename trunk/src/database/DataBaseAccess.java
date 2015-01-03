@@ -12,6 +12,57 @@ public class DataBaseAccess implements DatabaseInterface{
 	//ici alex implémentes tous les signaux envoyer par Mélina
 	//impléménattion ! 
 	
+	
+	private Connection Connexion(){
+		try {    
+		    String url = "jdbc:mysql://localhost/sopra";
+		    String utilisateur = "root";
+		    String motDePasse = "soprabg31";
+	        Class.forName( "com.mysql.jdbc.Driver" );
+	        Connection connexion = DriverManager.getConnection( url, utilisateur, motDePasse );
+	        return connexion;
+	    } catch ( Exception e ) {
+	    	System.err.println("Erreur connexion : "+e);
+	    	return null;
+	    }
+		
+	}
+	
+	public int requestUserIsRegistered(String username, String password){
+		
+		Connection connexion;
+		Statement statement;
+		ResultSet resultat;
+		int isRegistered;
+		
+		try{
+		connexion = Connexion();
+		statement = connexion.createStatement();
+		resultat = statement.executeQuery(
+			"SELECT COUNT(1) FROM user WHERE nickname="+username+" AND password="+password );
+		if(resultat.getInt(1) == 1){
+			resultat = statement.executeQuery(
+				"SELECT nickname,isAdmin FROM user WHERE nickname="+username+" AND password="+password);
+			if(resultat.getInt("isAdmin") == 1){
+				isRegistered = 2;
+			}else{
+				isRegistered = 1;
+			}
+			
+		}else{
+			isRegistered = 0;	
+		}
+		return isRegistered;
+		}catch (Exception e){
+			System.err.println("Erreur requête utilisateur enregistré : "+e);
+			return -1;
+		}
+		
+		
+	}
+	
+	
+	
 	/////////////////////////// TEST TEST TEST TEST //////////////////////////////////////
 
 		private List<String> messages = new ArrayList<String>();
