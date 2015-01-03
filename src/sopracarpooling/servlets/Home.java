@@ -44,6 +44,12 @@ public class Home extends HttpServlet {
 	    response.setContentType("application/json");
 	    response.setCharacterEncoding("UTF-8");
 	    response.getWriter().write(json);
+	    
+	    //////////////////TEST DATABASE faites comme si de rien n'était ///////////////////////////
+	    //DataBaseAccess DA = new DataBaseAccess();
+	    //List<String> messages = DA.executerTests();
+	    //out.println(messages);
+	    /////////////////////// FIN TEST //////////////////////////////////////////
 		
 		
 		
