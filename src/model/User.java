@@ -28,4 +28,35 @@ public class User {
 		// Vérifier si le service est bon 
 		this.service = service;
 	}
+	
+	public User (int userID){
+		//get from the data base the infos
+		// wet it is simulated 
+		this.id = userID;
+		this.lastName = "Christ";
+		this.firstName = "Jesus";
+		this.admin = true;
+		this.postCode = new PostCode(31770);
+		this.service = "paradie";
+	}
+	public User (String email){
+		//get from the data base the infos
+		// wet it is simulated 
+		this.id = 666;
+		this.lastName = "Christ";
+		this.firstName = "Jesus";
+		this.admin = true;
+		this.postCode = new PostCode(31770);
+		this.service = "paradie";
+	}
+	
+	public int getID (){
+		return this.id;
+	}
+	public boolean isAdmin(){
+		return admin;
+	}
+	public String toString (){
+		return this.lastName+" "+this.firstName+" : "+this.id;
+	}
 }

@@ -2,6 +2,8 @@ package sopracarpooling.servlets;
 
 import java.io.IOException;
 
+import model.*;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,40 +12,39 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class Logout
+ * Servlet implementation class AccountManagement
  */
-@WebServlet("/Logout")
-public class Logout extends HttpServlet {
+@WebServlet("/AccountManagement")
+public class AccountManagement extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Logout() {
+    public AccountManagement() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	/**Is called when the user wants to logout from the site, it disconnects the user from the site
+	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub		
+		// TODO Auto-generated method stub
 		HttpSession s = request.getSession();
-		s.invalidate();
+		User user = (User) s.getAttribute("user");
+		if(user == null){response.sendRedirect("Login.html");}
 		
+		Admin admin = new Admin(user);
 		
-		s.setAttribute("wellLogout", true);
-		response.sendRedirect("login.html");//has to send back to login page. 
-		
+		//dessider de que l'on donne au type 
 	}
 
-	/**Should not be used 
+	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 	}
 
 }

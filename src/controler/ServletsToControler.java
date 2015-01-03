@@ -11,6 +11,44 @@ public interface ServletsToControler {
 				modifieAccount(id,champ1,champ2...)
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	NE PAS UTILISER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	*/
 	/**
 	 * If user is in the data base this function sends back it's userID, otherwise it returns -1
