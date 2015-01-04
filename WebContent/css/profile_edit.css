@@ -11,7 +11,7 @@ body{
 
 .a{
   display:block;
-  color:#F6F6E8  
+  color:#F6F6E8;  
   text-decoration:none;
   font-weight:bold;
   margin-top:40px;
@@ -94,8 +94,9 @@ height:24px;
 .textbox{
   height:50px;
   width:40%;
-  border:#00ACE9 1px solid;
+  border:black #00ACE9 1px solid;
   box-sizing:border-box;
+  border-radius : 3px ;
   padding:10px;
   margin-bottom:30px;
   margin-left:10%;
@@ -103,8 +104,27 @@ height:24px;
 }
 
 .textbox:focus{
-  outline:none;
    border:#00ACE9 1px solid;
    color:#00ACE9;
    box-shadow: -0.5px -0.5px 2px 1px #00ACE9;
 }
+
+select{
+	background: transparent;
+	padding: 5px;
+	border : none ;
+	border-radius : 2px;	
+  	border: 1px solid #AAA;
+  	color: #F6F6E8;
+    margin: 20px;
+  	overflow: hidden;
+    padding: 5px 10px;
+    width: 200px;
+}
+
+select:hover{
+	background: #404040;
+	border-radius : 2px;	
+  	border: 1px solid #AAA;
+}
+
