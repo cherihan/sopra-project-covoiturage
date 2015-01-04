@@ -27,6 +27,11 @@ public class RidesManagement extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		//check login
+		
+		//dispatch to jsp with no message, en a builted page 
+		
 	}
 
 	/**
@@ -34,6 +39,16 @@ public class RidesManagement extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		//check connected user 
+		//read parametres 
+		//new ride
+				
+		//perform call to data base
+				
+		
+		//send message ok to jsp with perfomed message
+		
 	}
 
 }

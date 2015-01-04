@@ -77,6 +77,9 @@ public class User {
 	public int getID (){
 		return this.id;
 	}
+	public void setId(int id){
+		this.id = id;
+	}
 	/*public boolean isAdmin(){
 		return admin;
 	}*/

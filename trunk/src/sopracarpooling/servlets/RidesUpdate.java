@@ -50,11 +50,12 @@ public class RidesUpdate extends HttpServlet {
 		//filter for session
 		
 		//make sure of with parameters are changed here with the team. 
-		String modayID = request.getParameter("monday-id");
-		String modaySource = request.getParameter("monday-src");
-		String modaydest = request.getParameter("monday-dest");
-		String modaytime = request.getParameter("monday-time");
-		String modaySens = request.getParameter("monday-sens");
+		//Monday 
+		String mondayID = request.getParameter("monday-id");//will not be changed
+		String mondaySource = request.getParameter("monday-src");//home (code postal dans un premier temps)
+		String mondaydest = request.getParameter("monday-dest");//le nom d'un service
+		String mondaytime = request.getParameter("monday-time");//l'heure du ride
+		String mondaySens = request.getParameter("monday-sens");//le send
 		//faire ça pour tous les param envoyé. (ou json si a le temps)
 			
 		// check if all the parameters have been seted
