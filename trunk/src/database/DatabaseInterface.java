@@ -16,5 +16,9 @@ public interface DatabaseInterface {
 	//à ceux de l'utilisateur donné (null si pas de correspondance)
 	public ArrayList<Ride> requestUserRides(String mail);
 	
+	//vu que pour l'instant je sais pas quelles sont les infos obligatoires je mets ça
+	//retourne -2 si erreur, sinon un truc positif (l'id je crois)
+	public int newAccount(String lastName, String firstName, String email, String bio);
+	
 	
 }
