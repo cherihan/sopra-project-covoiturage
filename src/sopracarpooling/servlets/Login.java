@@ -73,14 +73,14 @@ public class Login extends HttpServlet {
 		 pwd = "12";
 
 		if (userName != null && pwd != null) {
-
+			Password pass = new Password(pwd);
 			// try catch ?
 
-			// int userID = BD(userName, pwd);
+			// int userID = BD(userName, pass);
 			// boolean isAdmin = DB(userID);
 
-			// simulation
-			User user = new User(userName);
+			// simulation 
+			User user = new User(userName);//better with user id
 			
 			//System.out.println("###DEBUG ### (servlets, Login) = user : "+user);
 
@@ -90,12 +90,13 @@ public class Login extends HttpServlet {
 			
 			//request.setAttribute("user", user);
 			// on peux ajouter des informations ici dans le cookie
-			if (user.isAdmin()) {
+			if (true) { //verif !
 				session.setAttribute("isAdmin", true);
 			}
 			response.sendRedirect(nextPage);
 		} else {
-			
+			HttpSession session = request.getSession();
+			session.setAttribute("actionPerform", "error");
 			response.sendRedirect(loginPage);//with error
 		}
 

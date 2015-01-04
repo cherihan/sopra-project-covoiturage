@@ -41,15 +41,15 @@ public class CreatAccount extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		//Grabe all the attributes and test if there are not null
-		String name = request.getParameter("name");
-		String nickName = request.getParameter("nick-name");
+		String lastname = request.getParameter("lastname");
+		String firstName = request.getParameter("firtsname");
 		String email = request.getParameter("email");
 		String pwd = request.getParameter("pwd");
 		String phone = request.getParameter("phone");
 		String bio = request.getParameter("bio");
 		
 		//check if all the parameters have been seted
-		if (name != null && nickName != null && email != null && 
+		if (lastname != null && firstName != null && email != null && 
 				pwd != null && phone != null){
 			
 			
@@ -57,18 +57,20 @@ public class CreatAccount extends HttpServlet {
 
 				//Appel de la fonction d'allex qui crée le compte 
 				//alex nous renvois un user id 
+				User newUser = new User (-1, lastname, firstName, email, bio);
+				//BB add new account (USER, PASS) return id 
+				newUser.setId(666);
 				
-				//test :
-				int userID = 666;
-				User user = new User(userID);
 				
+							
 				
 				
 			
 				
 				HttpSession s = request.getSession();
-				s.setAttribute("user", user);
-				response.sendRedirect("Home");
+				s.setAttribute("user", newUser);
+				s.setAttribute("newAccount", "yes");				
+				response.sendRedirect("home.html");
 			}catch (Exception e){
 				response.sendRedirect("signup.html");//avec message d'ereur
 			}

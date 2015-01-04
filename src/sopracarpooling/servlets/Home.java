@@ -22,7 +22,7 @@ import java.util.*;
 /**
  * Servlet implementation class Home
  */
-@WebServlet("/Home")
+@WebServlet("home.html")
 public class Home extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -46,30 +46,30 @@ public class Home extends HttpServlet {
 		User user = (User)  s.getAttribute("user");
 		
 		
-		System.out.println(user);
-		
-		
-		//On va dire que le user est bien passer par la.
-		//Donc a notre user et on sais que sont
+				
+
 		// on peu donc chercher les rides qui lui conviennes 
 		ArrayList <Ride> mondayRides = new ArrayList<Ride>();
 		ArrayList <Ride> tuesdayRides = new ArrayList<Ride>();
 		ArrayList <Ride> wednesdayRides = new ArrayList<Ride>();
 		ArrayList <Ride> thrusdayRides = new ArrayList<Ride>();
-		ArrayList <Ride> FridayRides = new ArrayList<Ride>();
-		
-		
+		ArrayList <Ride> FridayRides = new ArrayList<Ride>();	
 		//Possible rides
 		//rechercher avec la base de donnée ou avec une classe special
 		
 		
-		/*
-		ArrayList <ArrayList <Ride>> weeklyRides = new ArrayList<ArrayList <Ride>>();
 		
-		request.setAttribute("weeklyRides", weeklyRides); //on pass les rides possible à la page jsp ! 
+		//tous les tableaux sont rempli
+		//On a donc tous les trajets qui partes de vers chez lui, à son travail, et les gens qui fonts ce trajet. 
+		ArrayList <ArrayList <Ride>> weeklyRides = new ArrayList<ArrayList <Ride>>();
+		weeklyRides.add(mondayRides);
+		weeklyRides.add(tuesdayRides);
+		weeklyRides.add(wednesdayRides);
+		weeklyRides.add(thrusdayRides);
+		weeklyRides.add(FridayRides);
+		request.setAttribute("weeklyRides", weeklyRides); //on pass les rides possible à la page jsp! (qui les affiches) 
 		RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
 		rd.forward(request, response);
-		*/
 		
 	}
 

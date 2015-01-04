@@ -1,27 +1,34 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 
 
 public class Ride {
 	private Adresse home;
 	private Service office;
+	private User conducteur;
+	private Heure atOfficeAt; //heur à laquelle on pense arriver ou partir du travail 
 	private boolean sens; //true = allé, retour = false
 
-	public Ride(Adresse home, Service office, Boolean sens) {
+	public Ride(User conducteur, Adresse home, Service office,String hour , Boolean sens) {
+		this.conducteur = conducteur;
+		this.atOfficeAt = new Heure(hour);
 		this.home =  home;
 		this.office = office; //on a pas besion de vérifier, on part du principe que le controler (servlet) l'aura fait
 		this.sens = sens ;
 		
 		
-		System.out.println("###DEBUG ### (Ride, constructeur) : le office que vous essayez de rentrer ne fait pas parti de la liste");
+		System.out.println("###DEBUG ### (Ride, constructeur) : ride créer");
 	}
 
 	// Display ride (toString est générique) 
 	public String toString () {
 		String res;
 		res="###DEBUG ### (Ride, toString) \n";
+		res="Le conduteur est :"+this.conducteur+"\n";
 		res+="Le point de départ se situe à : " + this.home+"\n";
 		res+="Le point d'arrivée se situe dans le office : "+ this.office+"\n";
 		if (sens){
