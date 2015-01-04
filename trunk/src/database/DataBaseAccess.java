@@ -50,7 +50,7 @@ public class DataBaseAccess implements DatabaseInterface{
 		}
 	}
 	
-	public int requestUserIsRegistered(String username, String password){
+	public int requestUserIsRegistered(String mail){
 		
 		Connection connexion=null;
 		Statement statement=null;
@@ -63,11 +63,13 @@ public class DataBaseAccess implements DatabaseInterface{
 		statement = connexion.createStatement();
 		//chercher si l'utilisateur existe
 		resultat = statement.executeQuery(
-			"SELECT COUNT(1) FROM user WHERE nickname="+username+" AND password="+password );
+			"SELECT COUNT(1) "
+			+ "FROM user "
+			+ "WHERE mail="+mail);
 		if(resultat.getInt(1) == 1){
 			//vérifier si l'utilisateur est admin ou pas
 			resultat = statement.executeQuery(
-				"SELECT nickname,isAdmin FROM user WHERE nickname="+username+" AND password="+password);
+				"SELECT nickname,isAdmin FROM user WHERE mail="+mail);
 			if(resultat.getInt("isAdmin") == 1){
 				//c'est un admin
 				isRegistered = 2;
@@ -89,29 +91,44 @@ public class DataBaseAccess implements DatabaseInterface{
 		}
 	}
 	
-	public ArrayList<Ride> requestUserRides(String username){
+	public ArrayList<Ride> requestUserRides(String mail){
 		Connection connexion=null;
 		Statement statement=null;
 		ResultSet resultat=null;
 		Ride ride;
+		User user;
+		Adresse home;
+		Service service;
 		ArrayList<Ride> rides = new ArrayList<Ride>();
 		
 		try{
 			//connexion
 		connexion = Connexion();
 		statement = connexion.createStatement();
-		//sélectionner l'utilisateur puis ses trajets
+		//sélectionner les trajets de l'utilisateur
 		resultat = statement.executeQuery(
-			"SELECT id FROM user WHERE nickname="+username);
-		resultat = statement.executeQuery(
-				"SELECT id,cp,sopra_site,sens FROM rides WHERE id="+resultat.getInt(1));
+				"SELECT user.id,rides.id,cp,sopra_site,jour,sens "
+				+ "FROM rides,user "
+				+ "WHERE mail="+mail);
+		//sélectionner les trajets qui correspondent (càd mêmes cp,site,jour et sens)
 		resultat =statement.executeQuery(
-				"SELECT cp,sopra_site,sens FROM rides WHERE cp="+resultat.getInt("cp")+"AND sopra_site="+resultat.getString("sopra_site"));
+				"SELECT user.id,rides.id,lastname,firstname,mail,cp,sopra_site,heure,sens,bio "
+				+ "FROM rides,user "
+				+ "WHERE cp="+resultat.getInt("cp")+
+				"AND sopra_site="+resultat.getString("sopra_site")+
+				"AND jour ="+resultat.getString("jour")+
+				"AND sens ="+resultat.getInt("sens"));
 		//tant qu'il reste des lignes dans le tableau de résultat
         while ( resultat.next() ) {
         	//prendre les valeurs de la ligne
+        	int id = resultat.getInt(1);
+        	String lastName = resultat.getString("lastname");
+        	String firstName = resultat.getString("firstname");
+        	String email = resultat.getString("mail");
+        	String bio = resultat.getString("bio");
             int cp = resultat.getInt("cp");
-            String site = resultat.getString( "sopra_site" );
+            String site = resultat.getString("sopra_site");
+            String heure =resultat.getString("heure");
             boolean sens = false;
             if (resultat.getInt("sens") == 0){
             	sens=false;
@@ -119,9 +136,15 @@ public class DataBaseAccess implements DatabaseInterface{
             	sens=true;
             }            
             PostCode code = new PostCode(cp);
-            //"créer" un trajet
-            ride = new Ride(code,site,sens);
-            //mettre tous les trajets dans un tableau de trajets
+            //créer un utilisateur
+            user = new User(id,lastName,firstName,email,bio);
+            //créer adresse
+            home = new Adresse(code);
+            //créer service
+            service = new Service();
+            //créer un trajet
+            ride = new Ride(user, home, service, heure, sens);
+            //mettre le trajet dans le tableau de trajets
             rides.add(ride);
 		}
         Close(resultat, statement, connexion);

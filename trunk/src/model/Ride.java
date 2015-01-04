@@ -13,7 +13,7 @@ public class Ride {
 	private Heure atOfficeAt; //heur à laquelle on pense arriver ou partir du travail 
 	private boolean sens; //true = allé, retour = false
 
-	public Ride(User conducteur, Adresse home, Service office,String hour , Boolean sens) {
+	public Ride(User conducteur, Adresse home, Service office, String hour, Boolean sens) {
 		this.conducteur = conducteur;
 		this.atOfficeAt = new Heure(hour);
 		this.home =  home;
