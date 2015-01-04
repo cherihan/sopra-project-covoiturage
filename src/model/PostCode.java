@@ -9,11 +9,11 @@ public class PostCode {
 		this.code = code;
 	}
 
-	static Boolean PostCodeVerif(Integer saisie, ArrayList list) {
+	static Boolean PostCodeVerif(Integer saisie, ArrayList list) {//du coup la liste devrai être un variable de class non?
 		boolean retour = false;
 
 		// Vérification du nombre de chiffres présents dans la saisie
-		if (saisie.SIZE != 5) {
+		if (saisie.SIZE != 6) {
 			if (list.contains(saisie)) {
 				retour = true;
 			}
