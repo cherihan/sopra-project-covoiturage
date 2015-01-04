@@ -50,6 +50,8 @@ public class DataBaseAccess implements DatabaseInterface{
 		}
 	}
 	
+	/////////////// RequestUserIsRegistered ///////////////////
+	
 	public int requestUserIsRegistered(String mail){
 		
 		Connection connexion=null;
@@ -90,6 +92,8 @@ public class DataBaseAccess implements DatabaseInterface{
 			Close(resultat, statement, connexion);
 		}
 	}
+	
+/////////////// RequestUserRides ///////////////////
 	
 	public ArrayList<Ride> requestUserRides(String mail){
 		Connection connexion=null;
@@ -157,6 +161,26 @@ public class DataBaseAccess implements DatabaseInterface{
 		return rides;
 	}
 	
+	public int newAccount(String lastName, String firstName, String email, String bio){
+		Connection connexion=null;
+		Statement statement=null;
+		int resultat = -2;
+		try{
+			//connexion
+			connexion = Connexion();
+			statement = connexion.createStatement();
+			//insertion de l'utilisateur créé (à faire propre)
+			resultat = statement.executeUpdate("INSERT INTO user "
+					+ "VALUES ("+lastName+","+firstName+","+"okbaby"+","+email+","+"password"+","+"telephone"+","+bio+","+"NULL"+","+"1)");
+		}catch(Exception e){
+			System.err.println("Erreur requête trajets : "+e);
+		}finally{
+			Close(null, statement, connexion);
+		}
+		return resultat;
+
+	}
+
 	
 	
 	
