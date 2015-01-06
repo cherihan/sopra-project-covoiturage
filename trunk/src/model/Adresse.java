@@ -3,6 +3,8 @@ package model;
 public class Adresse {
 	//pour le momen on ne gère que les poste code
 	private PostCode postCode;
+	private String ville;
+	private String rue;
 	
 	
 	public Adresse(PostCode postCode){

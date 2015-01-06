@@ -7,18 +7,25 @@ import java.util.GregorianCalendar;
 
 
 public class Ride {
+	private int id;
+	private User user;
 	private Adresse home;
-	private Service office;
-	private User conducteur;
-	private Heure atOfficeAt; //heur à laquelle on pense arriver ou partir du travail 
+	private Service office;	
+	private JourDeLaSemaine jour;
+	private Heure atOfficeAt;//heur à laquelle on pense arriver ou partir du travail 
 	private boolean sens; //true = allé, retour = false
-
-	public Ride(User conducteur, Adresse home, Service office, String hour, Boolean sens) {
-		this.conducteur = conducteur;
-		this.atOfficeAt = new Heure(hour);
+	private String comment;
+	
+	public Ride(int id,User conducteur, Adresse home, Service office,JourDeLaSemaine jour, 
+			Heure hour, Boolean sens, String com) {
+		this.id = id;
+		this.user = conducteur;
 		this.home =  home;
 		this.office = office; //on a pas besion de vérifier, on part du principe que le controler (servlet) l'aura fait
+		this.jour = jour;
+		this.atOfficeAt = hour;		
 		this.sens = sens ;
+		this.comment = com;
 		
 		
 		System.out.println("###DEBUG ### (Ride, constructeur) : ride créer");
@@ -28,7 +35,7 @@ public class Ride {
 	public String toString () {
 		String res;
 		res="###DEBUG ### (Ride, toString) \n";
-		res="Le conduteur est :"+this.conducteur+"\n";
+		res="Le conduteur est :"+this.user+"\n";
 		res+="Le point de départ se situe à : " + this.home+"\n";
 		res+="Le point d'arrivée se situe dans le office : "+ this.office+"\n";
 		if (sens){

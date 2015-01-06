@@ -12,8 +12,8 @@ public class User {
 	private String lastName;
 	private String firstName;
 	private String bio;
-	private String email; //proprement il faudrait créer un type e-mail adress
-	
+	private EmailAdresse email; //proprement il faudrait créer un type e-mail adress
+	private NumeroTelephone tel; 
 	//Pour moi ça fait parti des informations sur un ride pas sur le user 
 	/*
 	PostCode postCode; // proposer une liste de code postaux OU utiliser google
@@ -30,11 +30,13 @@ public class User {
 	 * @param firstName
 	 * @param Bio
 	 */
-	public User(int id, String lastName, String firstName, String email, String bio) {
+	public User(int id, String lastName, String firstName, EmailAdresse email, String bio, NumeroTelephone telNum) {
 		this.id = id;
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.bio = bio;
+		this.email = email;
+		this.tel = telNum;
 		
 		//this.admin = false;
 		/*
@@ -53,7 +55,7 @@ public class User {
 		this.lastName = "Christ";
 		this.firstName = "Jesus";
 		this.bio = "le fils de dieux";
-		this.email = "the.police.sting@hotmail.com";
+		this.email = new EmailAdresse("the.police.sting@hotmail.com");
 		
 		
 		/*
@@ -68,7 +70,7 @@ public class User {
 		this.lastName = "Christ";
 		this.firstName = "Jesus";
 		this.bio = "le fils de dieux";
-		this.email = "the.police.sting@hotmail.com";
+		this.email = new EmailAdresse("the.police.sting@hotmail.com");
 		/*this.admin = true;
 		this.postCode = new PostCode(31770);
 		this.service = "paradie";*/

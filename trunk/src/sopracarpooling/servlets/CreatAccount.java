@@ -41,15 +41,16 @@ public class CreatAccount extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		//Grabe all the attributes and test if there are not null
-		String lastname = request.getParameter("lastname");
+		String lastName = request.getParameter("lastname");
 		String firstName = request.getParameter("firtsname");
 		String email = request.getParameter("email");
 		String pwd = request.getParameter("pwd");
 		String phone = request.getParameter("phone");
 		String bio = request.getParameter("bio");
+
 		
 		//check if all the parameters have been seted
-		if (lastname != null && firstName != null && email != null && 
+		if (lastName != null && firstName != null && email != null && 
 				pwd != null && phone != null){
 			
 			
@@ -57,7 +58,7 @@ public class CreatAccount extends HttpServlet {
 
 				//Appel de la fonction d'allex qui crée le compte 
 				//alex nous renvois un user id 
-				User newUser = new User (-1, lastname, firstName, email, bio);
+				User newUser = new User(-1, lastName, firstName, new EmailAdresse(email), bio, new NumeroTelephone(phone));
 				//BB add new account (USER, PASS) return id 
 				newUser.setId(666);
 				
