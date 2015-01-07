@@ -71,7 +71,7 @@ public class CreatAccount extends HttpServlet {
 				HttpSession s = request.getSession();
 				s.setAttribute("user", newUser);
 				s.setAttribute("newAccount", "yes");				
-				response.sendRedirect("home.html");
+				response.sendRedirect("/home");
 			}catch (Exception e){
 				response.sendRedirect("signup.html");//avec message d'ereur
 			}

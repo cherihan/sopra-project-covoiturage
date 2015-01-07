@@ -2,14 +2,47 @@ package model;
 
 public class JourDeLaSemaine {
 	
-	private String jour;
+	private int jour;
 	
-	public JourDeLaSemaine (String jour){
-		this.jour = jour;
+	
+	public JourDeLaSemaine (int jourNum){
+		if(jourNum < 8 && jourNum > 0){
+			this.jour = jourNum;
+		}		
 	}
-
 	
 	public String toString(){
-		return this.jour;
+		String res;
+		switch (this.jour) {
+		case 1:
+			res ="lundi";
+			break;
+		case 2:
+			res = "mardi";
+			break;
+		case 3 :
+			res = "mercredi";
+			break;
+		case 4 :
+			res="jeudi";
+			break;
+		case 5 :
+			res= "vendredi";
+			break;
+		case 6 :
+			res= "samedi";
+			break;
+		case 7 :
+			res = "dimanche";
+
+		default:
+			res = "Il y a ue un gros problème un jour et la c'est grave (model.JourDeLASemaine)";
+			break;
+		}		
+		return res;
+	}
+	
+	public int getJour(){
+		return jour;
 	}
 }
