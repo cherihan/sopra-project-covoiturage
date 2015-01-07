@@ -5,18 +5,50 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Sopra testing jsp</title>
+<style type="text/css">
+.error{
+	color: red;
+	font-weight: bold;
+}
+</style>
+
 </head>
 <body>
 
 	<%--This is a jsp comment --%>
-
-
-	<h1>Test un</h1>
+	<% HttpSession s = request.getSession(); %>
 	<%
-		HttpSession s = request.getSession();
-		User test = (User) s.getAttribute("user");
-		out.println("hello brother !! un: " + test);
+		Exception e= (Exception) s.getAttribute("error");
+		if (e != null){%>
+			<h1 class="error">${e}</h1>
+			
+		<%}
+		
 	%>
+
+
+	<h1>Connection</h1>
+	<form action="test" method="get">
+		<input type="hidden" name="action" value="1">
+		<input type="text" name="emailAdress" value="superman@gmail.com"><br>
+		<input type="password" name="pwd" value="superman"><br>
+		<input type="submit" value="Submit"><br>
+	</form>
+	
+	<h3>conection</h3>
+	<%
+		
+		User test = (User) s.getAttribute("user");
+		if(test != null ){
+			out.println("<p>Brother is in the hood !! : " +test+"</p><br>");
+		}else{
+			out.println("<p>no brother is connected.</p><br>");
+		}
+		
+	%>
+	<!--  
+	<h1>Test un</h1>
+	
 	<br>
 	<p>tout marche bien</p>
 	<br>
@@ -29,7 +61,7 @@
 	<p>tout marche bien</p>
 	<br>
 	<br>
-	
+	-->
 	
 
 
