@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import database.DataBaseAccess;
 import model.*;
 
 /**
@@ -42,9 +43,17 @@ public class Login extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
-		//si on est dèja logé ? 
-		RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-		rd.forward(request, response);
+		//si onis user loged in ?
+		HttpSession s = request.getSession();
+		
+		if(s.getAttribute("user")!= null){
+			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+			rd.forward(request, response);
+		}else{
+			response.sendRedirect("/Home");
+		}
+		
+		
 		
 	
 	}
@@ -56,49 +65,31 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		
-		
-		
-		String loginPage = "login.html";
+		DataBaseAccess dB = new DataBaseAccess();		
+		String loginPage = "login.jsp";
 		String nextPage = "Home";// bien envoyer vers home (servlet)
-
+		HttpSession s = request.getSession();
+		//grabe parameters
+		String sMail = (String) request.getParameter("emailadress");
+		String sPass = (String) request.getParameter("pwd");		
 		
-		String userName = request.getParameter("emailAdress");
-		String pwd = request.getParameter("pwd");
-
-		// pour les tests
-		 userName = "lala";
-		 pwd = "12";
-
-		if (userName != null && pwd != null) {
-			Password pass = new Password(pwd);
-			// try catch ?
-
-			// User user = DataBase fait ça merde(userName, PassWord)
-			// boolean isAdmin = DB(userID);
-
-			// simulation test
-			User user = new User(userName);//better with user id
-			
-			//System.out.println("###DEBUG ### (servlets, Login) = user : "+user);
-
-			// Création de la session
-			HttpSession session = request.getSession();
-			session.setAttribute("user", user);
-			
-			//request.setAttribute("user", user);
-			// on peux ajouter des informations ici dans le cookie
-			if (true) { //verif !
-				session.setAttribute("isAdmin", true);
+		if (sMail != null && sPass != null) {
+			EmailAdresse mail = new EmailAdresse(sMail);
+			Password pass = new Password(sPass);
+			try{
+				User user = dB.requestUserIsRegistered(mail, pass);
+				s.setAttribute("user", user);
+				//System.out.println("###DEBUG ### (servlets, Login) = user : "+user);
+				response.sendRedirect(nextPage);
+			}catch (Exception e){
+				s.setAttribute("actionPerform", "errorNologIN");
+				response.sendRedirect(loginPage);
 			}
-			response.sendRedirect(nextPage);
 		} else {
-			HttpSession session = request.getSession();
-			session.setAttribute("actionPerform", "error");
-			response.sendRedirect(loginPage);//with error
+			s.setAttribute("actionPerform", "errorNologIN");
+			response.sendRedirect(loginPage);
 		}
 
 	}
-
+	
 }

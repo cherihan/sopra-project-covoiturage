@@ -10,9 +10,21 @@ public class Service {
 	private String description;
 	private Adresse addr; 
 	
+	//ne pas utiliser de consctructeur, jamais 
+	public Service (){
+		this.id = 0;
+	}
+	public Service (int id){
+		this.id = id;
+	}
+	public Service (int id, String nom, String description, Adresse addr){
+		this.id = id;
+		this.nom = nom;
+		this.description = description;
+		this.addr = addr;
+	}
 	
-	public ArrayList<String> listeServices = new ArrayList<String>();
-	
+	/*
 	// To add a service to the list of service
 	public void addService (String ajoutService) {
 		listeServices.add(ajoutService);
@@ -25,5 +37,5 @@ public class Service {
 		}
 		else { retour = false ; }
 		return retour ; 
-	}
+	}*/
 }
