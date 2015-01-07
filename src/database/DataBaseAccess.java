@@ -196,24 +196,29 @@ public class DataBaseAccess {
 		String email = user.getEmail().toString();
 		String bio = user.getBio();
 		String phone = user.getTel().ToString();
+		String pwd = pass.getClaire();
+		ResultSet res;
+		int id = -1;
 		
-		int resultat = -2;
+		int resultat; 
 		try {
 			// connexion
 			connexion = Connexion();
 			statement = connexion.createStatement();
 			// insertion de l'utilisateur créé (à faire propre)
 			resultat = statement.executeUpdate("INSERT INTO user " + "VALUES ("
-					+ lastName + "," + firstName + "," + "okbaby" + "," + email
-					+ "," + "password" + "," + "telephone" + "," + bio + ","
-					+ "NULL" + "," + "1)");
+					+ lastName + "," + firstName + "," + email + "," + pwd
+					+ "," + phone + "," + bio + "," + "NULL"+"0");
+			res = statement.executeQuery("SELECT id FROM user WHERE mail ='"+email+"'");
+			res.next();
+			id = res.getInt(1);
 		} catch (Exception e) {
 			System.err.println("Erreur requête trajets : " + e);
 			throw new RequestDidNotWork("New account could not be added.");
 		} finally {
 			Close(null, statement, connexion);
 		}
-		return resultat;
+		return id;
 
 	}
 	
