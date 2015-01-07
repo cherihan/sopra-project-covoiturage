@@ -114,7 +114,10 @@ CREATE TABLE `sopra_site` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `description` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `adresse` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `adresse` (`adresse`),
+  CONSTRAINT `fk_adresse` FOREIGN KEY (`adresse`) REFERENCES `adresse` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -124,7 +127,7 @@ CREATE TABLE `sopra_site` (
 
 LOCK TABLES `sopra_site` WRITE;
 /*!40000 ALTER TABLE `sopra_site` DISABLE KEYS */;
-INSERT INTO `sopra_site` VALUES (1,'Sopra Insa',NULL),(2,'Sopra Ramonville',NULL);
+INSERT INTO `sopra_site` VALUES (1,'Sopra Insa',NULL,1),(2,'Sopra Ramonville',NULL,2);
 /*!40000 ALTER TABLE `sopra_site` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -171,4 +174,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-01-07 12:26:23
+-- Dump completed on 2015-01-07 12:30:34
