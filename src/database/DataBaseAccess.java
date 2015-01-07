@@ -52,12 +52,13 @@ public class DataBaseAccess implements DatabaseInterface{
 	
 	/////////////// RequestUserIsRegistered ///////////////////
 	
-	public int requestUserIsRegistered(String mail){
+	public User requestUserIsRegistered(EmailAdresse mail, Password pass) throws RequestDidNotWork{
 		
 		Connection connexion=null;
 		Statement statement=null;
 		ResultSet resultat=null;
 		int isRegistered;
+		User registeredUser;
 		
 		try{
 		//connexion
@@ -68,21 +69,24 @@ public class DataBaseAccess implements DatabaseInterface{
 			"SELECT COUNT(1) "
 			+ "FROM user "
 			+ "WHERE mail="+mail);
+		//verifier le mot de pass aussi
 		if(resultat.getInt(1) == 1){
 			//vérifier si l'utilisateur est admin ou pas
+			//ICI il faut que l'on chope tous les champs.
 			resultat = statement.executeQuery(
 				"SELECT nickname,isAdmin FROM user WHERE mail="+mail);
+			//registeredUser = new User (tous les champs);
+			
 			if(resultat.getInt("isAdmin") == 1){
-				//c'est un admin
+				//c'est un admin donc on crée un admin
+				//registeredUser = new Admin();
 				isRegistered = 2;
-			}else{
-				//c'est un user lambda
-				isRegistered = 1;
 			}
 			
 		}else{
 			//le mec/la gente demoiselle n'existe pas
-			isRegistered = 0;	
+			throw new RequestDidNotWork("La personne n'a pas été trouvé dans la dataBase");
+			
 		}
 		return isRegistered;
 		}catch (Exception e){

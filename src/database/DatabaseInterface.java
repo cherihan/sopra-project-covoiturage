@@ -2,7 +2,8 @@ package database;
 
 import java.util.*;
 
-import model.Ride;
+import model.*;
+
 
 public interface DatabaseInterface {
 
@@ -10,15 +11,17 @@ public interface DatabaseInterface {
 	//pas d'implémentation que des définitions
 	
 	//Retourne 0 si pas enregistré, 1 si enregistré, 2 si c'est un admin (-1 si erreur)
-	public int requestUserIsRegistered(String mail);
+	public User requestUserIsRegistered(EmailAdresse mail, Password pass) throws RequestDidNotWork;
 	
-	//renvoie un tableau contenant tous les trajets correspondant (même code postal et même site sopra)
-	//à ceux de l'utilisateur donné (null si pas de correspondance)
-	public ArrayList<Ride> requestUserRides(String mail);
+	//renvoie un tableau de table contenant tous les trajets correspondant à chaque jours de la semaine 
+	//EI = 
+	//Tableau = {ridesLundi, ridesMardi,....}
+	//à ceux de l'utilisateur donné (null si pas de correspondance) 
+	public ArrayList <ArrayList<Ride>> requestUserWeeklyPossibleRides(User user) throws RequestDidNotWork;
 	
 	//vu que pour l'instant je sais pas quelles sont les infos obligatoires je mets ça
-	//retourne -2 si erreur, sinon un truc positif (l'id je crois)
-	public int newAccount(String lastName, String firstName, String email, String bio);
+	//retourne -2 si erreur, sinon un truc positif (l'id)
+	public int newAccount(User user, Password pass) throws RequestDidNotWork;
 	
 	
 }

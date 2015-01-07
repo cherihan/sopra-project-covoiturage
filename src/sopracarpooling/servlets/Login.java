@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import controler.*;
 import model.*;
 
 /**
@@ -40,7 +39,7 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request,
+	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
 		//si on est dèja logé ? 
@@ -54,7 +53,7 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request,
+	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
@@ -65,10 +64,10 @@ public class Login extends HttpServlet {
 		String nextPage = "Home";// bien envoyer vers home (servlet)
 
 		
-		String userName = request.getParameter("userName");
+		String userName = request.getParameter("emailAdress");
 		String pwd = request.getParameter("pwd");
 
-		// pour les testes
+		// pour les tests
 		 userName = "lala";
 		 pwd = "12";
 
@@ -76,10 +75,10 @@ public class Login extends HttpServlet {
 			Password pass = new Password(pwd);
 			// try catch ?
 
-			// int userID = BD(userName, pass);
+			// User user = DataBase fait ça merde(userName, PassWord)
 			// boolean isAdmin = DB(userID);
 
-			// simulation 
+			// simulation test
 			User user = new User(userName);//better with user id
 			
 			//System.out.println("###DEBUG ### (servlets, Login) = user : "+user);
