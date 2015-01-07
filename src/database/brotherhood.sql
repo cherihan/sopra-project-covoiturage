@@ -61,6 +61,7 @@ CREATE TABLE `jours` (
 
 LOCK TABLES `jours` WRITE;
 /*!40000 ALTER TABLE `jours` DISABLE KEYS */;
+INSERT INTO `jours` VALUES (1,'lundi'),(2,'mardi'),(3,'mercredi'),(4,'jeudi'),(5,'vendedi'),(6,'samedi'),(7,'dimanche');
 /*!40000 ALTER TABLE `jours` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,9 +85,11 @@ CREATE TABLE `rides` (
   KEY `id_user` (`id_user`),
   KEY `sopra_site` (`sopra_site`),
   KEY `adrese` (`adresse`),
+  KEY `jour` (`jour`),
   CONSTRAINT `Rides_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`),
   CONSTRAINT `Rides_ibfk_2` FOREIGN KEY (`sopra_site`) REFERENCES `sopra_site` (`id`),
-  CONSTRAINT `Rides_ibfk_3` FOREIGN KEY (`adresse`) REFERENCES `adresse` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `Rides_ibfk_3` FOREIGN KEY (`adresse`) REFERENCES `adresse` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `Rides_ibfk_4` FOREIGN KEY (`jour`) REFERENCES `jours` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -168,4 +171,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-01-07 11:37:20
+-- Dump completed on 2015-01-07 12:26:23
