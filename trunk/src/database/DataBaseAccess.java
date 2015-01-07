@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.sun.corba.se.impl.protocol.RequestCanceledException;
+
 import model.*;
 
 public class DataBaseAccess {
@@ -70,21 +72,28 @@ public class DataBaseAccess {
 			statement = connexion.createStatement();
 			// chercher si l'utilisateur existe
 			resultat = statement.executeQuery("SELECT COUNT(1) " + "FROM user "
-					+ "WHERE mail=" + mail);
+					+ "WHERE mail='" + mail+"'");
 			// verifier le mot de pass aussi
+			resultat.next();
 			if (resultat.getInt(1) == 1) {
 				// vérifier si l'utilisateur est admin ou pas
 				// ICI il faut que l'on chope tous les champs.
-				resultat.close();
-				resultat = statement.executeQuery("SELECT * FROM sopra.user WHERE mail="+ mail);
+				//resultat.close();
+				resultat = statement.executeQuery("SELECT * FROM sopra.user WHERE mail='"+ mail+"'");
+				resultat.next();
 				
-				System.out.println(resultat.getString("lastname"));
-				// registeredUser = new User (tous les champs);
+				int id = resultat.getInt("id");
+				String lastName = resultat.getString("lastname");
+				String firstName= resultat.getString("firstname");
+				EmailAdresse email = new EmailAdresse(resultat.getString("mail"));
+				String bio = resultat.getString("bio");
+				NumeroTelephone telNum = new NumeroTelephone(resultat.getString("phone"));
+				registeredUser = new User(id, lastName, firstName, email, bio, telNum);
 
 				if (resultat.getInt("isAdmin") == 1) {
 					// c'est un admin donc on crée un admin
-					// registeredUser = new Admin();
-					System.out.println(resultat.getString("c'est scarface!"));
+					registeredUser = new Admin(registeredUser);
+					System.out.println("c'est scarface!");
 				}
 
 			} else {
@@ -93,7 +102,8 @@ public class DataBaseAccess {
 						"La personne n'a pas été trouvé dans la dataBase");
 
 			}
-			return null;
+			
+			return registeredUser;
 		} catch (Exception e) {
 			System.err.println("Erreur requête utilisateur enregistré : " + e);
 			throw new RequestDidNotWork(
@@ -175,10 +185,18 @@ public class DataBaseAccess {
 		return rides;
 	}
 
-	public int newAccount(String lastName, String firstName, String email,
-			String bio) {
+	//metre tout les champs (ex : AdressEmail email)
+	//je veux recevoir l'ID du met
+	public int newAccount(User user, Password pass) throws RequestDidNotWork{
 		Connection connexion = null;
 		Statement statement = null;
+		
+		String lastName = user.getLastName();
+		String firstName = user.getFirstName();
+		String email = user.getEmail().toString();
+		String bio = user.getBio();
+		String phone = user.getTel().ToString();
+		
 		int resultat = -2;
 		try {
 			// connexion
@@ -191,12 +209,27 @@ public class DataBaseAccess {
 					+ "NULL" + "," + "1)");
 		} catch (Exception e) {
 			System.err.println("Erreur requête trajets : " + e);
+			throw new RequestDidNotWork("New account could not be added.");
 		} finally {
 			Close(null, statement, connexion);
 		}
 		return resultat;
 
 	}
+	
+	//set rides of on user (ArrayList<Rides>)
+	//tu dois avoir un tableau de rides avec au max 5 rides
+	//tu ajoute chaqu'un des rides dans la data base (un par un je supose)
+	
+	public void addUserRides(ArrayList<Ride> rides) throws RequestCanceledException{
+		
+		
+	}
+	
+	
+	
+	
+	
 
 	// ///////////////////////// TEST TEST TEST TEST
 	// //////////////////////////////////////

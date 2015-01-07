@@ -30,7 +30,7 @@
 	<h1>Connection</h1>
 	<form action="/SopraCarPooling/test" method="post">
 		<input type="hidden" name="action" value="1">
-		<input type="text" name="emailAdress" value="superman@gmail.com"><br>
+		<input type="text" name="emailadress" value="superman@gmail.com"><br>
 		<input type="password" name="pwd" value="superman"><br>
 		<input type="submit" value="Submit"><br>
 	</form>
@@ -46,6 +46,13 @@
 		}
 		
 	%>
+	
+	<h1>Disconnect</h1>
+		<form action="/SopraCarPooling/test" method="post">
+			<input type="hidden" name="action" value="2">
+			<input type="submit" value="Submit"><br>
+		</form>
+	
 	<!--  
 	<h1>Test un</h1>
 	
