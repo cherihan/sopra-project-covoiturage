@@ -47,6 +47,14 @@ public class User {
 		*/
 	}
 	
+	public User (User u){
+		this.id = u.getID();
+		this.lastName = u.getLastName();
+		this.firstName = u.getFirstName();
+		this.bio = u.getBio();
+		this.tel = u.getTel();
+		this.email = u.getEmail();
+	}
 	
 	public User (int userID){
 		//get from the data base the infos
@@ -82,6 +90,47 @@ public class User {
 	public void setId(int id){
 		this.id = id;
 	}
+	
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getBio() {
+		return bio;
+	}
+
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
+
+	public EmailAdresse getEmail() {
+		return email;
+	}
+
+	public void setEmail(EmailAdresse email) {
+		this.email = email;
+	}
+
+	public NumeroTelephone getTel() {
+		return tel;
+	}
+
+	public void setTel(NumeroTelephone tel) {
+		this.tel = tel;
+	}
+
 	/*public boolean isAdmin(){
 		return admin;
 	}*/
