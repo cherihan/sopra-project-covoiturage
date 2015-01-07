@@ -28,7 +28,7 @@
 
 
 	<h1>Connection</h1>
-	<form action="test" method="get">
+	<form action="/SopraCarPooling/test" method="post">
 		<input type="hidden" name="action" value="1">
 		<input type="text" name="emailAdress" value="superman@gmail.com"><br>
 		<input type="password" name="pwd" value="superman"><br>
