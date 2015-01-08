@@ -94,8 +94,8 @@ public class RidesUpdate extends HttpServlet {
 					int IDretour = Integer.parseInt(idretour);
 					
 					//pb ici !!!! trouver 
-					boolean aller = (exist1 == "on") ? true: false;
-					boolean retour = (exist2 == "on") ? true: false;
+					boolean aller = (exist1.equals("on") ) ? true: false;
+					boolean retour = (exist2.equals("on")) ? true: false;
 					System.out.println("###DEBUG ### (UpdateRides, servlets) : "+aller+" "+retour);
 					if (aller && ah != null && am != null) {
 						
