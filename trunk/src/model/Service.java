@@ -23,6 +23,31 @@ public class Service {
 		this.description = description;
 		this.addr = addr;
 	}
+	public String getNom() {
+		return nom;
+	}
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public Adresse getAddr() {
+		return addr;
+	}
+	public void setAddr(Adresse addr) {
+		this.addr = addr;
+	}
+	
 	
 	/*
 	// To add a service to the list of service
