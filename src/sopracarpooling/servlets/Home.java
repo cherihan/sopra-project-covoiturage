@@ -55,7 +55,6 @@ public class Home extends HttpServlet {
 		//demander à alex le rides possible.
 		
 		
-		
 		request.setAttribute("weeklyRides", weeklyRides); //on pass les rides possible à la page jsp! (qui les affiches) 
 		RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
 		rd.forward(request, response);

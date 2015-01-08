@@ -44,17 +44,17 @@ public class CreatAccount extends HttpServlet {
 		DataBaseAccess dB = new DataBaseAccess();
 		//Grabe all the attributes and test if there are not null
 		String lastName = request.getParameter("lastname");
-		String firstName = request.getParameter("firtsname");
+		String firstName = request.getParameter("firstname");
 		String email = request.getParameter("email");
 		String pwd = request.getParameter("pwd");
 		String phone = request.getParameter("phone");
 		String bio = request.getParameter("bio");
-
-		
+		//System.out.println("###DEBUG ### (servlet, doPost) "+lastName+" "+firstName+" "+email+" "+pwd+" "+phone+" "+bio);
 		//check if all the parameters have been seted
 		if (lastName != null && firstName != null && email != null && 
 				pwd != null && phone != null){
 			
+
 			
 			try{
 
@@ -63,22 +63,14 @@ public class CreatAccount extends HttpServlet {
 				User newUser = new User(-1, lastName, firstName, new EmailAdresse(email), bio, new NumeroTelephone(phone));
 				//BB add new account (USER, PASS) return id 
 				
-				MotDePass pass = new MotDePass(pwd);
+				MotDePass pass = new MotDePass(pwd);				
+				newUser.setId(dB.newAccount(newUser, pass));				
 				
-				newUser.setId(dB.newAccount(newUser, pass));
-				
-				//newUser.setId(666);
-				
-				
-							
-				
-				
-			
 				
 				HttpSession s = request.getSession();
 				s.setAttribute("user", newUser);
 				s.setAttribute("newAccount", "yes");				
-				response.sendRedirect("/home");
+				response.sendRedirect("/SopraCarPooling/Home");
 			}catch (Exception e){
 				response.sendRedirect("signup.html");//avec message d'ereur
 			}

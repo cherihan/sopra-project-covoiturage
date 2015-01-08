@@ -79,6 +79,11 @@ public class test extends HttpServlet {
 			case 2:
 				s.invalidate();
 				break;
+			case 3 ://create account 
+				
+				
+				
+				break;
 
 			default:
 				break;
