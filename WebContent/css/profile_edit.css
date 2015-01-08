@@ -214,6 +214,7 @@ height:24px;
 }
 
 .sourcecodebox:focus{
+   margin : auto;
    border:#e7e8f1 1px solid;
    color:#d9dcf4;
    background-color : #404040;
@@ -260,7 +261,14 @@ select:hover{
   	border: 1px solid #AAA;
 }
 
-.table {
-	border : 1px solid black;
+table
+{
+    border-collapse: collapse;
 }
-
+td {
+	padding : 5px;
+    vertical-align: middle;
+    horizontal-align: middle;
+   	border: 1px solid #cccfe1;
+   	border-radius : 3px;   
+}
