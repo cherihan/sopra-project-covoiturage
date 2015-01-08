@@ -74,8 +74,12 @@ public class RidesUpdate extends HttpServlet {
 			String id = request.getParameter(i + "-id");// will not be changed
 			String source = request.getParameter(i + "-code-post");
 			String dest = request.getParameter(i + "-service");
-			String time1 = request.getParameter(i + "-time");
-			String time2 = request.getParameter(i + "-time");
+			String ah = request.getParameter("ah1");
+			String am = request.getParameter("am1");
+			String rh = request.getParameter("rh1");
+			String rm = request.getParameter("rm1");
+			String time1 = ah+am;
+			String time2 = ah+am;
 			// String sens = request.getParameter(i+"-sens");
 			String com1 = request.getParameter(i + "-com");
 			String com2 = request.getParameter(i + "-com");
