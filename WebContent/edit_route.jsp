@@ -52,7 +52,7 @@ existantes
                         </td>
                         <td >
                             Office<br><br>
-					    	<select name="1-service">
+					    	<select select name="1-service">
 					  			<option value="dest1">Sopra1</option>
 					 			<option value="dest2">Sopra2</option>
 					 			<option value="dest3">Sopra3</option>
@@ -212,8 +212,7 @@ existantes
                  </table>
 			  <textarea name="5-com" placeholder="Comment"></textarea><br>
                 			
-      <a href="edit_route.html"><input type="submit" value="Add a route" class="button" /></a>
-      
+ 	     <input type="submit" value="Add a route" class="button" />   
    </form>
    
   </div>
