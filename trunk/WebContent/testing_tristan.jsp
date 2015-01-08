@@ -25,7 +25,17 @@
 		<%}
 		
 	%>
-
+	<h2>CreateAccount</h2>
+	<form action="/SopraCarPooling/CreatAccount" method="post">
+	
+		<input type="text" name="lastname" value="britney"><br>
+		<input type="text" name="firstname" value="Spears"><br>
+		<input type="text" name="email" value="britanylove53@skyrock.com"><br>
+		<input type="password" name="pwd" value="justin"><br>
+		<input type="text" name="phone" value="9999999999"><br>
+		<input type="text" name="bio" value="hello bb"><br>
+		<input type="submit" value="Submit"><br>
+	</form>
 
 	<h1>Connection</h1>
 	<form action="/SopraCarPooling/test" method="post">
@@ -34,6 +44,9 @@
 		<input type="password" name="pwd" value="superman"><br>
 		<input type="submit" value="Submit"><br>
 	</form>
+	
+	
+	
 	
 	<h3>conection</h3>
 	<%

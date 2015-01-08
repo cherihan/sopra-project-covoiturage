@@ -216,7 +216,7 @@ public class DataBaseAccess {
 			if(res.getInt(1) == 0){
 			resultat = statement.executeUpdate("INSERT INTO user " + "VALUES ('"
 			+lastName+"','" + firstName + "','" + email + "','" + pwd
-			+ "','" + phone + "','" + bio + "','" + "'NULL'"+"'0'");
+			+ "','" + phone + "','" + bio + "'," + "NULL,'0')");//never admin when account is created
 			res = statement.executeQuery("SELECT id FROM user WHERE mail ='"+email+"'");
 			res.next();
 			id = res.getInt(1);
