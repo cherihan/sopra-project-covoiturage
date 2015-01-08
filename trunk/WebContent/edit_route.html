@@ -37,34 +37,166 @@ existantes
       <li class="tab sleepyTab" ><a href="edit_parameters.html"><img src="./images/settings.png" alt="" class="icon"/></a></li>
     </ul>
     
-    	<form class="form">
-    	Create a new route :
-    	<br><br>
-    	Point 1 :
-    	<select>
-  			<option value="31000">31000 - Toulouse</option>
- 			<option value="31100">31100 - Toulouse</option>
- 			<option value="31200">31200 - Toulouse</option>
-  			<option value="31300">31300 - Toulouse</option>
-  			<option value="31400">31400 - Toulouse</option>
-		</select>  
-		<br>	
-		Point 2 :
-    	<select>
-  			<option value="dest1">Destination 1</option>
- 			<option value="dest2">Destination 2</option>
- 			<option value="dest3">Destination 3</option>
-  			<option value="dest4">Destination 4</option>
-  			<option value="dest5">Destination 5</option>
-		</select><br>
-		<INPUT type="radio" name="aller-simple" value="aller-sopra"> One way <i>( 1 >> 2 )</i><br>
-		<INPUT type="radio" name="aller-simple" value="aller-maison"> One way <i>( 1 << 2 )</i><br>
-		<INPUT type="radio" name="aller-simple" value="aller-retour"> Both way <br>
-		<br>
-		I want to :<br>
-		<i><p style="font-size:10px">you can select both options</p></i>
-		<INPUT type="checkbox" name="conducteur" value="conducteur"> drive <br>
-		<INPUT type="checkbox" name="passager" value="passager"> be a passenger <br>
+    	<form class="form"  action="SopraCarPooling/RidesUpdate" method="post">
+
+		<form>
+		
+		                <table >
+                    <tr>
+                        <td>
+                            
+                        </td>
+                        <td >
+                            Monday
+                        </td>
+                        <td>
+                            Tuesday
+                        </td>                
+                        <td >
+                            Wednesday
+                        </td>                        
+                        <td>
+                            Thursday
+                        </td>
+                        <td>
+                        	Friday
+                        </td>
+                    </tr>
+                    <tr>
+                    	<td>
+                    		From<br>
+                    		To
+                    	</td>
+                    	<td>
+                    		<input type="hidden" name="1-id" value="-1">
+                    		<input type="text" name="1-code-post" placeholder="Code" class="sourcecodebox" /><br>
+					    	<select name="1-service">
+					  			<option value="dest1">Sopra1</option>
+					 			<option value="dest2">Sopra2</option>
+					 			<option value="dest3">Sopra3</option>
+					  			<option value="dest4">Sopra4</option>
+					  			<option value="dest5">Sopra5</option>
+							</select>
+                    	</td>
+                    	<td>
+                    	    <input type="hidden" name="1-id" value="-1">
+                    		<input type="text" name="2-code-post" placeholder="Code" class="sourcecodebox" /><br>
+					    	<select name="2-service">
+					  			<option value="dest1">Sopra1</option>
+					 			<option value="dest2">Sopra2</option>
+					 			<option value="dest3">Sopra3</option>
+					  			<option value="dest4">Sopra4</option>
+					  			<option value="dest5">Sopra5</option>
+							</select>
+                    	</td>                    	
+                    	<td>
+                    		<input type="hidden" name="1-id" value="-1">
+                    		<input type="text" name="3-code-post" placeholder="Code" class="sourcecodebox" /><br>
+					    	<select name="3-service">
+					  			<option value="dest1">Sopra1</option>
+					 			<option value="dest2">Sopra2</option>
+					 			<option value="dest3">Sopra3</option>
+					  			<option value="dest4">Sopra4</option>
+					  			<option value="dest5">Sopra5</option>
+							</select>
+                    	</td>                    	
+                     	<td>
+                     		<input type="hidden" name="1-id" value="-1">
+                    		<input type="text"  name="4-code-post" placeholder="Code" class="sourcecodebox" /><br>
+					    	<select name="4-service">
+					  			<option value="dest1">Sopra1</option>
+					 			<option value="dest2">Sopra2</option>
+					 			<option value="dest3">Sopra3</option>
+					  			<option value="dest4">Sopra4</option>
+					  			<option value="dest5">Sopra5</option>
+							</select>
+                    	</td>                   	
+                     	<td>
+                     		<input type="hidden" name="1-id" value="-1">
+                    		<input type="text"  name="5-code-post" placeholder="Code" class="sourcecodebox" /><br>
+					    	<select name="5-service">
+					  			<option value="dest1">Sopra1</option>
+					 			<option value="dest2">Sopra2</option>
+					 			<option value="dest3">Sopra3</option>
+					  			<option value="dest4">Sopra4</option>
+					  			<option value="dest5">Sopra5</option>
+							</select>
+                    	</td>                   	           	
+                    </tr>
+                    	
+                    <tr>
+                    	<td>
+                    		From home<br> to work ?
+                    	</td>
+                    	<td>
+                    		<INPUT type="checkbox" name="1-aller"><br>
+                    		<input type="text" name="ah1" placeholder="00" class="hourbox" />h
+							<input type="text" name="am1" placeholder="00" class="hourbox" />m<br>
+                    	</td>
+                    	<td>
+                    		<INPUT type="checkbox" name="2-aller"><br>
+                    		<input type="text" name="ah2" placeholder="00" class="hourbox" />h
+							<input type="text" name="am2" placeholder="00" class="hourbox" />m<br>
+                    	</td>
+                    	<td>
+                    		<INPUT type="checkbox" name="3-aller"><br>
+                    		<input type="text" name="ah3" placeholder="00" class="hourbox" />h
+							<input type="text" name="am3" placeholder="00" class="hourbox" />m<br>
+                    	</td>
+                    	<td>
+                    		<INPUT type="checkbox" name="4-aller"><br>
+                    		<input type="text" name="ah4" placeholder="00" class="hourbox" />h
+							<input type="text" name="am4" placeholder="00" class="hourbox" />m<br>                    		
+                    	</td>
+                    	<td>
+                    		<INPUT type="checkbox" name="5-aller"><br>
+                    		<input type="text" name="ah5" placeholder="00" class="hourbox" />h
+							<input type="text" name="am5" placeholder="00" class="hourbox" />m<br>                    		
+                    	</td>
+                    </tr>
+                    <tr>
+                    	<td>
+                    		From work<br> to home ?
+                    	</td>
+                    	
+                    	<td>
+                    		<INPUT type="checkbox" name="1-retour">
+                    		<input type="text" name="rh1" placeholder="00" class="hourbox" />h
+							<input type="text" name="rm1" placeholder="00" class="hourbox" />m
+                    	</td>
+                    	<td>
+                    		<INPUT type="checkbox" name="2-retour">
+                    		<input type="text" name="rh2" placeholder="00" class="hourbox" />h
+							<input type="text" name="rm2" placeholder="00" class="hourbox" />m
+							                    	</td>
+                    	<td>
+                    		<INPUT type="checkbox" name="3-retour">
+                     		<input type="text" name="rh3" placeholder="00" class="hourbox" />h
+							<input type="text" name="rm3" placeholder="00" class="hourbox" />m
+							                   	</td>
+                    	<td>
+                    		<INPUT type="checkbox" name="4-retour">
+                    		<input type="text" name="rh4" placeholder="00" class="hourbox" />h
+							<input type="text" name="rm4" placeholder="00" class="hourbox" />m
+							                    	</td>
+                    	<td>
+                    		<INPUT type="checkbox" name="5-retour">
+                    		<input type="text" name="rh5" placeholder="00" class="hourbox" />h
+							<input type="text" name="rm5" placeholder="00" class="hourbox" />m
+						</td>
+					</tr>
+
+                  
+                    
+                </table>
+		</form>
+		
+		
+
+		<INPUT type="hidden">
+		<script type="text/javascript">
+  		// Associer un i-jourdesemaine aux heures, minutes, codes postaux, dstinations sopra, etc
+		</script>
 		
 	</form>			
       <a href="edit_route.html"><input type="button" value="Add a route" class="button" /></a>
