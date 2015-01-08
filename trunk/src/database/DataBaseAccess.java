@@ -115,7 +115,7 @@ public class DataBaseAccess {
 
 	// ///////////// RequestUserRides ///////////////////
 
-	public ArrayList<Ride> requestUserRides(String mail) {
+	public ArrayList<Ride> requestUserRides(String userMail) {
 		Connection connexion = null;
 		Statement statement = null;
 		ResultSet resultat = null;
@@ -132,11 +132,11 @@ public class DataBaseAccess {
 			// sélectionner les trajets de l'utilisateur
 			resultat = statement
 					.executeQuery("SELECT user.id,rides.id,cp,sopra_site,jour,sens "
-							+ "FROM rides,user " + "WHERE mail=" + mail);
+							+ "FROM rides,user " + "WHERE mail=" + userMail);
 			// sélectionner les trajets qui correspondent (càd mêmes
 			// cp,site,jour et sens)
 			resultat = statement
-					.executeQuery("SELECT user.id,rides.id,lastname,firstname,mail,cp,sopra_site,heure,sens,bio "
+					.executeQuery("SELECT user.id,rides.id,lastname,firstname,mail,cp,sopra_site,heure,sens,bio,phone "
 							+ "FROM rides,user "
 							+ "WHERE cp="
 							+ resultat.getInt("cp")
@@ -157,6 +157,10 @@ public class DataBaseAccess {
 				int cp = resultat.getInt("cp");
 				String site = resultat.getString("sopra_site");
 				String heure = resultat.getString("heure");
+				String numpPhone = resultat.getString("phone");
+				
+				EmailAdresse mail = new EmailAdresse(email);
+				NumeroTelephone phone = new NumeroTelephone(numpPhone);
 				boolean sens = false;
 				if (resultat.getInt("sens") == 0) {
 					sens = false;
@@ -165,7 +169,7 @@ public class DataBaseAccess {
 				}
 				PostCode code = new PostCode(cp);
 				// créer un utilisateur
-				//user = new User(id, lastName, firstName, email, bio);
+				user = new User(id, lastName, firstName, mail, bio,phone);
 				// créer adresse
 				home = new Adresse(code);
 				// créer service
