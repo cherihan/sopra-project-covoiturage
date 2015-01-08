@@ -39,36 +39,19 @@ existantes
     
     	<form class="form"  action="SopraCarPooling/RidesUpdate" method="post">
 
-		
+		Monday
 		        <table >
                     <tr>
+                    <input type="hidden" name="1-id-1" value="-1">
+                    <input type="hidden" name="1-id-2" value="-1">                    
                         <td>
-                            
+                            Home<br><br>
+                            <input type="text" name="1-street" placeholder="Street" class="rstreetbox" /><br>
+                            <input type="text" name="1-code-post" placeholder="Code" class="rcodebox" />
+                            <input type="text" name="1-city" placeholder="City" class="rcitybox" />
                         </td>
                         <td >
-                            Monday
-                        </td>
-                        <td>
-                            Tuesday
-                        </td>                
-                        <td >
-                            Wednesday
-                        </td>                        
-                        <td>
-                            Thursday
-                        </td>
-                        <td>
-                        	Friday
-                        </td>
-                    </tr>
-                    <tr>
-                    	<td>
-                    		From<br>
-                    		To
-                    	</td>
-                    	<td>
-                    		<input type="hidden" name="1-id" value="-1">
-                    		<input type="text" name="1-code-post" placeholder="Code" class="sourcecodebox" /><br>
+                            Office<br><br>
 					    	<select name="1-service">
 					  			<option value="dest1">Sopra1</option>
 					 			<option value="dest2">Sopra2</option>
@@ -76,10 +59,32 @@ existantes
 					  			<option value="dest4">Sopra4</option>
 					  			<option value="dest5">Sopra5</option>
 							</select>
-                    	</td>
-                    	<td>
-                    	    <input type="hidden" name="1-id" value="-1">
-                    		<input type="text" name="2-code-post" placeholder="Code" class="sourcecodebox" /><br>
+                        </td>
+                        <td>
+                            <INPUT type="checkbox" name="1-aller"> Aller :
+                    		<input type="text" name="ah1" placeholder="00" class="hourbox" />h
+							<input type="text" name="am1" placeholder="00" class="hourbox" />m<br>
+
+                            <INPUT type="checkbox" name="1-retour"> Retour :
+                    		<input type="text" name="rh1" placeholder="00" class="hourbox" />h
+							<input type="text" name="rm1" placeholder="00" class="hourbox" />m
+                        </td>                
+                    </tr>
+                 </table>
+                 
+                 <br>Tuesday
+ 		        <table >
+                    <tr>
+                    <input type="hidden" name="2-id-1" value="-1">
+                    <input type="hidden" name="2-id-2" value="-1">                    
+                        <td>
+                            Home<br><br>
+                            <input type="text" name="2-street" placeholder="Street" class="rstreetbox" /><br>
+                            <input type="text" name="2-code-post" placeholder="Code" class="rcodebox" />
+                            <input type="text" name="2-city" placeholder="City" class="rcitybox" />
+                        </td>
+                        <td >
+                            Office<br><br>
 					    	<select name="2-service">
 					  			<option value="dest1">Sopra1</option>
 					 			<option value="dest2">Sopra2</option>
@@ -87,10 +92,32 @@ existantes
 					  			<option value="dest4">Sopra4</option>
 					  			<option value="dest5">Sopra5</option>
 							</select>
-                    	</td>                    	
-                    	<td>
-                    		<input type="hidden" name="1-id" value="-1">
-                    		<input type="text" name="3-code-post" placeholder="Code" class="sourcecodebox" /><br>
+                        </td>
+                        <td>
+                            <INPUT type="checkbox" name="2-aller"> Aller : 
+                    		<input type="text" name="ah2" placeholder="00" class="hourbox" />h
+							<input type="text" name="am2" placeholder="00" class="hourbox" />m<br>
+                    		<INPUT type="checkbox" name="2-retour"> Retour : 
+                    		<input type="text" name="rh2" placeholder="00" class="hourbox" />h
+							<input type="text" name="rm2" placeholder="00" class="hourbox" />m
+                        </td>                
+                	
+                    </tr>
+                 </table>
+                 
+                 <br>Wednesday
+		        <table >
+                    <tr>
+                    <input type="hidden" name="3-id-1" value="-1">
+                    <input type="hidden" name="3-id-2" value="-1">                    
+                        <td>
+                            Home<br><br>
+                            <input type="text" name="3-street" placeholder="Street" class="rstreetbox" /><br>
+                            <input type="text" name="3-code-post" placeholder="Code" class="rcodebox" />
+                            <input type="text" name="3-city" placeholder="City" class="rcitybox" />
+                        </td>
+                        <td >
+                            Office<br><br>
 					    	<select name="3-service">
 					  			<option value="dest1">Sopra1</option>
 					 			<option value="dest2">Sopra2</option>
@@ -98,10 +125,34 @@ existantes
 					  			<option value="dest4">Sopra4</option>
 					  			<option value="dest5">Sopra5</option>
 							</select>
-                    	</td>                    	
-                     	<td>
-                     		<input type="hidden" name="1-id" value="-1">
-                    		<input type="text"  name="4-code-post" placeholder="Code" class="sourcecodebox" /><br>
+                        </td>
+                        <td>
+                    		<INPUT type="checkbox" name="3-aller"> Aller : 
+                    		<input type="text" name="ah3" placeholder="00" class="hourbox" />h
+							<input type="text" name="am3" placeholder="00" class="hourbox" />m<br>
+ 
+                    		<INPUT type="checkbox" name="3-retour"> Retour : 
+                     		<input type="text" name="rh3" placeholder="00" class="hourbox" />h
+							<input type="text" name="rm3" placeholder="00" class="hourbox" />m
+
+                        </td>                
+                	
+                    </tr>
+                 </table>
+                 
+                 <br>Thurday
+ 		        <table >
+                    <tr>
+                    <input type="hidden" name="4-id-1" value="-1">
+                    <input type="hidden" name="4-id-2" value="-1">                    
+                        <td>
+                            Home<br><br>
+                            <input type="text" name="4-street" placeholder="Street" class="rstreetbox" /><br>
+                            <input type="text" name="4-code-post" placeholder="Code" class="rcodebox" />
+                            <input type="text" name="4-city" placeholder="City" class="rcitybox" />
+                        </td>
+                        <td >
+                            Office<br><br>
 					    	<select name="4-service">
 					  			<option value="dest1">Sopra1</option>
 					 			<option value="dest2">Sopra2</option>
@@ -109,10 +160,33 @@ existantes
 					  			<option value="dest4">Sopra4</option>
 					  			<option value="dest5">Sopra5</option>
 							</select>
-                    	</td>                   	
-                     	<td>
-                     		<input type="hidden" name="1-id" value="-1">
-                    		<input type="text"  name="5-code-post" placeholder="Code" class="sourcecodebox" /><br>
+                        </td>
+                        <td>
+                    		<INPUT type="checkbox" name="4-aller"> Aller : 
+                    		<input type="text" name="ah4" placeholder="00" class="hourbox" />h
+							<input type="text" name="am4" placeholder="00" class="hourbox" />m<br>                    		
+  
+                    		<INPUT type="checkbox" name="4-retour"> Retour : 
+                    		<input type="text" name="rh4" placeholder="00" class="hourbox" />h
+							<input type="text" name="rm4" placeholder="00" class="hourbox" />m
+                        </td>                
+                	
+                    </tr>
+                 </table>
+                 
+                 <br>Friday
+		        <table >
+                    <tr>
+                    <input type="hidden" name="5-id-1" value="-1">
+                    <input type="hidden" name="5-id-2" value="-1">
+                        <td>
+                            Home<br><br>
+                            <input type="text" name="5-street" placeholder="Street" class="rstreetbox" /><br>
+                            <input type="text" name="5-code-post" placeholder="Code" class="rcodebox" />
+                            <input type="text" name="5-city" placeholder="City" class="rcitybox" />
+                        </td>
+                        <td >
+                            Office<br><br>
 					    	<select name="5-service">
 					  			<option value="dest1">Sopra1</option>
 					 			<option value="dest2">Sopra2</option>
@@ -120,74 +194,19 @@ existantes
 					  			<option value="dest4">Sopra4</option>
 					  			<option value="dest5">Sopra5</option>
 							</select>
-                    	</td>                   	           	
-                    </tr>
-                    	
-                    <tr>
-                    	<td>
-                    		From home<br> to work ?
-                    	</td>
-                    	<td>
-                    		<INPUT type="checkbox" name="1-aller"><br>
-                    		<input type="text" name="ah1" placeholder="00" class="hourbox" />h
-							<input type="text" name="am1" placeholder="00" class="hourbox" />m<br>
-                    	</td>
-                    	<td>
-                    		<INPUT type="checkbox" name="2-aller"><br>
-                    		<input type="text" name="ah2" placeholder="00" class="hourbox" />h
-							<input type="text" name="am2" placeholder="00" class="hourbox" />m<br>
-                    	</td>
-                    	<td>
-                    		<INPUT type="checkbox" name="3-aller"><br>
-                    		<input type="text" name="ah3" placeholder="00" class="hourbox" />h
-							<input type="text" name="am3" placeholder="00" class="hourbox" />m<br>
-                    	</td>
-                    	<td>
-                    		<INPUT type="checkbox" name="4-aller"><br>
-                    		<input type="text" name="ah4" placeholder="00" class="hourbox" />h
-							<input type="text" name="am4" placeholder="00" class="hourbox" />m<br>                    		
-                    	</td>
-                    	<td>
-                    		<INPUT type="checkbox" name="5-aller"><br>
+                        </td>
+                        <td>
+                    		<INPUT type="checkbox" name="5-aller"> Aller : 
                     		<input type="text" name="ah5" placeholder="00" class="hourbox" />h
-							<input type="text" name="am5" placeholder="00" class="hourbox" />m<br>                    		
-                    	</td>
-                    </tr>
-                    <tr>
-                    	<td>
-                    		From work<br> to home ?
-                    	</td>
-                    	
-                    	<td>
-                    		<INPUT type="checkbox" name="1-retour">
-                    		<input type="text" name="rh1" placeholder="00" class="hourbox" />h
-							<input type="text" name="rm1" placeholder="00" class="hourbox" />m
-                    	</td>
-                    	<td>
-                    		<INPUT type="checkbox" name="2-retour">
-                    		<input type="text" name="rh2" placeholder="00" class="hourbox" />h
-							<input type="text" name="rm2" placeholder="00" class="hourbox" />m
-							                    	</td>
-                    	<td>
-                    		<INPUT type="checkbox" name="3-retour">
-                     		<input type="text" name="rh3" placeholder="00" class="hourbox" />h
-							<input type="text" name="rm3" placeholder="00" class="hourbox" />m
-							                   	</td>
-                    	<td>
-                    		<INPUT type="checkbox" name="4-retour">
-                    		<input type="text" name="rh4" placeholder="00" class="hourbox" />h
-							<input type="text" name="rm4" placeholder="00" class="hourbox" />m
-							                    	</td>
-                    	<td>
-                    		<INPUT type="checkbox" name="5-retour">
+							<input type="text" name="am5" placeholder="00" class="hourbox" />m<br>              
+                    		<INPUT type="checkbox" name="5-retour"> Retour : 
                     		<input type="text" name="rh5" placeholder="00" class="hourbox" />h
 							<input type="text" name="rm5" placeholder="00" class="hourbox" />m
-						</td>
-					</tr>
-
-                  
-                    
-                </table>
+                        </td>                
+                	
+                    </tr>
+                 </table>
+  
 		</form>
 				
       <a href="edit_route.html"><input type="button" value="Add a route" class="button" /></a>
