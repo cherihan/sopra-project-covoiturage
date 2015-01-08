@@ -64,6 +64,62 @@ public class Ride {
 		return this.sens;
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Adresse getHome() {
+		return home;
+	}
+
+	public void setHome(Adresse home) {
+		this.home = home;
+	}
+
+	public Service getOffice() {
+		return office;
+	}
+
+	public void setOffice(Service office) {
+		this.office = office;
+	}
+
+	public JourDeLaSemaine getJour() {
+		return jour;
+	}
+
+	public void setJour(JourDeLaSemaine jour) {
+		this.jour = jour;
+	}
+
+	public Heure getAtOfficeAt() {
+		return atOfficeAt;
+	}
+
+	public void setAtOfficeAt(Heure atOfficeAt) {
+		this.atOfficeAt = atOfficeAt;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
 	/*public static void main(String[] args) throws Exceptions {
 		try {
 			offices.listeoffices.add("bureau");

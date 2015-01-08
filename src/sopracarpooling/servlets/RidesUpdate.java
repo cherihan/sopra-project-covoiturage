@@ -32,7 +32,7 @@ public class RidesUpdate extends HttpServlet {
 	private void chargerLaPage(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException{
 		// ICI on charge la page
-		String nextPage = "edit_profile.jsp";
+		String nextPage = "edit_route.jsp";
 
 		// demander à alex les rides
 		// demander aussi à alex les Service possible !
@@ -48,7 +48,8 @@ public class RidesUpdate extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		chargerLaPage(request, response);
+		chargerLaPage(request, response);		
+		
 	}
 
 	/**

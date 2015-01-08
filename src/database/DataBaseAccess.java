@@ -237,7 +237,47 @@ public class DataBaseAccess {
 	//tu dois avoir un tableau de rides avec au max 5 rides
 	//tu ajoute chaqu'un des rides dans la data base (un par un je supose)
 	
-	public void addUserRides(ArrayList<Ride> rides) throws RequestCanceledException{
+	public void addUserRides(ArrayList<Ride> rides) throws RequestDidNotWork{
+		Connection connexion = null;
+		Statement statement = null;
+		
+		
+		
+		
+		ResultSet res;
+		int id = -1;
+		
+		int resultat; 
+		try {
+			
+			for (int i =0 ; i < rides.size(); i++){
+				
+				Ride ride = rides.get(i);
+				
+				
+				if(ride.getId() == -1){//le ride n'été pas se dans la base à la base
+					
+					//inseré dans la base de donné le nouveau ride 
+					
+				}else{
+					//modifier la table
+					
+				}
+				
+				
+			}
+			
+			
+
+
+		} catch (Exception e) {
+			System.err.println("Erreur requête trajets : " + e);
+			throw new RequestDidNotWork("New account could not be added.");
+		} finally {
+			Close(null, statement, connexion);
+		}
+		
+		
 		
 		
 	}

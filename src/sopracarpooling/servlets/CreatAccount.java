@@ -27,6 +27,7 @@ public class CreatAccount extends HttpServlet {
     public CreatAccount() {
         super();
         // TODO Auto-generated constructor stub
+       
     }
 
 	/**
@@ -34,6 +35,7 @@ public class CreatAccount extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		 response.sendRedirect("signup.html");//faire passer un message d'erreur
 	}
 
 	/**
