@@ -50,7 +50,7 @@ public class Login extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 			rd.forward(request, response);
 		}else{
-			response.sendRedirect("/Home");
+			response.sendRedirect("/SopraCarPooling/Home");
 		}
 		
 		

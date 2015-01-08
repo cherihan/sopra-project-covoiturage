@@ -23,7 +23,7 @@
 		<li><a href="home.html">Home</a></li>
 		<li><a href="profile.html">Profile</a></li>
 		<li><a href="faq.html">FAQ</a></li>		
-		<li><a href="login.html">Log out</a></li>
+		<li><a href="/SopraCarPooling/Logout">Log out</a></li>
 	</ul>
 </header>
        

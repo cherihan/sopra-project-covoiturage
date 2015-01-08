@@ -40,14 +40,14 @@
 
     <fieldset>
 
-      <form action="/Login" method="post">
+      <form action="/SopraCarPooling/Login" method="post">
 
         <input type="email" name="emailadress" required value="Email" onBlur="if(this.value=='')this.value='Email'" onFocus="if(this.value=='Email')this.value='' "> <!-- JS because of IE support; better: placeholder="Email" -->
 
         <input type="password" name="pwd" required value="Password" onBlur="if(this.value=='')this.value='Password'" onFocus="if(this.value=='Password')this.value='' "> <!-- JS because of IE support; better: placeholder="Password" -->
 
-        <input type="button" value="Login">
-
+        <input type="submit" value="Login">
+	</form>
         <footer class="clearfix">
 
         <p><span class="info">?</span><a href="#">Forgot Password</a></p>
@@ -55,7 +55,7 @@
 
         </footer>
 
-      </form>
+      
 
     </fieldset>
 
