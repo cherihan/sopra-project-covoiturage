@@ -211,10 +211,10 @@ existantes
                     </tr>
                  </table>
 			  <textarea name="5-com" placeholder="Comment"></textarea><br>
-                 
-		</form>
-				
-      <a href="edit_route.html"><input type="button" value="Add a route" class="button" /></a>
+                			
+      <a href="edit_route.html"><input type="submit" value="Add a route" class="button" /></a>
+      
+   </form>
    
   </div>
 </div>
