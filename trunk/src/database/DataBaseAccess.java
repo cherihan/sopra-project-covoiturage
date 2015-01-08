@@ -2,6 +2,7 @@ package database;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -241,6 +242,7 @@ public class DataBaseAccess {
 		Connection connexion = null;
 		Statement statement = null;
 		
+		RideAddapter adapter = new RideAddapter();
 		
 		
 		
@@ -249,13 +251,38 @@ public class DataBaseAccess {
 		
 		int resultat; 
 		try {
-			
+			connexion = Connexion();
+			statement = connexion.createStatement();
+			int adressID;
 			for (int i =0 ; i < rides.size(); i++){
 				
 				Ride ride = rides.get(i);
+				HashMap <String, String> strings = adapter.adaptRideToHashMap(ride);
+				
+				//check the address and get the id
+				//add the adress les infos sont dans la hash map. 
+				res = statement.executeQuery("SELECT id FROM adresse WHERE rue ='"+strings.get("homeRue")+"' and '"+strings.get("homeCP")+"' and '"
+						+strings.get("homeVille")+"';");
+				
+				if( res == null){//si on a pas l'adresse dans la base rentre					
+					res = statement.executeQuery("INSERT INTO adresse  values(null,'"+strings.get("homeRue")+"','"+strings.get("homeCP")+"','"+strings.get("homeCP")+"')");
+				}
+				res.next();
+				adressID = res.getInt(1);
+				
+				//INSERT INTO sopra.adresse  values(null,'ecole','Pibrac','31200') ;
+				
+				//il me faut la la ligne address vill et code postal. 
+				
+				//identifier le site sopra
+				
 				
 				
 				if(ride.getId() == -1){//le ride n'été pas se dans la base à la base
+					
+					int userId = ride.getUser().getID();
+					//ajouter le ride dans le base
+					
 					
 					//inseré dans la base de donné le nouveau ride 
 					
