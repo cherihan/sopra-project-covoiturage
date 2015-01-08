@@ -23,6 +23,9 @@ public class Service {
 		this.description = description;
 		this.addr = addr;
 	}
+	public String toString(){
+		return "id : "+id+", nom : "+nom;
+	}
 	public String getNom() {
 		return nom;
 	}

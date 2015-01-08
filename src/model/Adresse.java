@@ -15,6 +15,9 @@ public class Adresse {
 		this.rue = rue;
 		this.ville = ville;
 	}
+	public String toString(){
+		return rue+" "+postCode+" "+ville;
+	}
 	
 	public String getVille() {
 		return ville;

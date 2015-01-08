@@ -259,16 +259,20 @@ public class DataBaseAccess {
 				Ride ride = rides.get(i);
 				HashMap <String, String> strings = adapter.adaptRideToHashMap(ride);
 				
+				
+				System.out.println("###DEBUG ### (DataBaseAccess, addUserRides) : "+strings.get("homeCP")+" "
+						+strings.get("homeRue")+" "+strings.get("homeVille"));
 				//check the address and get the id
 				//add the adress les infos sont dans la hash map. 
-				res = statement.executeQuery("SELECT id FROM adresse WHERE rue ='"+strings.get("homeRue")+"' and '"+strings.get("homeCP")+"' and '"
-						+strings.get("homeVille")+"';");
-				
+				res = statement.executeQuery("SELECT id FROM adresse WHERE rue ='"+strings.get("homeRue")
+						+"' and '"+strings.get("homeCP")+"' and '"
+						+strings.get("homeVille"));
+				System.out.println("###DEBUG ### (DataBaseAccess, addUserRides) : "+res);
 				if( res == null){//si on a pas l'adresse dans la base rentre					
-					res = statement.executeQuery("INSERT INTO adresse  values(null,'"+strings.get("homeRue")+"','"+strings.get("homeCP")+"','"+strings.get("homeCP")+"')");
+					//res = statement.executeQuery("INSERT INTO adresse  values(null,'"+strings.get("homeRue")+"','"+strings.get("homeCP")+"','"+strings.get("homeCP")+"')");
 				}
-				res.next();
-				adressID = res.getInt(1);
+				//res.next();
+				//adressID = res.getInt(1);
 				
 				//INSERT INTO sopra.adresse  values(null,'ecole','Pibrac','31200') ;
 				

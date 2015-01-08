@@ -23,6 +23,10 @@ public class PostCode {
 		return retour;
 	}
 
+	public String toString(){
+		return String.valueOf(this.code);
+	}
+	
 	/*
 	 * public static void main (String[] args) { try { ArrayList<Integer> liste
 	 * = new ArrayList<Integer>(); liste.add(11000);
