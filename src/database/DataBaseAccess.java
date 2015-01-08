@@ -210,12 +210,19 @@ public class DataBaseAccess {
 			connexion = Connexion();
 			statement = connexion.createStatement();
 			// insertion de l'utilisateur créé (à faire propre)
-			resultat = statement.executeUpdate("INSERT INTO user " + "VALUES ("
-					+ lastName + "," + firstName + "," + email + "," + pwd
-					+ "," + phone + "," + bio + "," + "NULL"+"0");
+			res = statement.executeQuery("SELECT COUNT(1) " + "FROM user "
+					+ "WHERE mail='" + email+"'");
+			res.next();
+			if(res.getInt(1) == 0){
+			resultat = statement.executeUpdate("INSERT INTO user " + "VALUES ('"
+			+lastName+"','" + firstName + "','" + email + "','" + pwd
+			+ "','" + phone + "','" + bio + "','" + "'NULL'"+"'0'");
 			res = statement.executeQuery("SELECT id FROM user WHERE mail ='"+email+"'");
 			res.next();
 			id = res.getInt(1);
+			}else{
+				throw new RequestDidNotWork("This mail adress is already used, cannot create account");
+			}
 		} catch (Exception e) {
 			System.err.println("Erreur requête trajets : " + e);
 			throw new RequestDidNotWork("New account could not be added.");
