@@ -104,20 +104,21 @@ height:24px;
   color : #dbdce6 ;
 }
 
-.mailbox{
-  background-color : transparent ;
-  color : #dbdce6 ;
+.firstnamebox{
   height:30px;
-  width:200px;
+  width:100px;
   border:#cccfe1 1px solid;
   box-sizing:border-box;
   border-radius : 3px ;
   padding:5px;
   margin-bottom:30px;
-  margin-left:10%;
+  margin-left:10px;
+  background-color : transparent ;
+  color : #dbdce6 ;
 }
 
-.streetbox{
+
+.longbox{
   background-color : transparent ;
   color : #dbdce6 ;
   height:30px;
@@ -143,25 +144,63 @@ height:24px;
   margin-left:20px;
 }
 
+.phonebox{
+  background-color : transparent ;
+  color : #dbdce6 ;
+  height:30px;
+  width:110px;
+  border:#cccfe1 1px solid;
+  box-sizing:border-box;
+  border-radius : 3px ;
+  padding:5px;
+  margin-bottom:30px;
+  margin-left:20px;
+}
+
+.citybox{
+  background-color : transparent ;
+  color : #dbdce6 ;
+  height:30px;
+  width:120px;
+  border:#cccfe1 1px solid;
+  box-sizing:border-box;
+  border-radius : 3px ;
+  padding:5px;
+  margin-bottom:30px;
+  margin-left:20px;
+}
+
 .textbox:focus{
    border:#e7e8f1 1px solid;
    color:#d9dcf4;
    background-color : #404040;
 }
 
-.mailbox:focus{
+.firstnamebox:focus{
+   border:#e7e8f1 1px solid;
+   color:#d9dcf4;
+   background-color : #404040;
+}
+
+.longbox:focus{
+   border:#e7e8f1 1px solid;
+   color:#d9dcf4;
+   background-color : #404040;
+}
+
+.citybox:focus{
+   border:#e7e8f1 1px solid;
+   color:#d9dcf4;
+   background-color : #404040;
+}
+
+.phonebox:focus{
    border:#e7e8f1 1px solid;
    color:#d9dcf4;
    background-color : #404040;
 }
 
 .codebox:focus{
-   border:#e7e8f1 1px solid;
-   color:#d9dcf4;
-   background-color : #404040;
-}
-
-.streetbox:focus{
    border:#e7e8f1 1px solid;
    color:#d9dcf4;
    background-color : #404040;
