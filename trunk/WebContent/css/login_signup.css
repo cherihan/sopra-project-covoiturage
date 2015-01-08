@@ -151,17 +151,35 @@ input[type="submit"] { cursor: pointer; }
 }
 
 #login-form input[type="email"],
-#login-form input[type="name"],
-#login-form input[type="email_confirm"],
-#login-form input[type="password"] {
-	border: 1px solid #dcdcdc;
-	padding: 12px 10px;
-	margin-top : 5px;
+#login-form input[type="firstname"],
+#login-form input[type="lastname"],
+#login-form input[type="email"],
+#login-form input[type="password"],
+#login-form input[type="phone"]{
+	border:#cccfe1 1px solid;
+	padding: 8px 8px;
+	margin-top : 10px;
 	width: 100%;
-	background-color : #f6f6f6;
+  	background-color : transparent ;
+  	color : #dbdce6 ;
+  	border-radius : 3px ;
 }
 
-#login-form input[type="name"], {
+#login-form textarea[type="bio"] {
+	padding: 8px 8px;
+	font-size : 13px;
+	margin-top : 10px;
+	height : 120px;
+	width: 100%;
+	border:#cccfe1 1px solid;
+  	background-color : transparent ;
+  	color : #dbdce6 ;
+  	border-radius : 3px ;
+}
+
+#login-form input[type="firstname"],
+#login-form input[type="lastname"],
+ {
 	border-radius: 3px 3px 0 0;
 }
 
@@ -192,10 +210,8 @@ input[type="submit"] { cursor: pointer; }
 }
 
 #login-form input[type="button"]:hover { 
-	
 	    border : 1px solid #404040 ;
 	    border-radius : 3px;
-
 }
 
 #login-form footer {

@@ -22,23 +22,27 @@
 
     <fieldset>
 
-      <form action="javascript:void(0);" method="get">
+      <form action="SopraCarPooling/CreatAccount" method="post">
 
-        <input type="name" required value="Your name" onBlur="if(this.value=='')this.value='Your name'" onFocus="if(this.value=='Your name')this.value='' "> 
+        <input type="lastname" name="lastname" required placeholder="Last name *"> 
+       
+        <input type="firstname" name="firstname" required placeholder="First name *"> 
 
-        <input type="password" required value="Password" onBlur="if(this.value=='')this.value='Password'" onFocus="if(this.value=='Password')this.value='' "> 
+        <input type="password" name="pwd" required placeholder="Password *"> 
 		
-		<input type="email" required value="Email" onBlur="if(this.value=='')this.value='Email'" onFocus="if(this.value=='Email')this.value='' "> 
+		<input type="email" name="email" required placeholder="Email *"> 
 
-		<input type="email_confirm" required value="Confirm your email" onBlur="if(this.value=='')this.value='Confirm your email'" onFocus="if(this.value=='Confirm your email')this.value='' "> 
+		<input type="phone" name="phone" required placeholder="Optional : Phone number"> 
 		
-        <input type="button" value="Sign up">
+		<textarea type="bio" name="bio" required placeholder="Optional : About you"></textarea>
+		
+        <input type="submit" value="Sign up">
 
+	</form>
+	
         <footer class="clearfix">
-
+      
         </footer>
-
-      </form>
 
     </fieldset>
 
