@@ -1,9 +1,9 @@
 package model;
 
-public class Password {
+public class MotDePass {
 	private String claire;
 	
-	public Password(String claire){
+	public MotDePass(String claire){
 		
 		//verifier que le pass est bien un pass 
 		this.claire = claire;

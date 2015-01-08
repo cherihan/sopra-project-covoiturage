@@ -11,7 +11,7 @@ public interface DatabaseInterface {
 	//pas d'implémentation que des définitions
 	
 	//Retourne 0 si pas enregistré, 1 si enregistré, 2 si c'est un admin (-1 si erreur)
-	public User requestUserIsRegistered(EmailAdresse mail, Password pass) throws RequestDidNotWork;
+	public User requestUserIsRegistered(EmailAdresse mail, MotDePass pass) throws RequestDidNotWork;
 	
 	//renvoie un tableau de table contenant tous les trajets correspondant à chaque jours de la semaine 
 	//EI = 
@@ -21,7 +21,7 @@ public interface DatabaseInterface {
 	
 	//vu que pour l'instant je sais pas quelles sont les infos obligatoires je mets ça
 	//retourne -2 si erreur, sinon un truc positif (l'id)
-	public int newAccount(User user, Password pass) throws RequestDidNotWork;
+	public int newAccount(User user, MotDePass pass) throws RequestDidNotWork;
 	
 	
 }
