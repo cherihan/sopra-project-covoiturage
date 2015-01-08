@@ -57,7 +57,7 @@ public class DataBaseAccess {
 
 	// ///////////// RequestUserIsRegistered ///////////////////
 
-	public User requestUserIsRegistered(EmailAdresse mail, Password pass)
+	public User requestUserIsRegistered(EmailAdresse mail, MotDePass pass)
 			throws RequestDidNotWork {
 
 		Connection connexion = null;
@@ -191,7 +191,7 @@ public class DataBaseAccess {
 
 	//metre tout les champs (ex : AdressEmail email)
 	//je veux recevoir l'ID du met
-	public int newAccount(User user, Password pass) throws RequestDidNotWork{
+	public int newAccount(User user, MotDePass pass) throws RequestDidNotWork{
 		Connection connexion = null;
 		Statement statement = null;
 		

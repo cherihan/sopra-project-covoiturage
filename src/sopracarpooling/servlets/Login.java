@@ -75,7 +75,7 @@ public class Login extends HttpServlet {
 		
 		if (sMail != null && sPass != null) {
 			EmailAdresse mail = new EmailAdresse(sMail);
-			Password pass = new Password(sPass);
+			MotDePass pass = new MotDePass(sPass);
 			try{
 				User user = dB.requestUserIsRegistered(mail, pass);
 				s.setAttribute("user", user);

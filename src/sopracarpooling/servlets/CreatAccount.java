@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import sun.security.util.Password;
+import database.DataBaseAccess;
 import model.*;
 
 
@@ -39,7 +41,7 @@ public class CreatAccount extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		DataBaseAccess dB = new DataBaseAccess();
 		//Grabe all the attributes and test if there are not null
 		String lastName = request.getParameter("lastname");
 		String firstName = request.getParameter("firtsname");
@@ -60,7 +62,12 @@ public class CreatAccount extends HttpServlet {
 				//alex nous renvois un user id 
 				User newUser = new User(-1, lastName, firstName, new EmailAdresse(email), bio, new NumeroTelephone(phone));
 				//BB add new account (USER, PASS) return id 
-				newUser.setId(666);
+				
+				MotDePass pass = new MotDePass(pwd);
+				
+				newUser.setId(dB.newAccount(newUser, pass));
+				
+				//newUser.setId(666);
 				
 				
 							

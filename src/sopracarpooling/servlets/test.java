@@ -70,7 +70,7 @@ public class test extends HttpServlet {
 				String sMail = (String) request.getParameter("emailadress");
 				EmailAdresse mail = new EmailAdresse(sMail);
 				String sPass = (String) request.getParameter("pwd");
-				Password pass = new Password(sPass);
+				MotDePass pass = new MotDePass(sPass);
 				//System.out.println("###DEBUG ### (test, doPost) emailRCV: "+mail+ " pass : "+pass.getClaire());
 				User user = dB.requestUserIsRegistered(mail, pass);
 				s.setAttribute("user", user);
