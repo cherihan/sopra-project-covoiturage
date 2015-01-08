@@ -79,7 +79,7 @@ public class Login extends HttpServlet {
 			try{
 				User user = dB.requestUserIsRegistered(mail, pass);
 				s.setAttribute("user", user);
-				//System.out.println("###DEBUG ### (servlets, Login) = user : "+user);
+				System.out.println("###DEBUG ### (servlets, Login) = user : "+user);
 				response.sendRedirect(nextPage);
 			}catch (Exception e){
 				s.setAttribute("actionPerform", "errorNologIN");
