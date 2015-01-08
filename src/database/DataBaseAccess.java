@@ -134,7 +134,7 @@ public class DataBaseAccess {
 					.executeQuery("SELECT user.id,rides.id,cp,sopra_site,jour,sens "
 							+ "FROM rides,user " + "WHERE mail=" + userMail);
 			// sélectionner les trajets qui correspondent (càd mêmes
-			// cp,site,jour et sens)
+			// adresse,site,jour et sens)
 			resultat = statement
 					.executeQuery("SELECT user.id,rides.id,lastname,firstname,mail,cp,sopra_site,heure,sens,bio,phone "
 							+ "FROM rides,user "
@@ -157,10 +157,10 @@ public class DataBaseAccess {
 				int cp = resultat.getInt("cp");
 				String site = resultat.getString("sopra_site");
 				String heure = resultat.getString("heure");
-				String numpPhone = resultat.getString("phone");
+				String numPhone = resultat.getString("phone");
 				
 				EmailAdresse mail = new EmailAdresse(email);
-				NumeroTelephone phone = new NumeroTelephone(numpPhone);
+				NumeroTelephone phone = new NumeroTelephone(numPhone);
 				boolean sens = false;
 				if (resultat.getInt("sens") == 0) {
 					sens = false;
