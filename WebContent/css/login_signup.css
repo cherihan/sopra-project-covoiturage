@@ -98,8 +98,6 @@ input[type="submit"] { cursor: pointer; }
   
 }
 
-/* ---------- LOGIN-FORM ---------- */
-
 #login-form {
 	width: 300px;
 }
@@ -167,7 +165,7 @@ input[type="submit"] { cursor: pointer; }
 
 #login-form textarea[type="bio"] {
 	padding: 8px 8px;
-	font-size : 13px;
+	font-size : 14px;
 	margin-top : 10px;
 	height : 120px;
 	width: 100%;
@@ -189,7 +187,7 @@ input[type="submit"] { cursor: pointer; }
 	border-radius: 0px 0px 3px 3px;
 }
 
-#login-form input[type="button"] {
+#login-form input[type="submit"] {
 	background: #00ACE9;
 	color: #404040;
 	float : right ;
@@ -209,7 +207,7 @@ input[type="submit"] { cursor: pointer; }
 
 }
 
-#login-form input[type="button"]:hover { 
+#login-form input[type="submit"]:hover { 
 	    border : 1px solid #404040 ;
 	    border-radius : 3px;
 }
@@ -230,9 +228,6 @@ input[type="submit"] { cursor: pointer; }
 	width: 20px;
 }
 
-
-
-/* ---------- PAGE STYLE ---------- */
 
 #identification{
 	background-color : #404040 ;
