@@ -254,6 +254,10 @@ public class DataBaseAccess {
 			connexion = Connexion();
 			statement = connexion.createStatement();
 			int adressID;
+			
+			//on suprime tous les rides du user
+			
+			
 			for (int i =0 ; i < rides.size(); i++){
 				
 				Ride ride = rides.get(i);

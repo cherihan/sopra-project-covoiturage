@@ -39,7 +39,7 @@ public class Ride {
 		res+="Le point de départ se situe à : " + this.home+"\n";
 		res+="Le point d'arrivée se situe dans le office : "+ this.office+"\n";
 		if (sens){
-			res+="Dans le sens allé \n";
+			res+="Dans le sens allé a "+this.atOfficeAt+"\n";
 		}else {
 			res+="Dans le sens retour \n";
 		}
