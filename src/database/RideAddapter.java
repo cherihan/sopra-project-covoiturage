@@ -14,8 +14,12 @@ public class RideAddapter {
 	public HashMap<String, String> adaptRideToHashMap(Ride ride){
 		
 		adapted.put("id", String.valueOf(ride.getId()));
-		adapted.put("source", ride.getHome().getPostCode().toString());
-		adapted.put("dest", String.valueOf(ride.getOffice().getId()));
+		//Address
+		adapted.put("homeCP", ride.getHome().getPostCode().toString());
+		adapted.put("homeRue", ride.getHome().getRue());
+		adapted.put("homeVille", ride.getHome().getVille());
+		
+		adapted.put("","" );
 		
 		
 		
