@@ -21,7 +21,7 @@
 <header>
 	<ul>
 		<li><a href="home.html">Home</a></li>
-		<li><a href="profile.html">Profile</a></li>
+		<li><a href="edit_profile.html">Profile</a></li>
 		<li><a href="faq.html">FAQ</a></li>		
 		<li><a href="/SopraCarPooling/Logout">Log out</a></li>
 	</ul>
@@ -35,14 +35,7 @@ Rappel du profil.
 
 <div id="bg">
   <div class="route_module">
-    <i>Quand l'utilisateur entre une nouvelle route, elle s'ajoute dans cette liste</i><br>
-  
- <select multiple="multiple" id="route-select">
-  <option value="route1">*MySampleRoute1*</option>
-  <option value="route2">*MySampleRoute2*</option>
-  <option value="route3">*MySampleRoute3*</option>
-  <option value="route4">*MySampleRoute4*</option>
-</select><br>
+ Ici : options de recherche
 	<input type="button" value="New research" class="button" />    
     <div class="route_table" >
                 <table >
