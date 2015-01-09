@@ -73,13 +73,11 @@ public class DataBaseAccess {
 			statement = connexion.createStatement();
 			// chercher si l'utilisateur existe
 			resultat = statement.executeQuery("SELECT COUNT(1) " + "FROM user "
-					+ "WHERE mail='" + mail+"'");
-			// verifier le mot de pass aussi
+					+ "WHERE mail='" + mail+"'"
+					+ "AND password='"+pass+"'");
 			resultat.next();
 			if (resultat.getInt(1) == 1) {
 				// vérifier si l'utilisateur est admin ou pas
-				// ICI il faut que l'on chope tous les champs.
-				//resultat.close();
 				resultat = statement.executeQuery("SELECT * FROM sopra.user WHERE mail='"+ mail+"'");
 				resultat.next();
 				
@@ -114,9 +112,9 @@ public class DataBaseAccess {
 		}
 	}
 
-	// ///////////// RequestUserRides ///////////////////
+	// ///////////// RequestRides ///////////////////
 
-	public ArrayList<Ride> requestUserRides(String userMail) {
+	public ArrayList<Ride> requestRides(String userMail) {
 		Connection connexion = null;
 		Statement statement = null;
 		ResultSet resultat = null;
@@ -132,13 +130,19 @@ public class DataBaseAccess {
 			statement = connexion.createStatement();
 			// sélectionner les trajets de l'utilisateur
 			resultat = statement
-					.executeQuery("SELECT user.id,rides.id,cp,sopra_site,jour,sens "
-							+ "FROM rides,user " + "WHERE mail=" + userMail);
+					.executeQuery("SELECT user.id,rides.id,rue,ville,cp,sopra_site.name,jours.name"
+							+ "FROM user,rides,adresse,sopra_site,jours" + 
+							"WHERE mail=" + userMail
+							+ "AND rides.adresse=adresse.id"
+							+ "AND rides.sopra_site=sopra_site.id"
+							+ "AND user.id=rides.id_user"
+							+ "AND jour=jours.id");
 			// sélectionner les trajets qui correspondent (càd mêmes
 			// adresse,site,jour et sens)
 			resultat = statement
-					.executeQuery("SELECT user.id,rides.id,lastname,firstname,mail,cp,sopra_site,heure,sens,bio,phone "
-							+ "FROM rides,user "
+					.executeQuery("SELECT lastname,firstname,bio,mail,phone,rue,ville,cp,sopra_site.name,jours.name,heure"
+							+ "FROM user,rides,adresse,sopra_site,jours"
+							/////////////reprendre ici//////////////////////
 							+ "WHERE cp="
 							+ resultat.getInt("cp")
 							+ "AND sopra_site="
@@ -210,7 +214,7 @@ public class DataBaseAccess {
 			// connexion
 			connexion = Connexion();
 			statement = connexion.createStatement();
-			// insertion de l'utilisateur créé (à faire propre)
+			// insertion de l'utilisateur créé
 			res = statement.executeQuery("SELECT COUNT(1) " + "FROM user "
 					+ "WHERE mail='" + email+"'");
 			res.next();
