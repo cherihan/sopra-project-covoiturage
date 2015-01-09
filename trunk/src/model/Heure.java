@@ -54,6 +54,14 @@ public class Heure implements Comparable<Heure> {
 	public String toDBFormat(){
 		return dBF.format(heur0.getTime());
 	}
+	public String getMinutesString(){
+		DateFormat m = new SimpleDateFormat("mm");
+		return m.format(heur0.getTime());
+	}
+	public String getHoursString(){
+		DateFormat m = new SimpleDateFormat("HH");
+		return m.format(heur0.getTime());
+	}
 
 	@Override
 	public int compareTo(Heure o) {
