@@ -10,7 +10,6 @@ public class Service {
 	private String description;
 	private Adresse addr; 
 	
-	//ne pas utiliser de consctructeur, jamais 
 	public Service (){
 		this.id = 0;
 	}
