@@ -19,7 +19,9 @@ public class RideAddapter {
 		adapted.put("homeRue", ride.getHome().getRue());
 		adapted.put("homeVille", ride.getHome().getVille());
 		
-		adapted.put("","" );
+		//Heure, commentaire
+		adapted.put("heure", ride.getAtOfficeAt().toDBFormat() );
+		adapted.put("commentaire",ride.getComment() );
 		
 		
 		
