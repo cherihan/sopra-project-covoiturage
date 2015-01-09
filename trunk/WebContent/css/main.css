@@ -14,7 +14,9 @@ body {
     background:-webkit-radial-gradient(top, circle cover, rgba(95,88,88,1) 1.82%, rgba(51,36,36,1) 100%);
     background:radial-gradient(circle farthest-corner at top, rgba(95,88,88,1) 1.82%, rgba(51,36,36,1) 100%);
     filter:progid:DXImageTransform.Microsoft.Gradient(startColorstr='#5f5858', endColorstr='#332424',GradientType=0);
-
+	background-repeat : no-repeat ;
+	background-attachment: fixed;
+	background-position : center ;
 }
 
 .button{
