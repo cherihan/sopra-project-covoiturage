@@ -21,10 +21,11 @@
 </header>
 
 <left_side>
-<br>
-Ici : <br><br>
-Rappel des routes<br>
-existantes
+
+<%
+	@include file="user_banner.jsp"
+%>
+
 </left_side> 
 
 
@@ -157,11 +158,10 @@ existantes
                         <td >
                             Office<br><br>
 					    	<select name="4-service">
-					  			<option value="dest1">Sopra1</option>
-					 			<option value="dest2">Sopra2</option>
-					 			<option value="dest3">Sopra3</option>
-					  			<option value="dest4">Sopra4</option>
-					  			<option value="dest5">Sopra5</option>
+					  			<option value="dest1">Sopra Colo 1</option>
+					 			<option value="dest2">Sopra Colo 2</option>
+					 			<option value="dest3">Sopra Ramassiers</option>
+					  			<option value="dest4">Sopra Albi </option>
 							</select>
                         </td>
                         <td>
