@@ -266,42 +266,42 @@ public class DataBaseAccess {
 				
 				Ride ride = rides.get(i);
 				HashMap <String, String> strings = adapter.adaptRideToHashMap(ride);
-				
-				
-				System.out.println("###DEBUG ### (DataBaseAccess, addUserRides) : "+strings.get("homeCP")+" "
-						+strings.get("homeRue")+" "+strings.get("homeVille"));
+				int update;
+				/*System.out.println("###DEBUG ### (DataBaseAccess, addUserRides) : "+strings.get("homeCP")+" "
+						+strings.get("homeRue")+" "+strings.get("homeVille"));*/
 				//check the address and get the id
 				//add the adress les infos sont dans la hash map. 
+				res = statement.executeQuery("SELECT COUNT(1) FROM adresse WHERE rue ='"+strings.get("homeRue")
+						+"' and cp='"+strings.get("homeCP")+"' and ville='"
+						+strings.get("homeVille")+"';");
+				res.next();
+				if( res.getInt(1) == 0){//si on a pas l'adresse dans la base rentre	
+					System.out.println("###DEBUG ### (DataBaseAccess, addUserRides) : pas trouvé l'adress");
+					adressID = statement.executeUpdate("INSERT INTO adresse  values(null,'"+strings.get("homeRue")+"','"
+					+strings.get("homeVille")+"','"+strings.get("homeCP")+"')");
+				}
+				res.close();
 				res = statement.executeQuery("SELECT id FROM adresse WHERE rue ='"+strings.get("homeRue")
-						+"' and '"+strings.get("homeCP")+"' and '"
-						+strings.get("homeVille"));
-				System.out.println("###DEBUG ### (DataBaseAccess, addUserRides) : "+res);
-				if( res == null){//si on a pas l'adresse dans la base rentre					
-					//res = statement.executeQuery("INSERT INTO adresse  values(null,'"+strings.get("homeRue")+"','"+strings.get("homeCP")+"','"+strings.get("homeCP")+"')");
-				}
-				//res.next();
-				//adressID = res.getInt(1);
+						+"' and  cp='"+strings.get("homeCP")+"' and ville='"
+						+strings.get("homeVille")+"';");
+				res.next();
+				adressID = res.getInt("id");
+				//System.out.println("###DEBUG ### (DataBaseAccess, addUserRides) : id de l'adress : "+adressID);
 				
-				//INSERT INTO sopra.adresse  values(null,'ecole','Pibrac','31200') ;
+				//check sopra site existe
+				//check si jour in bound
+				int rideSens = (ride.getSens())? 1 :0;
 				
-				//il me faut la la ligne address vill et code postal. 
+				update = statement.executeUpdate("INSERT INTO ride VALUES(null,'"+adressID+",'"
+						+strings.get("heure")+"','"+ride.getOffice().getId()+"','"
+						+ ride.getJour().getJour()+"', '"
+						+ rideSens+"','"
+						+ strings.get("commentaire")+"', '"
+						+ride.getUser().getID() +"' )");
 				
-				//identifier le site sopra
+				//ajouter les rides !
 				
 				
-				
-				if(ride.getId() == -1){//le ride n'été pas se dans la base à la base
-					
-					int userId = ride.getUser().getID();
-					//ajouter le ride dans le base
-					
-					
-					//inseré dans la base de donné le nouveau ride 
-					
-				}else{
-					//modifier la table
-					
-				}
 				
 				
 			}
@@ -311,6 +311,7 @@ public class DataBaseAccess {
 
 		} catch (Exception e) {
 			System.err.println("Erreur requête trajets : " + e);
+			e.printStackTrace(System.err);
 			throw new RequestDidNotWork("New account could not be added.");
 		} finally {
 			Close(null, statement, connexion);
