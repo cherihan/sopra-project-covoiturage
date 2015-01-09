@@ -15,6 +15,9 @@ public class DataBaseAccess {
 
 	// ici alex implémentes tous les signaux envoyer par Mélina
 	// impléménattion !
+	
+	// A FAIRE : RENVOYER TOUS LES JOURS DE LA SEMAINE ET TOUS LES SERVICES DANS DES ARRAYLIST
+	// LISTER LES RIDES D UN USER
 
 	// Connexion à la db
 	private Connection Connexion() {
