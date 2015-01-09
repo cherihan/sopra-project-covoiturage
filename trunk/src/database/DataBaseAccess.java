@@ -120,6 +120,7 @@ public class DataBaseAccess {
 		Connection connexion = null;
 		Statement statement = null;
 		ResultSet resultat = null;
+		ResultSet resultat2 = null;
 		Ride ride;
 		User user;
 		Adresse home;
@@ -142,9 +143,8 @@ public class DataBaseAccess {
 			// sélectionner les trajets qui correspondent (càd mêmes
 			// adresse,site,jour et sens)
 			resultat = statement
-					.executeQuery("SELECT lastname,firstname,bio,mail,phone,rue,ville,cp,sopra_site.name,jours.name,heure"
+					.executeQuery("SELECT user.id,lastname,firstname,bio,mail,phone,rue,ville,cp,sopra_site.name,description,sopra_site.id,sens,jours.id,heure,commentaire"
 							+ "FROM user,rides,adresse,sopra_site,jours"
-							/////////////reprendre ici//////////////////////
 							+ "WHERE cp="
 							+ resultat.getInt("cp")
 							+ "AND sopra_site="
@@ -152,39 +152,59 @@ public class DataBaseAccess {
 							+ "AND jour ="
 							+ resultat.getString("jour")
 							+ "AND sens ="
-							+ resultat.getInt("sens"));
+							+ resultat.getInt("sens")
+							+ "AND rides.adresse=adresse.id"
+							+ "AND rides.sopra_site=sopra_site.id"
+							+ "AND user.id=rides.id_user"
+							+ "AND jour=jours.id");
+			
 			// tant qu'il reste des lignes dans le tableau de résultat
 			while (resultat.next()) {
 				// prendre les valeurs de la ligne
-				int id = resultat.getInt(1);
+				int uid = resultat.getInt(1);
 				String lastName = resultat.getString("lastname");
 				String firstName = resultat.getString("firstname");
 				String email = resultat.getString("mail");
 				String bio = resultat.getString("bio");
 				int cp = resultat.getInt("cp");
 				String site = resultat.getString("sopra_site");
-				String heure = resultat.getString("heure");
+				String h = resultat.getString("heure");
 				String numPhone = resultat.getString("phone");
+				String rue = resultat.getString("rue");
+				String ville = resultat.getString("ville");
+				int j = resultat.getInt(10);
+				int id = resultat.getInt("id");
+				String description = resultat.getString("description");
+				int s = resultat.getInt("sens");
+				String commentaire = resultat.getString("commentaire");
+				boolean sens=false;
+				if (s==0){
+					sens=false;
+				}
+				else if (s==1){
+					sens=true;
+				}			
+				
+				resultat2 = statement.executeQuery("SELECT rue,ville,cp FROM adresse"
+													+ "WHERE id='"+uid+"'");
+				resultat2.next();
+				
 				
 				EmailAdresse mail = new EmailAdresse(email);
 				NumeroTelephone phone = new NumeroTelephone(numPhone);
-				boolean sens = false;
-				if (resultat.getInt("sens") == 0) {
-					sens = false;
-				} else if (resultat.getInt("sens") == 1) {
-					sens = true;
-				}
 				PostCode code = new PostCode(cp);
-				// créer un utilisateur
-				user = new User(id, lastName, firstName, mail, bio,phone);
-				// créer adresse
-				home = new Adresse(code);
-				// créer service
-				service = new Service();
-				// créer un trajet
-				//ride = new Ride(user, home, service, heure, sens);
-				// mettre le trajet dans le tableau de trajets
-				//rides.add(ride);
+				JourDeLaSemaine jour = new JourDeLaSemaine(j);
+				Heure heure = new Heure(h);
+				String uRue = resultat2.getString("rue");
+				String uVille = resultat2.getString("ville");
+				int uCp = resultat2.getInt("cp");
+				PostCode uCode = new PostCode(uCp);
+				home = new Adresse(uCode,uRue,uVille);
+				Adresse adresse = new Adresse(code,rue,ville);
+				service = new Service(id,site,description,adresse);
+				user = new User(uid,lastName,firstName,mail,bio,phone);
+				ride = new Ride(id, user, home, service, jour, heure, sens, commentaire);
+				rides.add(ride);
 			}
 			Close(resultat, statement, connexion);
 		} catch (Exception e) {
