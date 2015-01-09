@@ -1,3 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1" import="model.*"%>
+
+
+<% 
+	HttpSession s = request.getSession();
+	User user =(User) s.getAttribute("user");
+
+
+%>
 <html>
 <head>
 
@@ -5,11 +15,12 @@
  <link rel="stylesheet" type="text/css" href="./css/side_panels.css" />
  <link rel="stylesheet" type="text/css" href="./css/main.css" />
  <link rel="stylesheet" type="text/css" href="./css/header.css" />
+ <title>My destinations</title>
 </head>
 
 <body>
 
-<title>My destinations</title>
+
 
 <header>
 	<ul>
@@ -22,9 +33,8 @@
 
 <left_side>
 
-<%
-	@include file="user_banner.jsp"
-%>
+<h1>edit_route = ${user.getID()}</h1>
+	<%@ include file="user_banner.jsp" %>
 
 </left_side> 
 
@@ -40,11 +50,12 @@
     
     	<form class="form"  action="/SopraCarPooling/RidesUpdate" method="post">
 
-		Monday
+			<%for(int i = 1; i < 6; i++){ %>
 		        <table >
                     <tr>
-                    <input type="hidden" name="1-id-1" value="-1">
-                    <input type="hidden" name="1-id-2" value="-1">                    
+                    
+                    <input type="hidden" name="-id-1" value="-1">
+                    <input type="hidden" name="-id-2" value="-1">                    
                         <td>
                             Home<br><br>
                             <input type="text" name="1-street" placeholder="Street" class="rstreetbox" /><br>
@@ -62,155 +73,22 @@
 							</select>
                         </td>
                         <td>
-                            <INPUT type="checkbox" name="1-aller"> Aller :
-                    		<input type="text" name="ah1" placeholder="00" class="hourbox" />h
-							<input type="text" name="am1" placeholder="00" class="hourbox" />m<br>
-
-                            <INPUT type="checkbox" name="1-retour"> Retour :
-                    		<input type="text" name="rh1" placeholder="00" class="hourbox" />h
-							<input type="text" name="rm1" placeholder="00" class="hourbox" />m
+                            <INPUT type="checkbox" name="2-aller"> Aller : 
+                    		<input type="text" name="ah2" value="00" class="hourbox" />h
+							<input type="text" name="am2" value="00" class="hourbox" />m<br>
+                    		<INPUT type="checkbox" name="2-retour"> Retour : 
+                    		<input type="text" name="rh2" value="00" class="hourbox" />h
+							<input type="text" name="rm2" value="00" class="hourbox" />m
                         </td>                
                     </tr>
                  </table>
                  <textarea name="1-com" placeholder="Comment"></textarea><br>
                  
-                 <br>Tuesday
- 		        <table >
-                    <tr>
-                    <input type="hidden" name="2-id-1" value="-1">
-                    <input type="hidden" name="2-id-2" value="-1">                    
-                        <td>
-                            Home<br><br>
-                            <input type="text" name="2-street" placeholder="Street" class="rstreetbox" /><br>
-                            <input type="text" name="2-code-post" placeholder="Code" class="rcodebox" />
-                            <input type="text" name="2-city" placeholder="City" class="rcitybox" />
-                        </td>
-                        <td >
-                            Office<br><br>
-					    	<select name="2-service">
-					  			<option value="dest1">Sopra1</option>
-					 			<option value="dest2">Sopra2</option>
-					 			<option value="dest3">Sopra3</option>
-					  			<option value="dest4">Sopra4</option>
-					  			<option value="dest5">Sopra5</option>
-							</select>
-                        </td>
-                        <td>
-                            <INPUT type="checkbox" name="2-aller"> Aller : 
-                    		<input type="text" name="ah2" placeholder="00" class="hourbox" />h
-							<input type="text" name="am2" placeholder="00" class="hourbox" />m<br>
-                    		<INPUT type="checkbox" name="2-retour"> Retour : 
-                    		<input type="text" name="rh2" placeholder="00" class="hourbox" />h
-							<input type="text" name="rm2" placeholder="00" class="hourbox" />m
-                        </td>                
-                	
-                    </tr>
-                 </table>
-                 <textarea name="2-com" placeholder="Comment"></textarea><br>
                  
-                 <br>Wednesday
-		        <table >
-                    <tr>
-                    <input type="hidden" name="3-id-1" value="-1">
-                    <input type="hidden" name="3-id-2" value="-1">                    
-                        <td>
-                            Home<br><br>
-                            <input type="text" name="3-street" placeholder="Street" class="rstreetbox" /><br>
-                            <input type="text" name="3-code-post" placeholder="Code" class="rcodebox" />
-                            <input type="text" name="3-city" placeholder="City" class="rcitybox" />
-                        </td>
-                        <td >
-                            Office<br><br>
-					    	<select name="3-service">
-					  			<option value="dest1">Sopra1</option>
-					 			<option value="dest2">Sopra2</option>
-					 			<option value="dest3">Sopra3</option>
-					  			<option value="dest4">Sopra4</option>
-					  			<option value="dest5">Sopra5</option>
-							</select>
-                        </td>
-                        <td>
-                    		<INPUT type="checkbox" name="3-aller"> Aller : 
-                    		<input type="text" name="ah3" placeholder="00" class="hourbox" />h
-							<input type="text" name="am3" placeholder="00" class="hourbox" />m<br>
- 
-                    		<INPUT type="checkbox" name="3-retour"> Retour : 
-                     		<input type="text" name="rh3" placeholder="00" class="hourbox" />h
-							<input type="text" name="rm3" placeholder="00" class="hourbox" />m
-
-                        </td>                
-                	
-                    </tr>
-                 </table>
-                 <textarea name="3-com" placeholder="Comment"></textarea><br>
-                 
-                 <br>Thurday
- 		        <table >
-                    <tr>
-                    <input type="hidden" name="4-id-1" value="-1">
-                    <input type="hidden" name="4-id-2" value="-1">                    
-                        <td>
-                            Home<br><br>
-                            <input type="text" name="4-street" placeholder="Street" class="rstreetbox" /><br>
-                            <input type="text" name="4-code-post" placeholder="Code" class="rcodebox" />
-                            <input type="text" name="4-city" placeholder="City" class="rcitybox" />
-                        </td>
-                        <td >
-                            Office<br><br>
-					    	<select name="4-service">
-					  			<option value="dest1">Sopra Colo 1</option>
-					 			<option value="dest2">Sopra Colo 2</option>
-					 			<option value="dest3">Sopra Ramassiers</option>
-					  			<option value="dest4">Sopra Albi </option>
-							</select>
-                        </td>
-                        <td>
-                    		<INPUT type="checkbox" name="4-aller"> Aller : 
-                    		<input type="text" name="ah4" placeholder="00" class="hourbox" />h
-							<input type="text" name="am4" placeholder="00" class="hourbox" />m<br>                    		
-  
-                    		<INPUT type="checkbox" name="4-retour"> Retour : 
-                    		<input type="text" name="rh4" placeholder="00" class="hourbox" />h
-							<input type="text" name="rm4" placeholder="00" class="hourbox" />m
-                        </td>                
-                	
-                    </tr>
-                 </table>
-                <textarea name="4-com" placeholder="Comment"></textarea><br>
-                  
-                 <br>Friday
-		        <table >
-                    <tr>
-                    <input type="hidden" name="5-id-1" value="-1">
-                    <input type="hidden" name="5-id-2" value="-1">
-                        <td>
-                            Home<br><br>
-                            <input type="text" name="5-street" placeholder="Street" class="rstreetbox" /><br>
-                            <input type="text" name="5-code-post" placeholder="Code" class="rcodebox" />
-                            <input type="text" name="5-city" placeholder="City" class="rcitybox" />
-                        </td>
-                        <td >
-                            Office<br><br>
-					    	<select name="5-service">
-					  			<option value="dest1">Sopra1</option>
-					 			<option value="dest2">Sopra2</option>
-					 			<option value="dest3">Sopra3</option>
-					  			<option value="dest4">Sopra4</option>
-					  			<option value="dest5">Sopra5</option>
-							</select>
-                        </td>
-                        <td>
-                    		<INPUT type="checkbox" name="5-aller"> Aller : 
-                    		<input type="text" name="ah5" placeholder="00" class="hourbox" />h
-							<input type="text" name="am5" placeholder="00" class="hourbox" />m<br>              
-                    		<INPUT type="checkbox" name="5-retour"> Retour : 
-                    		<input type="text" name="rh5" placeholder="00" class="hourbox" />h
-							<input type="text" name="rm5" placeholder="00" class="hourbox" />m
-                        </td>                
-                	
-                    </tr>
-                 </table>
-			  <textarea name="5-com" placeholder="Comment"></textarea><br>
+               
+			
+              
+               <%}%>
                 			
  	     <input type="submit" value="Add a route" class="button" />   
    </form>
