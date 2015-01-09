@@ -72,11 +72,13 @@ public class DataBaseAccess {
 			connexion = Connexion();
 			statement = connexion.createStatement();
 			// chercher si l'utilisateur existe
+			String password = pass.getClaire();
 			resultat = statement.executeQuery("SELECT COUNT(1) " + "FROM user "
 					+ "WHERE mail='" + mail+"'"
-					+ "AND password='"+pass+"'");
+					+ "AND password='"+password+"'");
 			resultat.next();
 			if (resultat.getInt(1) == 1) {
+				
 				// vérifier si l'utilisateur est admin ou pas
 				resultat = statement.executeQuery("SELECT * FROM sopra.user WHERE mail='"+ mail+"'");
 				resultat.next();
@@ -238,6 +240,31 @@ public class DataBaseAccess {
 
 	}
 	
+	
+	public void deletAllUserRides (User user)throws RequestDidNotWork{
+		Connection connexion = null;
+		Statement statement = null;
+		try {
+			connexion = Connexion();
+			statement = connexion.createStatement();
+			performExecuteDelRides(user, statement);
+		}catch (Exception e){
+			throw new RequestDidNotWork("Rides could note be deleted : "+e);
+		}finally {
+			Close(null, statement, connexion);
+		}		
+	}
+	private void performExecuteDelRides(User user,Statement stat) throws RequestDidNotWork{
+		try{
+			//on ne suprime pas les addresse oui c'est mal
+			stat.executeUpdate("delete from rides where id_user='"+user.getID()+"'");	
+			
+		}catch (Exception e){
+			throw new RequestDidNotWork("Rides could note be deleted : "+e);
+		}
+	}
+	
+	
 	//set rides of on user (ArrayList<Rides>)
 	//tu dois avoir un tableau de rides avec au max 5 rides
 	//tu ajoute chaqu'un des rides dans la data base (un par un je supose)
@@ -246,13 +273,10 @@ public class DataBaseAccess {
 		Connection connexion = null;
 		Statement statement = null;
 		
-		RideAddapter adapter = new RideAddapter();
-		
-		
-		
-		ResultSet res;
-		int id = -1;
-		
+		RideAddapter adapter = new RideAddapter();	
+				
+		ResultSet res = null;
+				
 		int resultat; 
 		try {
 			connexion = Connexion();
@@ -261,11 +285,18 @@ public class DataBaseAccess {
 			
 			//on suprime tous les rides du user
 			
-			
+			//debug 
+			User user = new  User (7);
+			performExecuteDelRides(user, statement);
 			for (int i =0 ; i < rides.size(); i++){
+				
 				
 				Ride ride = rides.get(i);
 				HashMap <String, String> strings = adapter.adaptRideToHashMap(ride);
+				//debug 
+				ride.setUser(new User (7));
+				
+				
 				int update;
 				/*System.out.println("###DEBUG ### (DataBaseAccess, addUserRides) : "+strings.get("homeCP")+" "
 						+strings.get("homeRue")+" "+strings.get("homeVille"));*/
@@ -283,38 +314,30 @@ public class DataBaseAccess {
 				res.close();
 				res = statement.executeQuery("SELECT id FROM adresse WHERE rue ='"+strings.get("homeRue")
 						+"' and  cp='"+strings.get("homeCP")+"' and ville='"
-						+strings.get("homeVille")+"';");
+						+strings.get("homeVille")+"'");
 				res.next();
 				adressID = res.getInt("id");
-				//System.out.println("###DEBUG ### (DataBaseAccess, addUserRides) : id de l'adress : "+adressID);
+				System.out.println("###DEBUG ### (DataBaseAccess, addUserRides) : id de l'adress : "+adressID);
 				
 				//check sopra site existe
 				//check si jour in bound
 				int rideSens = (ride.getSens())? 1 :0;
 				
-				update = statement.executeUpdate("INSERT INTO ride VALUES(null,'"+adressID+",'"
+				update = statement.executeUpdate("INSERT INTO rides VALUES(null,'"+adressID+"','"
 						+strings.get("heure")+"','"+ride.getOffice().getId()+"','"
 						+ ride.getJour().getJour()+"', '"
 						+ rideSens+"','"
 						+ strings.get("commentaire")+"', '"
 						+ride.getUser().getID() +"' )");
 				
-				//ajouter les rides !
-				
-				
-				
-				
+				System.out.println("###DEBUG ### (DataBaseAccess, addUserRides) : "+update);
 			}
-			
-			
-
-
 		} catch (Exception e) {
 			System.err.println("Erreur requête trajets : " + e);
 			e.printStackTrace(System.err);
 			throw new RequestDidNotWork("New account could not be added.");
 		} finally {
-			Close(null, statement, connexion);
+			Close(res, statement, connexion);
 		}
 		
 		

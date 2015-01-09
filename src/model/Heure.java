@@ -8,6 +8,7 @@ import java.util.GregorianCalendar;
 public class Heure implements Comparable<Heure> {
 
 	private DateFormat df;
+	private DateFormat dBF;
 	private GregorianCalendar heur0;
 	private GregorianCalendar heurMin;
 	private GregorianCalendar heurMax;
@@ -15,6 +16,7 @@ public class Heure implements Comparable<Heure> {
 
 	public Heure(String HHmm) {
 		this.df = new SimpleDateFormat("HH':'mm");
+		this.dBF= new SimpleDateFormat("HHmm");
 		this.heur0 = new GregorianCalendar();
 		int heur = Integer.parseInt(HHmm.substring(0, 2)); // chope les heurs
 															// dans le string
@@ -48,6 +50,9 @@ public class Heure implements Comparable<Heure> {
 	
 	public String toString() {
 		return df.format(heur0.getTime());
+	}
+	public String toDBFormat(){
+		return dBF.format(heur0.getTime());
 	}
 
 	@Override
