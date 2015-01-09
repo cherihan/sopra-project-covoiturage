@@ -30,10 +30,13 @@ public class Ride {
 		
 		System.out.println("###DEBUG ### (Ride, constructeur) : ride créer");
 	}
+	public Ride (int id){
+		this.id = id;
+	}
 
 	// Display ride (toString est générique) 
 	public String toString () {
-		String res;
+		String res;		
 		res="###DEBUG ### (Ride, toString) \n";
 		res="Le conduteur est :"+this.user+"\n";
 		res+="Le point de départ se situe à : " + this.home+"\n";
@@ -42,6 +45,9 @@ public class Ride {
 			res+="Dans le sens allé a "+this.atOfficeAt+"\n";
 		}else {
 			res+="Dans le sens retour \n";
+		}
+		if(id == -1){
+			res = "EMPTY RIDE";
 		}
 		return res;
 	}

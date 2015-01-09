@@ -3,6 +3,7 @@ package model;
 public class JourDeLaSemaine {
 	
 	private int jour;
+	private String string;
 	
 	
 	public JourDeLaSemaine (int jourNum){
@@ -10,6 +11,12 @@ public class JourDeLaSemaine {
 			this.jour = jourNum;
 		}		
 	}
+	public JourDeLaSemaine (int jourNum, String string){
+		this.jour = jourNum;
+		this.string = string;	
+	}
+	
+	
 	
 	public String toString(){
 		String res;
