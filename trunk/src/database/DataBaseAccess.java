@@ -135,8 +135,8 @@ public class DataBaseAccess {
 			resultat = statement
 					.executeQuery("SELECT user.id,rides.id,rue,ville,cp,sopra_site.name,jours.name"
 							+ "FROM user,rides,adresse,sopra_site,jours" + 
-							"WHERE mail=" + userMail
-							+ "AND rides.adresse=adresse.id"
+							"WHERE mail='" + userMail
+							+ "' AND rides.adresse=adresse.id"
 							+ "AND rides.sopra_site=sopra_site.id"
 							+ "AND user.id=rides.id_user"
 							+ "AND jour=jours.id");
@@ -145,15 +145,15 @@ public class DataBaseAccess {
 			resultat = statement
 					.executeQuery("SELECT user.id,lastname,firstname,bio,mail,phone,rue,ville,cp,sopra_site.name,description,sopra_site.id,sens,jours.id,heure,commentaire"
 							+ "FROM user,rides,adresse,sopra_site,jours"
-							+ "WHERE cp="
+							+ "WHERE cp='"
 							+ resultat.getInt("cp")
-							+ "AND sopra_site="
+							+ "' AND sopra_site='"
 							+ resultat.getString("sopra_site")
-							+ "AND jour ="
+							+ "' AND jour ='"
 							+ resultat.getString("jour")
-							+ "AND sens ="
+							+ "' AND sens ='"
 							+ resultat.getInt("sens")
-							+ "AND rides.adresse=adresse.id"
+							+ "' AND rides.adresse=adresse.id"
 							+ "AND rides.sopra_site=sopra_site.id"
 							+ "AND user.id=rides.id_user"
 							+ "AND jour=jours.id");
