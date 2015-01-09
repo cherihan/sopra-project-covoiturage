@@ -1,9 +1,9 @@
 left_side{
 	background-color : transparent ;
-	height : 100%;
 	width : 20%;
 	float : left ;
-	color: #f6f6f6;
+	height : 100%;
 	overflow: hidden;
 	bottom : 0;   
+	position : relative;
 }
