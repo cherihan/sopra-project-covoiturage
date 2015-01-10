@@ -70,8 +70,6 @@
     <ul>
       <li class="tab sleepyTab"><a href="edit_profile.html"><img src="./images/user.png" alt="" class="icon"/></a></li>
       <li class="tab activeTab" ><a href="edit_route.html"><img src="./images/milestone.png" alt="abra" class="icon"/></a></li>
-      <li class="tab sleepyTab" ><a href="edit_infos.html"><img src="./images/customers.png" alt="" class="icon"/></a></li>
-      <li class="tab sleepyTab" ><a href="edit_parameters.html"><img src="./images/settings.png" alt="" class="icon"/></a></li>
     </ul>
     
     	<form class="form"  action="/SopraCarPooling/RidesUpdate" method="post">
