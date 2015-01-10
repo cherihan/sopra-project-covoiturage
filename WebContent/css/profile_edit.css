@@ -9,6 +9,10 @@ body{
   color : #F6F6E8; 
 }
 
+.alert{
+	background-color : yellow ; 
+}
+
 .a{
   display:block;
   color:#F6F6E8;  
@@ -171,6 +175,22 @@ height:24px;
   margin-left:20px;
 }
 
+.pwdbox{
+  background-color : transparent ;
+  color : #dbdce6 ;
+  height:30px;
+  width:200px;
+  border:#cccfe1 1px solid;
+  box-sizing:border-box;
+  border-radius : 3px ;
+  padding:5px;
+  margin-bottom:30px;
+  margin-left:5%;
+}
+
+.pwdtxt{
+	margin-left : 10% ;
+}
 
 .hourbox{
   background-color : transparent ;
@@ -223,13 +243,7 @@ height:24px;
 
 .rcodebox:focus,
 .rcitybox:focus,
-.rstreetbox:focus{
-   border:#e7e8f1 1px solid;
-   color:#d9dcf4;
-   background-color : #404040;
-}
-
-
+.rstreetbox:focus
 .textbox:focus,
 .firstnamebox:focus,
 .longbox:focus,
