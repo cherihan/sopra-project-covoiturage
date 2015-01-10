@@ -45,7 +45,7 @@ du profil actuel
   <div class="module">
     <ul>
       <li class="tab activeTab"><a href="edit_profile.jsp"><img src="./images/user.png" alt="" class="icon"/></a></li>
-      <li class="tab sleepyTab" ><a href="edit_route.jsp"><img src="./images/milestone.png" alt="abra" class="icon"/></a></li>
+      <li class="tab sleepyTab" ><a href="RidesUpdate"><img src="./images/milestone.png" alt="abra" class="icon"/></a></li>
     </ul>
     <form class="form" name="profile_form"><br><br>
       <input type="text" value="First Name" class="textbox" />
