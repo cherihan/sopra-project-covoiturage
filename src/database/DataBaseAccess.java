@@ -122,6 +122,7 @@ public class DataBaseAccess {
 	public ArrayList<Ride> requestMatchingRides(User user) throws RequestDidNotWork {
 		Connection connexion = null;
 		Statement statement = null;
+		Statement statement2 = null;
 		ResultSet resultat = null;
 		ResultSet resultat2 = null;
 		Ride ride;
@@ -132,6 +133,7 @@ public class DataBaseAccess {
 			// connexion
 			connexion = Connexion();
 			statement = connexion.createStatement();
+			statement2 = connexion.createStatement();
 			// sélectionner les trajets de l'utilisateur
 			resultat = statement
 					.executeQuery("SELECT *"
@@ -184,7 +186,7 @@ public class DataBaseAccess {
 				}			
 				
 				//récupérer adresse du user qui conduit pour construire le ride
-				resultat2 = statement.executeQuery("SELECT rue,ville,cp FROM adresse"
+				resultat2 = statement2.executeQuery("SELECT rue,ville,cp FROM adresse"
 													+ "WHERE id='"+uid+"'");
 				resultat2.next();
 				
@@ -290,6 +292,7 @@ public class DataBaseAccess {
 	public ArrayList<Ride> requestUserRides(User user) throws RequestDidNotWork {
 		Connection connexion = null;
 		Statement statement = null;
+		Statement statement2 = null;
 		ResultSet resultat = null;
 		ResultSet resultat2 = null;
 
@@ -299,18 +302,19 @@ public class DataBaseAccess {
 		try{
 			connexion = Connexion();
 			statement = connexion.createStatement();
+			statement2 = connexion.createStatement();
 			resultat = statement
 					.executeQuery("SELECT rides.id,rue,ville,cp,sopra_site.name,description,sopra_site.id,sens,jours.id,heure,commentaire"
-							+ "FROM user,rides,adresse,sopra_site,jours"
-							+ "WHERE user.id = '"+uid
+							+ " FROM user,rides,adresse,sopra_site,jours"
+							+ " WHERE user.id = '"+uid
 							+ "' AND sopra_site.adresse=adresse.id"
-							+ "AND rides.sopra_site=sopra_site.id"
-							+ "AND user.id=rides.id_user"
-							+ "AND jour=jours.id");
-
+							+ " AND rides.sopra_site=sopra_site.id"
+							+ " AND user.id=rides.id_user"
+							+ " AND jour=jours.id");
+			
 			while(resultat.next()){
 				int id = resultat.getInt(1);
-				String site = resultat.getString("sopra_site");
+				String site = resultat.getString("name");
 				String h = resultat.getString("heure");
 				int j = resultat.getInt(9);
 				int id_sopra = resultat.getInt(7);
@@ -320,7 +324,6 @@ public class DataBaseAccess {
 				String rue = resultat.getString("rue");
 				String ville = resultat.getString("ville");
 				int cp = resultat.getInt("cp");
-				
 				PostCode code = new PostCode(cp);
 				Adresse adresse = new Adresse(code, rue, ville);
 				boolean sens=false;
@@ -330,24 +333,21 @@ public class DataBaseAccess {
 				else if (s==1){
 					sens=true;
 				}
-				
-				resultat2 = statement.executeQuery("SELECT rue,ville,cp FROM adresse"
-						+ "WHERE id='"+uid+"'");
+				resultat2 = statement2.executeQuery("SELECT rue,ville,cp FROM adresse,rides,user"
+						+ " WHERE rides.id_user=user.id"
+						+ " AND adresse.id=rides.adresse"
+						+ " AND user.id="+uid);
 				resultat2.next();
-				
 				String uRue = resultat2.getString("rue");
 				String uVille = resultat2.getString("ville");
 				int uCp = resultat2.getInt("cp");
 				PostCode uCode = new PostCode(uCp);
 				Adresse home = new Adresse(uCode, uRue, uVille);
-				
-				
 				JourDeLaSemaine jour = new JourDeLaSemaine(j);
 				Heure heure = new Heure(h);
 				Service service = new Service(id_sopra,site,description,adresse);
 				Ride ride = new Ride(id, user, home, service, jour, heure, sens, commentaire);
 				rides.add(ride);
-				
 			}
 
 		}catch(Exception e){
@@ -356,6 +356,8 @@ public class DataBaseAccess {
 					"Pas de ride trouvé pour cet utilisateur");
 		}finally{
 			Close(resultat, statement, connexion);
+			Close(resultat2, statement, connexion);
+			
 		}
 		return rides;
 	}
