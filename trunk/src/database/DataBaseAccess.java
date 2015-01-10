@@ -416,8 +416,7 @@ public class DataBaseAccess {
 				Ride ride = rides.get(i);
 				HashMap <String, String> strings = adapter.adaptRideToHashMap(ride);
 				//debug 
-				ride.setUser(new User (7));
-				
+								
 				int update;
 				/*System.out.println("###DEBUG ### (DataBaseAccess, addUserRides) : "+strings.get("homeCP")+" "
 						+strings.get("homeRue")+" "+strings.get("homeVille"));*/

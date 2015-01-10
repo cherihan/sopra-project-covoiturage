@@ -2,6 +2,7 @@ package sopracarpooling.servlets;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,7 +36,9 @@ public class CreatAccount extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		 response.sendRedirect("signup.html");//faire passer un message d'erreur
+		
+		 RequestDispatcher rd = request.getRequestDispatcher("signup.jsp");
+		 rd.forward(request, response);
 	}
 
 	/**
@@ -74,11 +77,13 @@ public class CreatAccount extends HttpServlet {
 				s.setAttribute("newAccount", "yes");				
 				response.sendRedirect("/SopraCarPooling/Home");
 			}catch (Exception e){
-				response.sendRedirect("signup.html");//avec message d'ereur
+				RequestDispatcher rd = request.getRequestDispatcher("signup.jsp");
+				 rd.forward(request, response);
 			}
 			
 		}else{
-			response.sendRedirect("signup.html");//faire passer un message d'erreur
+			RequestDispatcher rd = request.getRequestDispatcher("signup.jsp");
+			 rd.forward(request, response);
 		}
 		
 		
