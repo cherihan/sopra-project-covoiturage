@@ -3,7 +3,6 @@
 
 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
 <link rel="stylesheet" type="text/css" href="./css/login_signup.css">
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 </head>
 
@@ -32,11 +31,11 @@
 		
 		<input type="email" name="email" required placeholder="Email *"> 
 
-		<input type="phone" name="phone" required placeholder="Optional : Phone number"> 
+		<input type="phone" name="phone" placeholder="Optional : Phone number"> 
 		
-		<textarea type="bio" name="bio" required placeholder="Optional : About you"></textarea>
+		<textarea type="bio" name="bio" placeholder="Optional : About you"></textarea>
 		
-        <input type="submit" value="Sign up">
+        <input type="submit" onClick="checkProfileForm()" value="Sign up">
 
 	</form>
 	

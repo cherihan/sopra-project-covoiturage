@@ -5,6 +5,20 @@
  <link rel="stylesheet" type="text/css" href="./css/side_panels.css" />
  <link rel="stylesheet" type="text/css" href="./css/main.css" />
  <link rel="stylesheet" type="text/css" href="./css/header.css" />
+ 
+ <script>
+  
+function checkProfileForm()
+{
+  if (document.profile_form.pwd.value == document.profile_form.pwd_confirm.value)
+  {
+	  document.profile_form.submit();
+  }
+  else
+    alert("Passwords do not match !");
+}
+</script>
+
 </head>
 
 <body>
@@ -33,15 +47,20 @@ du profil actuel
       <li class="tab activeTab"><a href="edit_profile.html"><img src="./images/user.png" alt="" class="icon"/></a></li>
       <li class="tab sleepyTab" ><a href="edit_route.html"><img src="./images/milestone.png" alt="abra" class="icon"/></a></li>
     </ul>
-    <form class="form"><br><br>
+    <form class="form" name="profile_form"><br><br>
       <input type="text" value="First Name" class="textbox" />
       <input type="text" value="Last Name" class="firstnamebox" /><br>
-      <input type="text" value="Email Address" class="longbox" />
+      <input type="email" name="email" value="Email Address" class="longbox" />
       <input type="text" value="Phone" class="phonebox" /><br>
       <input type="text" value="N° and Street" class="longbox" />
       <input type="text" value="Post code" class="codebox" /> 
-      <input type="text" value="City" class="citybox" />
-      <input type="submit" value="Save changes" class="button" />     
+      <input type="text" value="City" class="citybox" /><br>
+      <div class="pwdtxt">New password :
+      <input type="password" name="pwd" value="Password" class="pwdbox" /> </div>
+      <div class="pwdtxt">Confirm password :
+      <input type="password" name="pwd_confirm" value="Password" class="pwdbox" /></div>
+      
+      <input type="submit" onClick="checkProfileForm()" value="Save changes" class="button" />     
     </form>
   </div>
 </div>
