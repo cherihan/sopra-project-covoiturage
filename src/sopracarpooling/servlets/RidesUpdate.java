@@ -39,9 +39,25 @@ public class RidesUpdate extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		String nextPage = "edit_route.jsp";
-		RequestDispatcher rd = request.getRequestDispatcher(nextPage);
-		rd.forward(request, response);
+		DataBaseAccess dB = new DataBaseAccess();
+		HttpSession s = request.getSession();
+		try {
+
+			ArrayList<JourDeLaSemaine> jours = dB.requestJours();
+			s.setAttribute("jours", jours);
+			//get services
+			//get user rides.
+
+		} catch (RequestDidNotWork e) {
+			System.err
+					.println("###DEBUG ### (UpdateRides, servlets) : Error  ");
+			s.setAttribute("performAction", "error");
+		} finally {
+			String nextPage = "edit_route.jsp";
+			RequestDispatcher rd = request.getRequestDispatcher(nextPage);
+			rd.forward(request, response);
+
+		}
 
 	}
 
@@ -56,21 +72,21 @@ public class RidesUpdate extends HttpServlet {
 		HttpSession s = request.getSession();
 		User user = (User) s.getAttribute("user");
 		DataBaseAccess dB = new DataBaseAccess();
-		System.out.println("###DEBUG ### (UpdateRides, servlets) : connected user  : "+user);
-		
-		
+		System.out.println("###DEBUG ### (UpdateRides, servlets) : connected user  : "+ user);
+
 		// filter for session
 
 		// make sure of with parameters are changed here with the team.
 		try {
 			ArrayList<Ride> userRides = new ArrayList<Ride>();
 			int o = 0; // debug
-			for (int i = 1; i < 6; i++) {// pour chaque jour de la semaine
-				//System.out.println("###DEBUG ### (UpdateRides, servlets) : passage : "+i);
+			ArrayList<JourDeLaSemaine> jours = (ArrayList<JourDeLaSemaine>) s.getAttribute("jours");
+			for (int k = 0; k < jours.size(); k++) {// pour chaque jour de la
+													// semaine
+				// System.out.println("###DEBUG ### (UpdateRides, servlets) : passage : "+i);
 				// can be changed by a adapter calsse (should)
-				String idalle = request.getParameter(i + "-id-1");// will not be
-																	// changed
-				String idretour = request.getParameter(i + "-id-2");
+				int i = jours.get(k).getJour();
+
 				String homeRue = request.getParameter(i + "-street");
 				String homeVille = request.getParameter(i + "-city");
 				String source = request.getParameter(i + "-code-post");
@@ -79,64 +95,58 @@ public class RidesUpdate extends HttpServlet {
 				String am = request.getParameter("am" + i);
 				String rh = request.getParameter("rh" + i);
 				String rm = request.getParameter("rm" + i);
-				
-				
-				// String sens = request.getParameter(i+"-sens");
 				String com = request.getParameter(i + "-com");
 				String exist1 = request.getParameter(i + "-aller");
 				String exist2 = request.getParameter(i + "-retour");
-				if (idalle != null && idretour != null && source != null
-						&& dest != null && !source.equals("") && !dest.equals("")) {
+				//System.out.println("###DEBUG ### (UpdateRides, servlets) : avant if  "+ source + " " + dest);
+				if (source != null && dest != null && !source.equals("")
+						&& !dest.equals("")) {
 
-					//System.out.println("###DEBUG ### (UpdateRides, servlets) : source : "+source);
-					Service office = new Service(Integer.parseInt("1"));//hard so far													
-					Adresse home = new Adresse(new PostCode(Integer.parseInt(source)), homeRue, homeVille);
-					int IDalle = Integer.parseInt(idalle);
-					int IDretour = Integer.parseInt(idretour);
+					// System.out.println("###DEBUG ### (UpdateRides, servlets) :  "+source);
+					Service office = new Service(Integer.parseInt("1"));
+					Adresse home = new Adresse(new PostCode(
+							Integer.parseInt(source)), homeRue, homeVille);
+
 					
-			
-					
-					
-					//System.out.println("###DEBUG ### (UpdateRides, servlets) : ");
-					if (exist1 != null  && ah != null && am != null) {
-						boolean aller = (exist1.equals("on") ) ? true: false;
+					if (exist1 != null && exist1.equals("on") && ah != null && am != null){
+						
 						String time1 = ah + am;
 						Heure heur1 = new Heure(time1);
-						userRides.add(new Ride(IDalle, user, home, office,
+						userRides.add(new Ride(0, user, home, office,
 								new JourDeLaSemaine(i), heur1, true, com));
-						//System.out.println("###DEBUG ### (UpdateRides, servlets) : "+userRides.get(o++));
+						// System.out.println("###DEBUG ### (UpdateRides, servlets) : "+userRides.get(o++));
 
 					}
-					if (exist2 != null  && rh != null && rm != null) {
-						boolean retour = (exist2.equals("on")) ? true: false;
+					if (exist2 != null && exist2.equals("on")&& rh != null && rm != null){						
 						String time2 = rh + rm;
 						Heure heur2 = new Heure(time2);
-						userRides.add(new Ride(IDretour, user, home, office,
+						userRides.add(new Ride(0, user, home, office,
 								new JourDeLaSemaine(i), heur2, false, com));
-						//System.out.println("###DEBUG ### (UpdateRides, servlets) : "+userRides.get(o++));
+						// System.out.println("###DEBUG ### (UpdateRides, servlets) : "+userRides.get(o++));
+
 					}
 				}
 			}
-			
-			//la databas fait sont taf :
-			//System.out.println("###DEBUG ### (UpdateRides, servlets) : "+userRides.size());
-			if(userRides.size() > 0){
-				dB.addUserRides(userRides);
-			}else{
+
+			// la databas fait sont taf :
+
+			if (userRides.size() > 0) {
+				dB.addUserRides(userRides, user);
+			} else {
 				//la base de donner doit suprimer tous les rides du user
-				//dB.delAllUserRides(user);
+				dB.deletAllUserRides (user);
 			}
-			
 
 			// envoyer tout ca à alex qui nous renvoi les trajets du mec
 		} catch (RequestDidNotWork e) {
 			// ça n'a pas marché
-			System.err.println("###DEBUG ### (UpdateRides, servlets) : Error  ");
+			System.err
+					.println("###DEBUG ### (UpdateRides, servlets) : Error  ");
 			s.setAttribute("performAction", "error");
 		} finally {
 			// System.out.println("###DEBUG ### (UpdateRides, servlets) : On s'en va !");
 			// chargerLaPage(request, response);
-			
+
 			String nextPage = "edit_route.jsp";
 			RequestDispatcher rd = request.getRequestDispatcher(nextPage);
 			rd.forward(request, response);

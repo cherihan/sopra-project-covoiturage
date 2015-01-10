@@ -8,16 +8,17 @@
 	ArrayList <Ride> rides = (ArrayList <Ride>) s.getAttribute("rides");
 	ArrayList <JourDeLaSemaine> jours = (ArrayList <JourDeLaSemaine>) s.getAttribute("jours");
 	ArrayList <Service> sopraOff = (ArrayList <Service>) s.getAttribute("sopraSite");
+	
 	//dev usage only 
 	if(user == null){
 		user = new User(1000, "Charlie", "Hebdo", new EmailAdresse("ch@gmail.com"),"Journal",new NumeroTelephone("07012015"));
 	}
-	jours = new ArrayList<JourDeLaSemaine>();
+	/*jours = new ArrayList<JourDeLaSemaine>();
 	jours.add(new JourDeLaSemaine(1,"lundi"));
 	jours.add(new JourDeLaSemaine(2,"mardi"));
 	jours.add(new JourDeLaSemaine(3,"mercredi"));
 	jours.add(new JourDeLaSemaine(4,"jeudi"));
-	jours.add(new JourDeLaSemaine(5,"vendredi"));
+	jours.add(new JourDeLaSemaine(5,"vendredi"));*/
 	sopraOff = new ArrayList<Service>();
 	sopraOff.add(new Service(1,"Colomiers Perget","",null));
 	sopraOff.add(new Service(2,"Colomiers Ramacier","",null));
@@ -59,7 +60,7 @@
 
 <left_side>
 
-<h1>edit_route = ${user.getID()}</h1>
+<h1><%=user.getID() %></h1>
 	<%@ include file="user_banner.jsp" %>
 
 </left_side> 
@@ -100,9 +101,7 @@
 			<h2><%=jours.get(i).toString()%></h2>
 		        <table >
                     <tr>
-                    
-                    <input type="hidden" name="<%=j%>-id-1" value="<%=(aller != null)? aller.getId():"-1"%>">
-                    <input type="hidden" name="<%=j%>-id-2" value="<%=(retour != null)? retour.getId():-1%>">                    
+                                    
                         <td>
                             Home<br><br>
                             <input type="text" name="<%=j%>-street" 
@@ -121,7 +120,7 @@
                         </td>
                         <td >
                             Office<br><br>
-					    	<select name="1-service">
+					    	<select name="<%=j %>-service">
 					    		<%for(int k =0 ; k < sopraOff.size(); k++){ %>
 					  				<option value="<%=sopraOff.get(k).getId() %>"					  				
 					  				<%=(duJour != null && duJour.getOffice().equals(sopraOff.get(k)))? "selected" : "" %>>
