@@ -47,15 +47,11 @@ public class Login extends HttpServlet {
 		HttpSession s = request.getSession();
 		
 		if(s.getAttribute("user")!= null){
+			response.sendRedirect("/SopraCarPooling/Home");
+		}else{			
 			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 			rd.forward(request, response);
-		}else{
-			response.sendRedirect("/SopraCarPooling/Home");
 		}
-		
-		
-		
-	
 	}
 
 	/**

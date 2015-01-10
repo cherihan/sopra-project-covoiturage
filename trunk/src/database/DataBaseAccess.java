@@ -375,7 +375,7 @@ public class DataBaseAccess {
 
 	}
 	
-	
+	/////////////////////////////// DEL rides of user /////////////////////////
 	public void deletAllUserRides (User user)throws RequestDidNotWork{
 		Connection connexion = null;
 		Statement statement = null;
@@ -404,33 +404,27 @@ public class DataBaseAccess {
 	//tu dois avoir un tableau de rides avec au max 5 rides
 	//tu ajoute chaqu'un des rides dans la data base (un par un je supose)
 	
-	public void addUserRides(ArrayList<Ride> rides) throws RequestDidNotWork{
+	public void addUserRides(ArrayList<Ride> rides, User user) throws RequestDidNotWork{
 		Connection connexion = null;
 		Statement statement = null;
 		
 		RideAddapter adapter = new RideAddapter();	
 				
 		ResultSet res = null;
-				
-		int resultat; 
+		
 		try {
 			connexion = Connexion();
 			statement = connexion.createStatement();
 			int adressID;
 			
 			//on suprime tous les rides du user
-			
-			//debug 
-			User user = new  User (7);
 			performExecuteDelRides(user, statement);
 			for (int i =0 ; i < rides.size(); i++){
-				
 				
 				Ride ride = rides.get(i);
 				HashMap <String, String> strings = adapter.adaptRideToHashMap(ride);
 				//debug 
 				ride.setUser(new User (7));
-				
 				
 				int update;
 				/*System.out.println("###DEBUG ### (DataBaseAccess, addUserRides) : "+strings.get("homeCP")+" "
