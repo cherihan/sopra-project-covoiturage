@@ -45,10 +45,10 @@ function checkProfileForm()
       <li class="tab sleepyTab" ><a href="RidesUpdate"><img src="./images/milestone.png" alt="abra" class="icon"/></a></li>
     </ul>
     <form class="form" name="profile_form"><br><br>
-      <input type="text" value="First Name" class="textbox" />
-      <input type="text" value="Last Name" class="firstnamebox" /><br>
-      <input type="email" name="email" value="Email Address" class="longbox" />
-      <input type="text" value="Phone" class="phonebox" /><br>
+      <input type="text" value="${user.getFirstName()}" class="textbox" />
+      <input type="text" value="${user.getLastName()}" class="firstnamebox" /><br>
+      <input type="email" name="${user.getEmail()}" value="Email Address" class="longbox" />
+      <input type="text" value="${user.getTel()}" class="phonebox" /><br>
       <input type="text" value="N° and Street" class="longbox" />
       <input type="text" value="Post code" class="codebox" /> 
       <input type="text" value="City" class="citybox" /><br>
