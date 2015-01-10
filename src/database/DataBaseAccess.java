@@ -246,6 +246,44 @@ public class DataBaseAccess {
 		return jours;
 	}
 	
+	/////////////// LISTER SERVICES ////////////////////
+	
+	public ArrayList<Service> requestServices() throws RequestDidNotWork{
+		Connection connexion = null;
+		Statement statement = null;
+		ResultSet resultat = null;
+		
+		ArrayList<Service> services = new ArrayList<Service>();
+		try{
+			connexion = Connexion();
+			statement = connexion.createStatement();
+			resultat = statement.executeQuery("SELECT * FROM sopra_site,adresse "
+											+ "WHERE sopra_site.adresse=adresse.id;");
+			
+			while(resultat.next()){
+				int id = resultat.getInt(1);
+				String nom = resultat.getString("name");
+				String description = resultat.getString("description");
+				String rue = resultat.getString("rue");
+				String ville = resultat.getString("ville");
+				int cp = resultat.getInt("cp");
+				PostCode code = new PostCode(cp);
+				Adresse addr = new Adresse(code, rue, ville);
+				Service service = new Service(id, nom, description, addr);
+				services.add(service);
+			}
+			
+		}catch(Exception e){
+			System.err.println("Erreur lors de la recherche des services : " + e);
+			throw new RequestDidNotWork(
+					"Pas de service trouvé dans la database (dur dur...)");
+		}finally{
+			Close(resultat, statement, connexion);
+		}
+		return services;
+	}
+	
+	
 	
 	//////////////////////TRAJETS D'UN UTLISATEUR /////////////////////////////////
 
