@@ -22,6 +22,11 @@
 	</ul>
 </header>
 
+<left_side>
+	<%@ include file="user_banner.jsp" %>
+</left_side>
+
+<faq>
 <br><br><question>How do I modify my profile ?</question><br><br>   
 <answer>Simple click on <i>"Profile"</i> in the menu bar, then on <i>"Edit"</i>.</answer>
 
@@ -46,7 +51,7 @@
 
 <br><br><br><question>Question 8 ?</question><br><br>   
 <answer>Answer 8.</answer>
-
+</faq>
 </body>
 
 </html>

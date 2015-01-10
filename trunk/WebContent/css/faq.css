@@ -1,5 +1,8 @@
+
+
 question { 
 	margin: 50px;
+	margin-left : 25% ;
 	font-size : 20px;
 	font-weight : bold;
 	color:#F6F6E8;
@@ -7,5 +10,10 @@ question {
 	 
 answer {
 	margin : 80px;
+	margin-left : 25% ;
 	color:#F6F6E0;
+}
+
+faq {
+	margin-left : 25 % ;
 }

@@ -17,10 +17,10 @@ body{
 }
 
 .route_module{
+	top : 100px;
   position:relative;
   width:79%;
   height:100%;
-  border-left:rgba(255,255,255,1) 1px solid;
   margin-left:20%;
   background: transparent; 
   color : #F6F6E8;

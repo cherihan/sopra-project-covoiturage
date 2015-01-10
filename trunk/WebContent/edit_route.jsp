@@ -59,14 +59,10 @@
 </header>
 
 <left_side>
-
-<h1><%=user.getID() %></h1>
 	<%@ include file="user_banner.jsp" %>
-
 </left_side> 
 
 
-<div id="bg">
   <div class="module">
     <ul>
       <li class="tab sleepyTab"><a href="edit_profile.jsp"><img src="./images/user.png" alt="" class="icon"/></a></li>
@@ -159,7 +155,6 @@
    </form>
    
   </div>
-</div>
 
 
 </body>

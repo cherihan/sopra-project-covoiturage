@@ -2,6 +2,9 @@
 	pageEncoding="ISO-8859-1" import="model.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
+<% 
+	HttpSession s = request.getSession();
+	User user =(User) s.getAttribute("user"); %>
 
 <html>
 
@@ -28,10 +31,10 @@
 </header>
        
 <left_side>
-<br>
-Ici : <br><br>
-Rappel du profil.
-</left_side>       
+
+	<%@ include file="user_banner.jsp" %>
+
+</left_side>      
 
 <div id="bg">
   <div class="route_module">
