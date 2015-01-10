@@ -117,9 +117,9 @@ public class DataBaseAccess {
 		}
 	}
 
-	// ///////////// RequestRides ///////////////////
+	/////////////// RequestRides ///////////////////
 
-	public ArrayList<Ride> requestRides(String userMail) {
+	public ArrayList<Ride> requestRides(String userMail) throws RequestDidNotWork {
 		Connection connexion = null;
 		Statement statement = null;
 		ResultSet resultat = null;
@@ -146,7 +146,7 @@ public class DataBaseAccess {
 			// sélectionner les trajets qui correspondent (càd mêmes
 			// adresse,site,jour et sens)
 			resultat = statement
-					.executeQuery("SELECT user.id,lastname,firstname,bio,mail,phone,rue,ville,cp,sopra_site.name,description,sopra_site.id,sens,jours.id,heure,commentaire"
+					.executeQuery("SELECT rides.id,user.id,lastname,firstname,bio,mail,phone,rue,ville,cp,sopra_site.name,description,sopra_site.id,sens,jours.id,heure,commentaire"
 							+ "FROM user,rides,adresse,sopra_site,jours"
 							+ "WHERE cp='"
 							+ resultat.getInt("cp")
@@ -164,7 +164,8 @@ public class DataBaseAccess {
 			// tant qu'il reste des lignes dans le tableau de résultat
 			while (resultat.next()) {
 				// prendre les valeurs de la ligne
-				int uid = resultat.getInt(1);
+				int id = resultat.getInt(1);
+				int uid = resultat.getInt(2);
 				String lastName = resultat.getString("lastname");
 				String firstName = resultat.getString("firstname");
 				String email = resultat.getString("mail");
@@ -175,8 +176,8 @@ public class DataBaseAccess {
 				String numPhone = resultat.getString("phone");
 				String rue = resultat.getString("rue");
 				String ville = resultat.getString("ville");
-				int j = resultat.getInt(10);
-				int id = resultat.getInt("id");
+				int j = resultat.getInt(14);
+				int id_sopra = resultat.getInt(12);
 				String description = resultat.getString("description");
 				int s = resultat.getInt("sens");
 				String commentaire = resultat.getString("commentaire");
@@ -204,23 +205,134 @@ public class DataBaseAccess {
 				PostCode uCode = new PostCode(uCp);
 				home = new Adresse(uCode,uRue,uVille);
 				Adresse adresse = new Adresse(code,rue,ville);
-				service = new Service(id,site,description,adresse);
+				service = new Service(id_sopra,site,description,adresse);
 				user = new User(uid,lastName,firstName,mail,bio,phone);
 				ride = new Ride(id, user, home, service, jour, heure, sens, commentaire);
 				rides.add(ride);
 			}
 			Close(resultat, statement, connexion);
 		} catch (Exception e) {
-			System.err.println("Erreur requête trajets : " + e);
-			return null;
+			System.err.println("Erreur lors de la recherche des trajets correspondants : " + e);
+			throw new RequestDidNotWork(
+					"Pas de trajet correspondant trouvé dans la database");
 		} finally {
 			Close(resultat, statement, connexion);
 		}
 		return rides;
 	}
+	
+////////////////////// JOURS SEMAINE /////////////////////////////////
+	
+	public ArrayList<JourDeLaSemaine> requestJours() throws RequestDidNotWork {
+		Connection connexion = null;
+		Statement statement = null;
+		ResultSet resultat = null;
+		
+		ArrayList<JourDeLaSemaine> jours = new ArrayList<JourDeLaSemaine>();
+		try{
+			connexion = Connexion();
+			statement = connexion.createStatement();
+			resultat = statement.executeQuery("SELECT * FROM jours");
+			
+			while(resultat.next()){
+				int id = resultat.getInt(1);
+				String nom = resultat.getString(2);
+				JourDeLaSemaine jour = new JourDeLaSemaine(id, nom);
+				jours.add(jour);
+			}
+			
+		}catch(Exception e){
+			System.err.println("Erreur lors de la recherche des JOURS : " + e);
+			throw new RequestDidNotWork(
+					"Pas de jour trouvé dans la database (dur dur...)");
+		}finally{
+			Close(resultat, statement, connexion);
+		}
+		return jours;
+	}
+	
+	
+	//////////////////////TRAJETS D'UN UTLISATEUR /////////////////////////////////
 
-	//metre tout les champs (ex : AdressEmail email)
-	//je veux recevoir l'ID du met
+	public ArrayList<Ride> requestUserRides() throws RequestDidNotWork {
+		Connection connexion = null;
+		Statement statement = null;
+		ResultSet resultat = null;
+		ResultSet resultat2 = null;
+
+		ArrayList<Ride> rides = new ArrayList<Ride>();
+		try{
+			connexion = Connexion();
+			statement = connexion.createStatement();
+			resultat = statement
+					.executeQuery("SELECT rides.id,user.id,lastname,firstname,bio,mail,phone,rue,ville,cp,sopra_site.name,description,sopra_site.id,sens,jours.id,heure,commentaire"
+							+ "FROM user,rides,adresse,sopra_site,jours"
+							+ "' AND rides.adresse=adresse.id"
+							+ "AND rides.sopra_site=sopra_site.id"
+							+ "AND user.id=rides.id_user"
+							+ "AND jour=jours.id");
+
+			while(resultat.next()){
+				int id = resultat.getInt(1);
+				int uid = resultat.getInt(2);
+				String lastName = resultat.getString("lastname");
+				String firstName = resultat.getString("firstname");
+				String email = resultat.getString("mail");
+				String bio = resultat.getString("bio");
+				int cp = resultat.getInt("cp");
+				String site = resultat.getString("sopra_site");
+				String h = resultat.getString("heure");
+				String numPhone = resultat.getString("phone");
+				String rue = resultat.getString("rue");
+				String ville = resultat.getString("ville");
+				int j = resultat.getInt(14);
+				int id_sopra = resultat.getInt(12);
+				String description = resultat.getString("description");
+				int s = resultat.getInt("sens");
+				String commentaire = resultat.getString("commentaire");
+				boolean sens=false;
+				if (s==0){
+					sens=false;
+				}
+				else if (s==1){
+					sens=true;
+				}
+				
+				resultat2 = statement.executeQuery("SELECT rue,ville,cp FROM adresse"
+						+ "WHERE id='"+uid+"'");
+				resultat2.next();
+				
+				EmailAdresse mail = new EmailAdresse(email);
+				NumeroTelephone phone = new NumeroTelephone(numPhone);
+				PostCode code = new PostCode(cp);
+				JourDeLaSemaine jour = new JourDeLaSemaine(j);
+				Heure heure = new Heure(h);
+				String uRue = resultat2.getString("rue");
+				String uVille = resultat2.getString("ville");
+				int uCp = resultat2.getInt("cp");
+				PostCode uCode = new PostCode(uCp);
+				Adresse home = new Adresse(uCode,uRue,uVille);
+				Adresse adresse = new Adresse(code,rue,ville);
+				Service service = new Service(id_sopra,site,description,adresse);
+				User user = new User(uid,lastName,firstName,mail,bio,phone);
+				Ride ride = new Ride(id, user, home, service, jour, heure, sens, commentaire);
+				rides.add(ride);
+				
+			}
+
+		}catch(Exception e){
+			System.err.println("Erreur lors de la recherche des rides du user : " + e);
+			throw new RequestDidNotWork(
+					"Pas de ride trouvé pour cet utilisateur");
+		}finally{
+			Close(resultat, statement, connexion);
+		}
+		return rides;
+	}
+
+
+	
+////////////////// NEW ACCOUNT //////////////////////////////
 	public int newAccount(User user, MotDePass pass) throws RequestDidNotWork{
 		Connection connexion = null;
 		Statement statement = null;

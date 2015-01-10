@@ -131,6 +131,14 @@ public class User {
 		this.tel = tel;
 	}
 
+	public ArrayList<Ride> getWeekRides() {
+		return weekRides;
+	}
+
+	public void setWeekRides(ArrayList<Ride> weekRides) {
+		this.weekRides = weekRides;
+	}
+
 	/*public boolean isAdmin(){
 		return admin;
 	}*/
