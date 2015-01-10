@@ -16,6 +16,9 @@ public class JourDeLaSemaine {
 		this.string = string;	
 	}
 	
+	public boolean equals(JourDeLaSemaine j){
+		return this.jour == j.getJour();
+	}
 	
 	
 	public String toString(){

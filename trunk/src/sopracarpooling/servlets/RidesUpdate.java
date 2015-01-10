@@ -45,14 +45,21 @@ public class RidesUpdate extends HttpServlet {
 
 			ArrayList<JourDeLaSemaine> jours = dB.requestJours();
 			s.setAttribute("jours", jours);
+			
 			//get services
+			ArrayList<Service> sers = dB.requestServices();
+			s.setAttribute("sopraSite", sers);
 			//get user rides.
+			User u =(User) s.getAttribute("user");
+			u.setWeekRides(dB.requestUserRides(u));
+			s.setAttribute("user", u);
 
 		} catch (RequestDidNotWork e) {
 			System.err
 					.println("###DEBUG ### (UpdateRides, servlets) : Error  ");
 			s.setAttribute("performAction", "error");
 		} finally {
+			
 			String nextPage = "edit_route.jsp";
 			RequestDispatcher rd = request.getRequestDispatcher(nextPage);
 			rd.forward(request, response);
@@ -136,17 +143,17 @@ public class RidesUpdate extends HttpServlet {
 				//la base de donner doit suprimer tous les rides du user
 				dB.deletAllUserRides (user);
 			}
-
+			user.setWeekRides(dB.requestUserRides(user));
+			s.setAttribute("user", user);
 			// envoyer tout ca à alex qui nous renvoi les trajets du mec
 		} catch (RequestDidNotWork e) {
 			// ça n'a pas marché
-			System.err
-					.println("###DEBUG ### (UpdateRides, servlets) : Error  ");
+			System.err.println("###DEBUG ### (UpdateRides, servlets) : Error  ");
 			s.setAttribute("performAction", "error");
 		} finally {
 			// System.out.println("###DEBUG ### (UpdateRides, servlets) : On s'en va !");
 			// chargerLaPage(request, response);
-
+			
 			String nextPage = "edit_route.jsp";
 			RequestDispatcher rd = request.getRequestDispatcher(nextPage);
 			rd.forward(request, response);
