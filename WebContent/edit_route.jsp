@@ -50,10 +50,10 @@
 
 <header>
 	<ul>
-		<li><a href="home.html">Home</a></li>
-		<li><a href="edit_profile.html">Profile</a></li>
-		<li><a href="faq.html">FAQ</a></li>		
-		<li><a href="login.html">Log out</a></li>
+		<li><a href="Home">Home</a></li>
+		<li><a href="edit_profile.jsp">Profile</a></li>
+		<li><a href="faq.jsp">FAQ</a></li>		
+		<li><a href="Logout">Log out</a></li>
 	</ul>
 </header>
 
@@ -68,8 +68,8 @@
 <div id="bg">
   <div class="module">
     <ul>
-      <li class="tab sleepyTab"><a href="edit_profile.html"><img src="./images/user.png" alt="" class="icon"/></a></li>
-      <li class="tab activeTab" ><a href="edit_route.html"><img src="./images/milestone.png" alt="abra" class="icon"/></a></li>
+      <li class="tab sleepyTab"><a href="edit_profile.jsp"><img src="./images/user.png" alt="" class="icon"/></a></li>
+      <li class="tab activeTab" ><a href="edit_route.jsp"><img src="./images/milestone.png" alt="abra" class="icon"/></a></li>
     </ul>
     
     	<form class="form"  action="/SopraCarPooling/RidesUpdate" method="post">

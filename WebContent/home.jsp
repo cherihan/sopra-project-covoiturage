@@ -20,10 +20,10 @@
 
 <header>
 	<ul>
-		<li><a href="home.html">Home</a></li>
-		<li><a href="edit_profile.html">Profile</a></li>
-		<li><a href="faq.html">FAQ</a></li>		
-		<li><a href="/SopraCarPooling/Logout">Log out</a></li>
+		<li><a href="Home">Home</a></li>
+		<li><a href="edit_profile.jsp">Profile</a></li>
+		<li><a href="faq.jsp">FAQ</a></li>		
+		<li><a href="Logout">Log out</a></li>
 	</ul>
 </header>
        
