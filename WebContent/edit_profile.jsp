@@ -35,10 +35,7 @@ function checkProfileForm()
 </header>
 
 <left_side>
-<br>
-Ici : <br><br>
-Aperçu résumé<br>
-du profil actuel
+	<%@ include file="user_banner.jsp" %>
 </left_side>
 
 <div id="bg">
