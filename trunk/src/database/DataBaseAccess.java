@@ -123,8 +123,10 @@ public class DataBaseAccess {
 		Connection connexion = null;
 		Statement statement = null;
 		Statement statement2 = null;
+		Statement statement3 = null;
 		ResultSet resultat = null;
 		ResultSet resultat2 = null;
+		ResultSet resultat3 = null;
 		Ride ride;
 		Adresse home;
 		Service service;
@@ -134,49 +136,54 @@ public class DataBaseAccess {
 			connexion = Connexion();
 			statement = connexion.createStatement();
 			statement2 = connexion.createStatement();
+			statement3 = connexion.createStatement();
 			// sélectionner les trajets de l'utilisateur
 			resultat = statement
 					.executeQuery("SELECT *"
-							+ "FROM rides" + 
-							"WHERE id_user='" + user.getID()+"'");
+							+ " FROM rides,adresse" + 
+							" WHERE id_user='" + user.getID()+"'"
+							+ " AND adresse=.adresse.id");
 			// sélectionner les trajets qui correspondent (càd mêmes
 			// adresse,site,jour et sens)
-			resultat = statement
-					.executeQuery("SELECT rides.id,user.id,lastname,firstname,bio,mail,phone,rue,ville,cp,sopra_site.name,description,sopra_site.id,sens,jours.id,heure,commentaire"
-							+ "FROM user,rides,adresse,sopra_site,jours"
-							+ "WHERE cp='"
-							+ resultat.getInt("cp")
-							+ "' AND sopra_site='"
+			while(resultat.next()){
+			resultat2 = statement2
+					.executeQuery("SELECT rides.id,user.id,lastname,firstname,bio,mail,phone,rue,ville,cp,sopra_site.name,description,sopra_site.id,sens,jours.id,jours.name,heure,commentaire,adresse.id"
+							+ " FROM user,rides,adresse,sopra_site,jours"
+							+ " WHERE cp='"
+							+ resultat.getString("cp")
+							+ "' AND sopra_site.id='"
 							+ resultat.getString("sopra_site")
-							+ "' AND jour ='"
+							+ "' AND jours.id ='"
 							+ resultat.getString("jour")
 							+ "' AND sens ='"
 							+ resultat.getInt("sens")
-							+ "' AND sopra_site.adresse=adresse.id"
-							+ "AND rides.sopra_site=sopra_site.id"
-							+ "AND user.id=rides.id_user"
-							+ "AND jour=jours.id");
-			
+							+ "' AND user.id != '"+user.getID()
+							+ "' AND rides.adresse=adresse.id"
+							+ " AND rides.sopra_site=sopra_site.id"
+							+ " AND user.id=rides.id_user"
+							+ " AND jour=jours.id");
 			// tant qu'il reste des lignes dans le tableau de résultat
-			while (resultat.next()) {
+			while (resultat2.next()) {
 				// prendre les valeurs de la ligne
-				int id = resultat.getInt(1);
-				int uid = resultat.getInt(2);
-				String lastName = resultat.getString("lastname");
-				String firstName = resultat.getString("firstname");
-				String email = resultat.getString("mail");
-				String bio = resultat.getString("bio");
-				int cp = resultat.getInt("cp");
-				String site = resultat.getString("sopra_site");
-				String h = resultat.getString("heure");
-				String numPhone = resultat.getString("phone");
-				String rue = resultat.getString("rue");
-				String ville = resultat.getString("ville");
-				int j = resultat.getInt(14);
-				int id_sopra = resultat.getInt(12);
-				String description = resultat.getString("description");
-				int s = resultat.getInt("sens");
-				String commentaire = resultat.getString("commentaire");
+				int id = resultat2.getInt(1);
+				int uid = resultat2.getInt(2);
+				String lastName = resultat2.getString("lastname");
+				String firstName = resultat2.getString("firstname");
+				String email = resultat2.getString("mail");
+				String bio = resultat2.getString("bio");
+				int cp = resultat2.getInt("cp");
+				String site = resultat2.getString("name");
+				String h = resultat2.getString("heure");
+				String numPhone = resultat2.getString("phone");
+				String rue = resultat2.getString("rue");
+				String ville = resultat2.getString("ville");
+				int j = resultat2.getInt(15);
+				int id_sopra = resultat2.getInt(13);
+				String description = resultat2.getString("description");
+				int s = resultat2.getInt("sens");
+				int idAddr = resultat2.getInt(19);
+				String commentaire = resultat2.getString("commentaire");
+				String jname = resultat2.getString(16);
 				boolean sens=false;
 				if (s==0){
 					sens=false;
@@ -186,19 +193,18 @@ public class DataBaseAccess {
 				}			
 				
 				//récupérer adresse du user qui conduit pour construire le ride
-				resultat2 = statement2.executeQuery("SELECT rue,ville,cp FROM adresse"
-													+ "WHERE id='"+uid+"'");
-				resultat2.next();
-				
+				resultat3 = statement3.executeQuery("SELECT rue,ville,cp FROM adresse"
+													+ " WHERE id='"+idAddr+"'");
+				resultat3.next();
 				
 				EmailAdresse mail = new EmailAdresse(email);
 				NumeroTelephone phone = new NumeroTelephone(numPhone);
 				PostCode code = new PostCode(cp);
-				JourDeLaSemaine jour = new JourDeLaSemaine(j);
+				JourDeLaSemaine jour = new JourDeLaSemaine(j,jname);
 				Heure heure = new Heure(h);
-				String uRue = resultat2.getString("rue");
-				String uVille = resultat2.getString("ville");
-				int uCp = resultat2.getInt("cp");
+				String uRue = resultat3.getString("rue");
+				String uVille = resultat3.getString("ville");
+				int uCp = resultat3.getInt("cp");
 				PostCode uCode = new PostCode(uCp);
 				home = new Adresse(uCode,uRue,uVille);
 				Adresse adresse = new Adresse(code,rue,ville);
@@ -206,6 +212,7 @@ public class DataBaseAccess {
 				User conducteur = new User(uid,lastName,firstName,mail,bio,phone);
 				ride = new Ride(id, conducteur, home, service, jour, heure, sens, commentaire);
 				rides.add(ride);
+			}
 			}
 			Close(resultat, statement, connexion);
 		} catch (Exception e) {
@@ -304,7 +311,7 @@ public class DataBaseAccess {
 			statement = connexion.createStatement();
 			statement2 = connexion.createStatement();
 			resultat = statement
-					.executeQuery("SELECT rides.id,rue,ville,cp,sopra_site.name,description,sopra_site.id,sens,jours.id,heure,commentaire"
+					.executeQuery("SELECT rides.id,rue,ville,cp,sopra_site.name,description,sopra_site.id,sens,jours.id,jours.name,heure,commentaire"
 							+ " FROM user,rides,adresse,sopra_site,jours"
 							+ " WHERE user.id = '"+uid
 							+ "' AND sopra_site.adresse=adresse.id"
@@ -317,6 +324,7 @@ public class DataBaseAccess {
 				String site = resultat.getString("name");
 				String h = resultat.getString("heure");
 				int j = resultat.getInt(9);
+				String jname = resultat.getString(10);
 				int id_sopra = resultat.getInt(7);
 				String description = resultat.getString("description");
 				int s = resultat.getInt("sens");
@@ -343,7 +351,7 @@ public class DataBaseAccess {
 				int uCp = resultat2.getInt("cp");
 				PostCode uCode = new PostCode(uCp);
 				Adresse home = new Adresse(uCode, uRue, uVille);
-				JourDeLaSemaine jour = new JourDeLaSemaine(j);
+				JourDeLaSemaine jour = new JourDeLaSemaine(j,jname);
 				Heure heure = new Heure(h);
 				Service service = new Service(id_sopra,site,description,adresse);
 				Ride ride = new Ride(id, user, home, service, jour, heure, sens, commentaire);
