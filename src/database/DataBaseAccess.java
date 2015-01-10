@@ -351,7 +351,9 @@ public class DataBaseAccess {
 				int uCp = resultat2.getInt("cp");
 				PostCode uCode = new PostCode(uCp);
 				Adresse home = new Adresse(uCode, uRue, uVille);
+				System.out.println("### DEBUG ### (DataBAseAccess, requestUserRides)  home : "+home);
 				JourDeLaSemaine jour = new JourDeLaSemaine(j,jname);
+				//home de change pas !!!
 				Heure heure = new Heure(h);
 				Service service = new Service(id_sopra,site,description,adresse);
 				Ride ride = new Ride(id, user, home, service, jour, heure, sens, commentaire);

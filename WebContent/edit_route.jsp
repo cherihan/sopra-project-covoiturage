@@ -5,9 +5,10 @@
 <% 
 	HttpSession s = request.getSession();
 	User user =(User) s.getAttribute("user");
-	ArrayList <Ride> rides = (ArrayList <Ride>) s.getAttribute("rides");
+	ArrayList <Ride> rides = user.getWeekRides();
 	ArrayList <JourDeLaSemaine> jours = (ArrayList <JourDeLaSemaine>) s.getAttribute("jours");
 	ArrayList <Service> sopraOff = (ArrayList <Service>) s.getAttribute("sopraSite");
+
 	
 	//dev usage only 
 	if(user == null){
@@ -19,19 +20,19 @@
 	jours.add(new JourDeLaSemaine(3,"mercredi"));
 	jours.add(new JourDeLaSemaine(4,"jeudi"));
 	jours.add(new JourDeLaSemaine(5,"vendredi"));*/
-	sopraOff = new ArrayList<Service>();
+	/*sopraOff = new ArrayList<Service>();
 	sopraOff.add(new Service(1,"Colomiers Perget","",null));
 	sopraOff.add(new Service(2,"Colomiers Ramacier","",null));
-	sopraOff.add(new Service(3,"Ramonville","",null));
-	rides = new ArrayList <Ride> ();
-	rides.add(new Ride(999, user, new Adresse(new PostCode(32000),"r","v"),sopraOff.get(2),
+	sopraOff.add(new Service(3,"Ramonville","",null));*/
+	/*rides = new ArrayList <Ride> ();
+	rides.add(new Ride(999, user, new Adresse(new PostCode(32000),"r","v"),sopraOff.get(0),
 			jours.get(0),new Heure("1745"),false,"C est le lundi"));
-	rides.add(new Ride(998, user, new Adresse(new PostCode(32000),"r","v"),sopraOff.get(2),
+	rides.add(new Ride(998, user, new Adresse(new PostCode(32000),"r","v"),sopraOff.get(0),
 			jours.get(1),new Heure("0815"),true,"C est le mardi"));
-	rides.add(new Ride(997, user, new Adresse(new PostCode(32000),"r","v"),sopraOff.get(2),
+	rides.add(new Ride(997, user, new Adresse(new PostCode(32000),"r","v"),sopraOff.get(0),
 			jours.get(1),new Heure("1745"),false,"C est le mardi"));
 	rides.add(new Ride(996, user, new Adresse(new PostCode(32000),"eglise","paris"),sopraOff.get(0),
-			jours.get(3),new Heure("1815"),false,"C est le jeudi"));
+			jours.get(3),new Heure("1815"),false,"C est le jeudi"));*/
 	int r = 0;
 	
 %>
@@ -78,19 +79,20 @@
 				Ride aller = null;
 				Ride retour= null;
 				Ride duJour = null ;
-				if( r < rides.size() && rides.get(r).getJour().equals(jours.get(i))){
-					if(rides.get(r).getSens()){						
-						aller= rides.get(r);
-						duJour= rides.get(r);
-						r++;
-					}
-					if(!rides.get(r).getSens()){
-						retour= rides.get(r);
-						duJour= rides.get(r);
-						r++;
-					}
 				
+				if( r < rides.size() && rides.get(r).getJour().equals(jours.get(i))
+						&& rides.get(r).getSens()){
+					aller= rides.get(r);
+					duJour= rides.get(r);						
+					r++;
 				}
+				if(r < rides.size() && rides.get(r).getJour().equals(jours.get(i)) 
+						&& !rides.get(r).getSens()){
+					retour= rides.get(r);
+					duJour= rides.get(r);
+					r++;
+				}
+				
 				
 			%>
 			
@@ -111,7 +113,7 @@
                             %> class="rcodebox" />                            
                             <input type="text" name="<%=j%>-city"
                             <%=
-                            (duJour != null)? "value='"+duJour.getHome().getVille()+"'": "placeholder='Street'"
+                            (duJour != null)? "value='"+duJour.getHome().getVille()+"'": "placeholder='City'"
                             %> class="rcitybox" />
                         </td>
                         <td >

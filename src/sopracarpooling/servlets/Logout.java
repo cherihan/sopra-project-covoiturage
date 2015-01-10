@@ -31,7 +31,7 @@ public class Logout extends HttpServlet {
 		// TODO Auto-generated method stub		
 		
 		HttpSession s = request.getSession();
-		if(s.isNew()){
+		if(s != null){
 			s.invalidate();
 		}
 		
