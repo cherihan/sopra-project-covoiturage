@@ -19,8 +19,11 @@
 	User test = db.requestUserIsRegistered(email,mdp);
 	out.println("<p>salut</p><br>"+test);
 	//db.requestServices();
-	ArrayList<Ride> rides = db.requestUserRides(test);
+	//ArrayList<Ride> rides = db.requestUserRides(test);
+	ArrayList<Ride> rides = db.requestMatchingRides(test);
+	System.out.println("1111");
 	out.println("<p>"+rides.get(0)+"</p>");
+	out.println("1111");
 	out.println("<p>"+rides.get(1)+"</p>");
 
 %>
