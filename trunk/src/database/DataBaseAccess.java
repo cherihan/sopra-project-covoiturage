@@ -311,7 +311,7 @@ public class DataBaseAccess {
 			statement = connexion.createStatement();
 			statement2 = connexion.createStatement();
 			resultat = statement
-					.executeQuery("SELECT rides.id,rue,ville,cp,sopra_site.name,description,sopra_site.id,sens,jours.id,jours.name,heure,commentaire"
+					.executeQuery("SELECT rides.id,rue,ville,cp,sopra_site.name,description,sopra_site.id,sens,jours.id,jours.name,heure,commentaire,rides.adresse"
 							+ " FROM user,rides,adresse,sopra_site,jours"
 							+ " WHERE user.id = '"+uid
 							+ "' AND sopra_site.adresse=adresse.id"
@@ -341,10 +341,13 @@ public class DataBaseAccess {
 				else if (s==1){
 					sens=true;
 				}
+				
+				int idAddr = resultat.getInt(13);
 				resultat2 = statement2.executeQuery("SELECT rue,ville,cp FROM adresse,rides,user"
 						+ " WHERE rides.id_user=user.id"
 						+ " AND adresse.id=rides.adresse"
-						+ " AND user.id="+uid);
+						+ " AND user.id="+uid
+						+ " AND adresse.id='"+idAddr+"'");
 				resultat2.next();
 				String uRue = resultat2.getString("rue");
 				String uVille = resultat2.getString("ville");
@@ -353,7 +356,6 @@ public class DataBaseAccess {
 				Adresse home = new Adresse(uCode, uRue, uVille);
 				System.out.println("### DEBUG ### (DataBAseAccess, requestUserRides)  home : "+home);
 				JourDeLaSemaine jour = new JourDeLaSemaine(j,jname);
-				//home de change pas !!!
 				Heure heure = new Heure(h);
 				Service service = new Service(id_sopra,site,description,adresse);
 				Ride ride = new Ride(id, user, home, service, jour, heure, sens, commentaire);
