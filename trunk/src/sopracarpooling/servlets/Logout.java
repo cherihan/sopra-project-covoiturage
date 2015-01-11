@@ -31,9 +31,9 @@ public class Logout extends HttpServlet {
 		// TODO Auto-generated method stub		
 		
 		HttpSession s = request.getSession();
-		if(s != null){
+		try{
 			s.invalidate();
-		}
+		}catch(Exception e){}
 		
 		s.setAttribute("wellLogout", true);
 		response.sendRedirect("login.jsp");//has to send back to login page. 

@@ -34,9 +34,20 @@ public class EditProfile extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-					
-			RequestDispatcher rd = request.getRequestDispatcher("edit_profile.jsp");
-			rd.forward(request, response);
+			
+		HttpSession s = request.getSession();
+		User user = (User) s.getAttribute("user");
+		try{
+			if(user == null){
+				DataBaseAccess dB = new DataBaseAccess();
+				user = dB.requestUserIsRegistered(new EmailAdresse("dd@yopmail.com"), new MotDePass("millieu"));
+				s.setAttribute("user", user);
+			}
+		}catch (Exception c){
+			
+		}
+		RequestDispatcher rd = request.getRequestDispatcher("edit_profile.jsp");
+		rd.forward(request, response);
 		
 		
 	}
@@ -53,27 +64,36 @@ public class EditProfile extends HttpServlet {
 		User user = (User) s.getAttribute("user");
 		DataBaseAccess dB = new DataBaseAccess();
 		
-		String lastName = (String) request.getAttribute("lastName");
-		String firstName = (String) request.getAttribute("firstName");
-		String email = (String) request.getAttribute("email");
-		String tel = (String) request.getAttribute("tel");
-		String bio = (String) request.getAttribute("bio");
 		
-		String pwd = (String) request.getAttribute("pwd");
-		String pwdC = (String) request.getAttribute("pwd_confirm");
+		String lastName = request.getParameter("lastName");
+		String firstName = request.getParameter("firstName");
+		String email = request.getParameter("email");
+		String tel = request.getParameter("tel");
+		String bio = request.getParameter("bio");
+		
+		String pwd = request.getParameter("pwd");
+		String pwdC = request.getParameter("pwd_confirm");
 		
 		
 		try{
+					
+			
+			//System.out.println("###DEBUG ### (sevlet, editProfile) : "+ pwd+"  "+pwdC);
 			if (lastName != null && firstName != null && email !=null){
+				
 				
 				//demander à alex de changer le les infos du user
 				User updatedUser = new User(user.getID(),lastName,firstName,new EmailAdresse(email),bio,new NumeroTelephone(tel));
-				
+				if(!user.equals(updatedUser)){
+					dB.editUserProfile(updatedUser);
+					//System.out.println("###DEBUG ### (sevlet, editProfile) : Mise a jour du user"+ updatedUser);
+				}
 				
 				
 				if( pwd != null && pwdC != null){
-					if(pwd == pwdC){
+					if(pwd.equals(pwdC)){
 						//changer le mot de pass
+						dB.editUserPassword(updatedUser, new MotDePass(pwd));
 						s.setAttribute("pwdChange", "yes");
 					}else{
 						s.setAttribute("pwdChange", "no");
