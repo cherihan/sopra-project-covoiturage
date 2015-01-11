@@ -12,10 +12,10 @@
 <% 
 
 	DataBaseAccess db = new DataBaseAccess();
-	EmailAdresse email = new EmailAdresse("superman@gmail.com");
+	EmailAdresse email = new EmailAdresse("dd@yopmail.com");
 	//NumeroTelephone tel = new NumeroTelephone("0");
 	//User test = new User(2,"Superman","clark",email,"Superman.",tel);
-	MotDePass mdp = new MotDePass("superman");
+	MotDePass mdp = new MotDePass("millieu");
 	User test = db.requestUserIsRegistered(email,mdp);
 	out.println("<p>salut</p><br>"+test);
 	test.setBio("salut je suis estelle");
@@ -25,6 +25,7 @@
 	test.setLastName("nguyen");
 	NumeroTelephone tel = new NumeroTelephone("0606060606");
 	test.setTel(tel);
+	MotDePass newmdp = new MotDePass("coucou");
 	//db.requestServices();
 	//ArrayList<Ride> rides = db.requestUserRides(test);
 	//ArrayList<Ride> rides = db.requestMatchingRides(test);
@@ -32,7 +33,7 @@
 	//out.println("<p>"+rides.get(0)+"</p>");
 	//out.println("1111");
 	//out.println("<p>"+rides.get(1)+"</p>");
-	db.editUserProfile(test,mdp);
+	db.editUserPassword(test,newmdp);
 
 %>
 

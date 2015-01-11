@@ -419,7 +419,7 @@ public class DataBaseAccess {
 	
 	///////////////// EDIT PROFILE ///////////////
 	
-	public void editUserProfile (User user, MotDePass pass) throws RequestDidNotWork {
+	public void editUserProfile (User user) throws RequestDidNotWork {
 		Connection connexion = null;
 		Statement statement = null;
 		try{
@@ -429,7 +429,7 @@ public class DataBaseAccess {
 					+ "SET lastname='"+user.getLastName()+"', firstname='"+user.getFirstName()+"', "
 					+ "mail='"+user.getEmail().toString()+"', "
 					+ " phone='"+user.getTel().toString()+"', "
-					+ "bio='"+user.getBio()+"', isAdmin=0 WHERE id='"+user.getID()+"';");
+					+ "bio='"+user.getBio()+"' WHERE id='"+user.getID()+"';");
 			
 		}catch(Exception e){
 			System.err.println("Erreur update profil : " + e);
@@ -439,6 +439,24 @@ public class DataBaseAccess {
 		}
 	}
 	
+	///////////////// EDIT MDP ///////////////
+
+	public void editUserPassword (User user, MotDePass pass) throws RequestDidNotWork {
+		Connection connexion = null;
+		Statement statement = null;
+		try{
+			connexion = Connexion();
+			statement = connexion.createStatement();
+			statement.executeUpdate("UPDATE user "
+					+ "SET password='"+pass.getClaire()+"' WHERE id='"+user.getID()+"';");
+
+		}catch(Exception e){
+			System.err.println("Erreur update mdp : " + e);
+			throw new RequestDidNotWork("Password could not be updated : "+e);
+		}finally{
+			Close(null, statement, connexion);
+		}
+	}
 	
 	/////////////////////////////// DEL rides of user /////////////////////////
 	public void deletAllUserRides (User user)throws RequestDidNotWork{
