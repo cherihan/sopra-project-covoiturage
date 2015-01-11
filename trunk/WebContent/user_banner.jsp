@@ -11,7 +11,7 @@
 
 <body>
 
-<h1>${user.getFirstName()}</h1>
+<h1><br>${user.getFirstName()}</h1>
 <h1>${user.getLastName()}</h1>
 <br>
 <br>
