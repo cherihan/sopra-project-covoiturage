@@ -427,7 +427,7 @@ public class DataBaseAccess {
 			statement = connexion.createStatement();
 			statement.executeUpdate("UPDATE user "
 					+ "SET lastname='"+user.getLastName()+"', firstname='"+user.getFirstName()+"', "
-					+ "mail='"+user.getEmail().toString()+"', password='"+pass.getClaire()+"',"
+					+ "mail='"+user.getEmail().toString()+"', "
 					+ " phone='"+user.getTel().toString()+"', "
 					+ "bio='"+user.getBio()+"', isAdmin=0 WHERE id='"+user.getID()+"';");
 			
