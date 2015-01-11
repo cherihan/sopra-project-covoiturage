@@ -14,25 +14,15 @@
 
 <head>
 <title>Sopra Carpooling Website</title>
- <meta charset="utf-8" />
- <link rel="stylesheet" type="text/css" href="./css/main.css" />
- <link rel="stylesheet" type="text/css" href="./css/side_panels.css" />
- <link rel="stylesheet" type="text/css" href="./css/header.css" />
- <link rel="stylesheet" type="text/css" href="./css/route_table.css" /> 
- <link rel="stylesheet" type="text/css" href="./css/footer.css" />
-</head>
+	<%@ include file="header.jsp" %>
+</header>
 
 <body>
 
 
 
 <header>
-	<ul>
-		<li><a href="Home">Home</a></li>
-		<li><a href="edit_profile.jsp">Profile</a></li>
-		<li><a href="faq.jsp">FAQ</a></li>		
-		<li><a href="Logout">Log out</a></li>
-	</ul>
+	<%@ include file="header.jsp" %>
 </header>
        
 <left_side>
