@@ -12,10 +12,10 @@
 <% 
 
 	DataBaseAccess db = new DataBaseAccess();
-	EmailAdresse email = new EmailAdresse("pv@yopmail.com");
+	EmailAdresse email = new EmailAdresse("superman@gmail.com");
 	//NumeroTelephone tel = new NumeroTelephone("0");
 	//User test = new User(2,"Superman","clark",email,"Superman.",tel);
-	MotDePass mdp = new MotDePass("millieu");
+	MotDePass mdp = new MotDePass("superman");
 	User test = db.requestUserIsRegistered(email,mdp);
 	out.println("<p>salut</p><br>"+test);
 	test.setBio("salut je suis estelle");
