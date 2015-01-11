@@ -15,8 +15,13 @@ import org.apache.*;
 
 import com.google.gson.Gson;
 
+import database.DataBaseAccess;
+import database.RequestDidNotWork;
+
 import java.util.*;
+
 import model.*;
+
 import java.util.*;
 
 /**
@@ -40,24 +45,44 @@ public class Home extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//grab les éléments de la page = id du user 
+		DataBaseAccess dB = new DataBaseAccess ();
 		
 
 		HttpSession s = request.getSession();
 		User user = (User)  s.getAttribute("user");
 		
-				
+		
 		
 		//tous les tableaux sont rempli
 		//On a donc tous les trajets qui partes de vers chez lui, à son travail, et les gens qui fonts ce trajet. 
-		ArrayList <ArrayList <Ride>> weeklyRides = new ArrayList<ArrayList <Ride>>();
+		try{
+			
+			if(user == null){
+				user = dB.requestUserIsRegistered(new EmailAdresse("superman@gmail.com"), new MotDePass("superman"));
+				s.setAttribute("user", user);
+			}
+			
+			ArrayList <Ride> matchingRides = dB.requestMatchingRides(user);
+			
+			s.setAttribute("matchingRides", matchingRides); 
+			s.setAttribute("jours", dB.requestJours());
+			System.out.println("###DEBUG ### (servlet, Home) : size mR : "+matchingRides.size());
+			
+			
+		}catch (RequestDidNotWork e){
+			request.setAttribute("performAction", "error");
+		}finally {
+			RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+			rd.forward(request, response);
+		}
+		
+		
 		
 		
 		//demander à alex le rides possible.
 		
 		
-		request.setAttribute("weeklyRides", weeklyRides); //on pass les rides possible à la page jsp! (qui les affiches) 
-		RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
-		rd.forward(request, response);
+		
 		
 	}
 

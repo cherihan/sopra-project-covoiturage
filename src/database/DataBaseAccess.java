@@ -385,7 +385,7 @@ public class DataBaseAccess {
 		String firstName = user.getFirstName();
 		String email = user.getEmail().toString();
 		String bio = user.getBio();
-		String phone = user.getTel().ToString();
+		String phone = user.getTel().toString();
 		String pwd = pass.getClaire();
 		ResultSet res;
 		int id = -1;

@@ -9,7 +9,7 @@ public class NumeroTelephone {
 		this.telNum = telNum;
 	}
 	
-	public String ToString () {
+	public String toString () {
 		return this.telNum;
 	}
 
