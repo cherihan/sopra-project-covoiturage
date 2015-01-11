@@ -8,6 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import database.RequestDidNotWork;
+import model.*;
+import database.*;
 
 /**
  * Servlet implementation class EditProfile
@@ -43,11 +48,48 @@ public class EditProfile extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		//do edit profile. 
-		//del User
+		RequestDispatcher rd = request.getRequestDispatcher("edit_profile.jsp");
+		HttpSession s = request.getSession();
+		User user = (User) s.getAttribute("user");
+		DataBaseAccess dB = new DataBaseAccess();
 		
-		//add user 
-		//invalid sess
-		//new sess
+		String lastName = (String) request.getAttribute("lastName");
+		String firstName = (String) request.getAttribute("firstName");
+		String email = (String) request.getAttribute("email");
+		String tel = (String) request.getAttribute("tel");
+		String bio = (String) request.getAttribute("bio");
+		
+		String pwd = (String) request.getAttribute("pwd");
+		String pwdC = (String) request.getAttribute("pwd_confirm");
+		
+		
+		try{
+			if (lastName != null && firstName != null && email !=null){
+				
+				//demander à alex de changer le les infos du user
+				User updatedUser = new User(user.getID(),lastName,firstName,new EmailAdresse(email),bio,new NumeroTelephone(tel));
+				
+				
+				
+				if( pwd != null && pwdC != null){
+					if(pwd == pwdC){
+						//changer le mot de pass
+						s.setAttribute("pwdChange", "yes");
+					}else{
+						s.setAttribute("pwdChange", "no");
+					}
+				}
+				
+				s.setAttribute("user", updatedUser);
+			}else{				
+				s.setAttribute("performAction", "error");
+			}
+			
+		}catch (Exception e){//changer pour RequestDidNotWork
+			s.setAttribute("performAction", "error");
+		}finally{
+			rd.forward(request, response);
+		}
 		
 		
 		
