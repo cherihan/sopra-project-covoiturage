@@ -20,7 +20,7 @@ public class DataBaseAccess {
 	// Connexion à la db
 	private Connection Connexion() {
 		try {
-			String url = "jdbc:mysql://localhost/sopra_testing";
+			String url = "jdbc:mysql://localhost/sopra";
 			String utilisateur = "root";
 			String motDePasse = "soprabg31";
 			Class.forName("com.mysql.jdbc.Driver");

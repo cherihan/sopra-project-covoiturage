@@ -145,4 +145,12 @@ public class User {
 	public String toString (){
 		return this.lastName+" "+this.firstName+" : "+this.id+" ("+this.email+")\n";
 	}
+	public boolean equals (User u){
+		return u.getID() == this.id && 
+				u.getLastName().equals(this.lastName) &&
+				u.getFirstName().equals(this.firstName) &&
+				u.getEmail().equals(this.email) &&
+				u.getTel().equals(this.tel) &&
+				u.getBio().equals(this.bio);
+	}
 }

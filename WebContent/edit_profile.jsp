@@ -46,7 +46,7 @@ function checkProfileForm()
       <li class="tab activeTab"><a href="edit_profile.jsp"><img src="./images/user.png" alt="" class="icon"/></a></li>
       <li class="tab sleepyTab" ><a href="RidesUpdate"><img src="./images/milestone.png" alt="abra" class="icon"/></a></li>
     </ul>
-    <form class="form" name="profile_form"><br><br>
+    <form class="form" action="/SopraCarPooling/EditProfile" method="post"><br><br>
       <input type="text" name="firstName" value="${user.getFirstName()}" class="textbox" />
       <input type="text" name="lastName" value="${user.getLastName()}" class="firstnamebox" /><br>
       <input type="email" name="email" value="${user.getEmail()}" class="longbox" />
@@ -56,7 +56,7 @@ function checkProfileForm()
       <input type="password" name="pwd" value="Password" class="pwdbox" /> </div>
       <div class="pwdtxt">Confirm password :
       <input type="password" name="pwd_confirm" value="Password" class="pwdbox" /></div>
-      
+
       <input type="submit" onClick="checkProfileForm()" value="Save changes" class="button" />     
     </form>
   </div>

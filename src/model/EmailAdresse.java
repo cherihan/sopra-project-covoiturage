@@ -11,4 +11,7 @@ public class EmailAdresse {
 	public String toString(){
 		return this.email; 
 	}
+	public boolean equals(EmailAdresse e){
+		return this.email.equals(e);
+	}
 }
