@@ -110,7 +110,7 @@ public class RidesUpdate extends HttpServlet {
 						&& !dest.equals("")) {
 
 					// System.out.println("###DEBUG ### (UpdateRides, servlets) :  "+source);
-					Service office = new Service(Integer.parseInt("1"));
+					Service office = new Service(Integer.parseInt(dest));
 					Adresse home = new Adresse(new PostCode(
 							Integer.parseInt(source)), homeRue, homeVille);
 
