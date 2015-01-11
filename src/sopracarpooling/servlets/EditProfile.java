@@ -35,7 +35,7 @@ public class EditProfile extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 			
-		HttpSession s = request.getSession();
+		/*HttpSession s = request.getSession();
 		User user = (User) s.getAttribute("user");
 		try{
 			if(user == null){
@@ -45,7 +45,7 @@ public class EditProfile extends HttpServlet {
 			}
 		}catch (Exception c){
 			
-		}
+		}*/
 		RequestDispatcher rd = request.getRequestDispatcher("edit_profile.jsp");
 		rd.forward(request, response);
 		

@@ -2,6 +2,7 @@ package sopracarpooling.servlets;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,8 +36,8 @@ public class Logout extends HttpServlet {
 			s.invalidate();
 		}catch(Exception e){}
 		
-		s.setAttribute("wellLogout", true);
-		response.sendRedirect("login.jsp");//has to send back to login page. 
+		request.setAttribute("wellLogout", true);
+		response.sendRedirect("Login");
 	}
 
 	/**Should not be used 

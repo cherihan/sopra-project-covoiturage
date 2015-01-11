@@ -47,7 +47,7 @@ public class Login extends HttpServlet {
 		HttpSession s = request.getSession();
 		
 		if(s.getAttribute("user")!= null){
-			response.sendRedirect("/SopraCarPooling/Home");
+			response.sendRedirect("Home");
 		}else{			
 			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 			rd.forward(request, response);
@@ -62,7 +62,7 @@ public class Login extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		DataBaseAccess dB = new DataBaseAccess();		
-		String loginPage = "login.jsp";
+		String loginPage = "Login";
 		String nextPage = "Home";// bien envoyer vers home (servlet)
 		HttpSession s = request.getSession();
 		//grabe parameters
