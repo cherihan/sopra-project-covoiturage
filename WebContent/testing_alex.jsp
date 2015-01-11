@@ -12,15 +12,15 @@
 <% 
 
 	DataBaseAccess db = new DataBaseAccess();
-	EmailAdresse email = new EmailAdresse("superman@gmail.com");
+	EmailAdresse email = new EmailAdresse("spiderman@gmail.com");
 	//NumeroTelephone tel = new NumeroTelephone("0");
 	//User test = new User(2,"Superman","clark",email,"Superman.",tel);
-	MotDePass mdp = new MotDePass("superman");
+	MotDePass mdp = new MotDePass("spiderman");
 	User test = db.requestUserIsRegistered(email,mdp);
 	out.println("<p>salut</p><br>"+test);
 	//db.requestServices();
-	//ArrayList<Ride> rides = db.requestUserRides(test);
-	ArrayList<Ride> rides = db.requestMatchingRides(test);
+	ArrayList<Ride> rides = db.requestUserRides(test);
+	//ArrayList<Ride> rides = db.requestMatchingRides(test);
 	System.out.println("1111");
 	out.println("<p>"+rides.get(0)+"</p>");
 	out.println("1111");
