@@ -14,12 +14,7 @@
 <title>FAQ</title>
 
 <header>
-	<ul>
-		<li><a href="Home">Home</a></li>
-		<li><a href="edit_profile.jsp">Profile</a></li>
-		<li><a href="faq.jsp">FAQ</a></li>		
-		<li><a href="Logout">Log out</a></li>
-	</ul>
+	<%@ include file="header.jsp" %>
 </header>
 
 <left_side>
