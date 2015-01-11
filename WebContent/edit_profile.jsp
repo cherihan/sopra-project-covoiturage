@@ -1,3 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1" import="model.*"%>
+
+<%
+	HttpSession s = request.getSession();
+	User u = (User) s.getAttribute("user");
+%>
 <html>
 <head>
 
@@ -40,13 +47,11 @@ function checkProfileForm()
       <li class="tab sleepyTab" ><a href="RidesUpdate"><img src="./images/milestone.png" alt="abra" class="icon"/></a></li>
     </ul>
     <form class="form" name="profile_form"><br><br>
-      <input type="text" value="${user.getFirstName()}" class="textbox" />
-      <input type="text" value="${user.getLastName()}" class="firstnamebox" /><br>
-      <input type="email" name="${user.getEmail()}" value="Email Address" class="longbox" />
-      <input type="text" value="${user.getTel()}" class="phonebox" /><br>
-      <input type="text" value="N° and Street" class="longbox" />
-      <input type="text" value="Post code" class="codebox" /> 
-      <input type="text" value="City" class="citybox" /><br>
+      <input type="text" name="firstName" value="${user.getFirstName()}" class="textbox" />
+      <input type="text" name="lastName" value="${user.getLastName()}" class="firstnamebox" /><br>
+      <input type="email" name="email" value="${user.getEmail()}" class="longbox" />
+      <input type="text" name="tel" value="${user.getTel()}" class="phonebox" /><br>
+      <input type="text" name="bio" value="${user.getBio()}" class="phonebox" /><br>
       <div class="pwdtxt">New password :
       <input type="password" name="pwd" value="Password" class="pwdbox" /> </div>
       <div class="pwdtxt">Confirm password :
