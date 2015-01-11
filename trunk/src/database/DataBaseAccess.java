@@ -16,13 +16,11 @@ public class DataBaseAccess {
 	// ici alex implémentes tous les signaux envoyer par Mélina
 	// impléménattion !
 	
-	// A FAIRE : RENVOYER TOUS LES JOURS DE LA SEMAINE ET TOUS LES SERVICES DANS DES ARRAYLIST
-	// LISTER LES RIDES D UN USER
 
 	// Connexion à la db
 	private Connection Connexion() {
 		try {
-			String url = "jdbc:mysql://localhost/sopra";
+			String url = "jdbc:mysql://localhost/sopra_testing";
 			String utilisateur = "root";
 			String motDePasse = "soprabg31";
 			Class.forName("com.mysql.jdbc.Driver");
@@ -83,7 +81,7 @@ public class DataBaseAccess {
 			if (resultat.getInt(1) == 1) {
 				
 				// vérifier si l'utilisateur est admin ou pas
-				resultat = statement.executeQuery("SELECT * FROM sopra.user WHERE mail='"+ mail+"'");
+				resultat = statement.executeQuery("SELECT * FROM user WHERE mail='"+ mail+"'");
 				resultat.next();
 				
 				int id = resultat.getInt("id");
@@ -418,6 +416,29 @@ public class DataBaseAccess {
 		return id;
 
 	}
+	
+	///////////////// EDIT PROFILE ///////////////
+	
+	public void editUserProfile (User user, MotDePass pass) throws RequestDidNotWork {
+		Connection connexion = null;
+		Statement statement = null;
+		try{
+			connexion = Connexion();
+			statement = connexion.createStatement();
+			statement.executeUpdate("UPDATE user "
+					+ "SET lastname='"+user.getLastName()+"', firstname='"+user.getFirstName()+"', "
+					+ "mail='"+user.getEmail().toString()+"', password='"+pass.getClaire()+"',"
+					+ " phone='"+user.getTel().toString()+"', "
+					+ "bio='"+user.getBio()+"', isAdmin=0 WHERE id='"+user.getID()+"';");
+			
+		}catch(Exception e){
+			System.err.println("Erreur update profil : " + e);
+			throw new RequestDidNotWork("Profile could not be updated : "+e);
+		}finally{
+			Close(null, statement, connexion);
+		}
+	}
+	
 	
 	/////////////////////////////// DEL rides of user /////////////////////////
 	public void deletAllUserRides (User user)throws RequestDidNotWork{
