@@ -14,8 +14,7 @@
 
 <head>
 <title>Sopra Carpooling Website</title>
-	<%@ include file="header.jsp" %>
-</header>
+</head>
 
 <body>
 
