@@ -2,49 +2,46 @@ left_side{
 	background-color : transparent ;
 	width : 19%;
 	float : left ;
-	top : 100px;	
+	top : 93px;	
 	height : 100%;
 	bottom : 0;   
-	height : 100% ;
-	border-left : yellow 1px solid ;
+	border-right : #a3b9c9 1px solid ;
+	border-top-right-radius: 10%;
 	position : fixed;
 }
 
 h1{
 	font-size : 15x;
-	font-family : sans-serif;
-	color : #eae9f5 ;
-	font-weight : bold ;
+	font-family : Arial;
+	color : #222930;
 	text-align : center ;
 }
 
 textarea{
 	disabled : true ;
-	border:#cccfe1 1px dotted;
+	border:#222930 1px dotted;
 	border-radius : 4px;
 	height : 100px;
 	background-color : transparent ;
 	font-family : sans-serif ;
-	width : 90%;
+	width : 80%;
 	margin-left : 5%;
-	scrollbar-face-color: transparent; 
-	scrollbar-track-color: transparent; 
-	scrollbar-base-color: transparent;
-	color : #cccfe1 ;
+	color :#222930 ;
 	margin-bottom : 10px;
 	padding : 5px ;
 	padding-left : 8px;
+	resize : vertical ;
 }
 
 
 #contact{
-	border:#cccfe1 1px dotted;
+	border:#222930 1px dotted;
 	border-radius : 8px;	
-	width : 92%;
+	width : 82%;
 	margin-left : 4% ;
 	margin-bottom : 10px;
 	padding : 5px ;
 	padding-left : 8px;	
 	text-align : center ;
-	color : #cccfe1 ;
+	color : #222930 ;
 }
