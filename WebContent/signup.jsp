@@ -17,7 +17,9 @@
   <div id="login-form">
 
 
-    <h3>Register</h3>
+    <h3>
+    <img src="./images/logo.png"/><br><br>
+    Register</h3>
 
     <fieldset>
 
