@@ -51,7 +51,7 @@ function checkProfileForm()
       <input type="text" name="lastName" value="${user.getLastName()}" class="firstnamebox" /><br>
       <input type="email" name="email" value="${user.getEmail()}" class="longbox" />
       <input type="text" name="tel" value="${user.getTel()}" class="phonebox" /><br>
-      <input type="text" name="bio" value="${user.getBio()}" class="phonebox" /><br>
+      <textarea type="bio" name="bio" value="${user.getBio()}"></textarea><br><br>
       <div class="pwdtxt">New password :
       <input type="password" name="pwd" value="Password" class="pwdbox" /> </div>
       <div class="pwdtxt">Confirm password :

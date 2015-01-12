@@ -1,16 +1,7 @@
-/* Color set :
-Blue : #00ACE9
-Red : #D43F3F
-Green : #6A9A1F
-Background gray : #404040
-Text creme : #F6F6E8
-*/
-
 hmtl, body{
  width : 100%;
  height : 100%;
  margin : 0;
- 
  
 }
 
@@ -47,8 +38,6 @@ h3 { margin: 0; }
 a {
 	color: #222930;
 	text-decoration: none;
-	
-	
 }
 
 a:hover { color: #750003; }
