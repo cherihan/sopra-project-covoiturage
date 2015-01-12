@@ -40,7 +40,7 @@
 	//ArrayList<Ride> rides = db.requestSearchRides(cp,j,s);
 	//for(int i=0;i<rides.size();i++){
 	//out.println("<p>"+rides.get(i)+"</p>");
-	}
+	
 %>
 
 </body>

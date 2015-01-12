@@ -1,6 +1,7 @@
 package sopracarpooling.servlets;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,8 +13,12 @@ import javax.servlet.http.HttpSession;
 
 import model.EmailAdresse;
 import model.MotDePass;
+import model.PostCode;
+import model.Service;
 import model.User;
+import database.AdminDataBaseAccess;
 import database.DataBaseAccess;
+import database.NotAdmin;
 import database.RequestDidNotWork;
 
 /**
@@ -45,9 +50,14 @@ public class DataManagement extends HttpServlet {
 				s.setAttribute("user", u);
 			}
 			
+			AdminDataBaseAccess adminDB = new AdminDataBaseAccess(u);
+			HashMap<Service,HashMap<PostCode,Integer>> repartission = adminDB.getRidesRepartition();
+			
 			
 			
 		}catch (RequestDidNotWork e){
+			s.setAttribute("performAction", "error");
+		}catch(NotAdmin e){
 			s.setAttribute("performAction", "error");
 		}finally{
 			RequestDispatcher rd = request.getRequestDispatcher("DataManagement.jsp");

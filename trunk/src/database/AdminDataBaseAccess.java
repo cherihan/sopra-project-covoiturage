@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import model.*;
 
@@ -123,5 +124,43 @@ public class AdminDataBaseAccess extends DataBaseAccess{
 		
 		return user;
 	}
+	public HashMap<Service,HashMap<PostCode,Integer>> getRidesRepartition() throws RequestDidNotWork{
+		Connection connexion = null;
+		Statement statement = null;	
+		ResultSet sites= null;
+		ResultSet codePosts= null;
+		ArrayList<Integer> sitesID = new ArrayList<Integer>();
+		ArrayList<String> codes = new ArrayList<String>();
+		HashMap<Service,HashMap<PostCode,Integer>> res = new  HashMap<Service,HashMap<PostCode,Integer>>();  
+		try {
+			
+			connexion = Connexion();
+			statement = connexion.createStatement();				
+			sites = statement.executeQuery("SELECT id FROM sopra.sopra_site ;");	
+			
+			while(sites.next()){
+				sitesID.add(sites.getInt(1));
+				System.out.println("###DEBUG ### (AdminDataBaseAccess, getRidesRepartition) : "+sites.getInt(1));
+			}
+			sites.close();
+			codePosts = statement.executeQuery("SELECT DISTINCT cp FROM sopra.adresse;");
+			while(codePosts.next()){
+				codes.add(codePosts.getString(1));
+				System.out.println("###DEBUG ### (AdminDataBaseAccess, getRidesRepartition) : "+codePosts.getInt(1));
+			}
+			codePosts.close();
+			
+			//Continuer ici ! 
+			
+			
+		}catch (Exception e){
+			throw new RequestDidNotWork("Respartission des rides a échoué.");
+		}finally{
+			Close(sites, statement, connexion);
+		}
+		return res;
+	}
+	
+	
 	
 }
