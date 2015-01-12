@@ -8,6 +8,8 @@
 	User user =(User) s.getAttribute("user"); 
 	ArrayList <Ride> mR	= (ArrayList <Ride>) s.getAttribute("matchingRides");
 	ArrayList <JourDeLaSemaine> jours	= (ArrayList <JourDeLaSemaine>) s.getAttribute("jours");
+	ArrayList <JourDeLaSemaine> joursPossible	= (ArrayList <JourDeLaSemaine>) s.getAttribute("joursPossible");
+	ArrayList <Service> sopraOff = (ArrayList <Service>) s.getAttribute("sopraSite");
 %>
 
 <html>
@@ -38,8 +40,37 @@
 
 <div id="bg">
   <div class="route_module">
- Ici : options de recherche
-	<input type="button" value="New research" class="button" />    
+			<form class="form" action="/SopraCarPooling/Search" method="post">
+				<select name="Search-service">
+					<%for(int i = 0; i < joursPossible.size(); i++){ 
+          			JourDeLaSemaine jour = joursPossible.get(i); %>
+					<option value="<%=jour.getJour() %>">
+						<%=jour.toString()%>
+					</option>
+
+					<%} %>
+				</select> 
+				<input type="text" name="address-search" placeholder='Street'>
+				<input type="text" name="cp-search" placeholder='Code Postal'>
+				<input type="text" name="ville-search" placeholder='City'> 
+				
+				<select	name="Search-service">
+					<%
+						for (int k = 0; k < sopraOff.size(); k++) {
+					%>
+					<option value="<%=sopraOff.get(k).getId()%>">
+						<%=sopraOff.get(k).getNom()%>
+					</option>
+					<%
+						}
+					%>
+				</select>
+				<input type="submit" value="New research" class="button" /> 
+			</form>
+
+
+			Ici : options de recherche
+	   
     <div class="route_table" >
    
     
@@ -84,7 +115,7 @@
                     <tr> 
                     	
                     	<td><h2><%=jour %></h2>
-                    	<td> <%=rJ.get(0).getHome().getPostCode()%> - <%=rJ.get(0).getHome().getRue()%> </td>
+                    	<td> <%=rJ.get(0).getHome().getPostCode()%>  </td>
                     	<td> <%=rJ.get(0).getOffice().getNom() %> </td>
                     </tr>
                     <%
@@ -102,10 +133,11 @@
                     	
                    		<tr>
                        		 <td >
-                          	  <%=aller.get(k).getUser().getLastName() %> <%=aller.get(k).getUser().getFirstName()  %>
+                          	  <%=aller.get(k).getUser().getLastName() %> <%=aller.get(k).getUser().getFirstName()  %> <br>
+                          	  <%=aller.get(k).getUser().getEmail() %>
                        		 </td>
                        		 <td>
-                         	   <%=aller.get(k).getAtOfficeAt() %>
+                         	   <%=aller.get(k).getAtOfficeAt()%> - <%=rJ.get(0).getHome().getRue()%> - 
                        		</td>
                        		 <td>
                         		<%=aller.get(k).getComment() %>
@@ -115,11 +147,11 @@
                    	 
                     <%
                     	}
-                    	for(int k = 0 ; k <aller.size(); k++){%>
+                    	for(int k = 0 ; k <retour.size(); k++){%>
                     	
                     	<tr>
                       		 <td >
-                         	  <%=retour.get(k).getUser().getLastName() %> <%=aller.get(k).getUser().getFirstName()  %>
+                         	  <%=retour.get(k).getUser().getLastName() %> <%=retour.get(k).getUser().getFirstName()  %>
                       		 </td>
                       		 <td>
                         	   <%=retour.get(k).getAtOfficeAt() %>
