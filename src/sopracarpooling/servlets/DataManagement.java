@@ -1,11 +1,20 @@
 package sopracarpooling.servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import model.EmailAdresse;
+import model.MotDePass;
+import model.User;
+import database.DataBaseAccess;
+import database.RequestDidNotWork;
 
 /**
  * Servlet implementation class DataManagement
@@ -26,11 +35,24 @@ public class DataManagement extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		DataBaseAccess dB = new DataBaseAccess();
+		HttpSession s = request.getSession();
+		User u = (User) s.getAttribute("user");
 		
-		
-		//display jsp
-		
+		try{
+			if(u == null){
+				u = dB.requestUserIsRegistered(new EmailAdresse("tristan.bardey@gmail.com"), new MotDePass("tristan"));
+				s.setAttribute("user", u);
+			}
+			
+			
+			
+		}catch (RequestDidNotWork e){
+			s.setAttribute("performAction", "error");
+		}finally{
+			RequestDispatcher rd = request.getRequestDispatcher("DataManagement.jsp");
+			rd.forward(request, response);
+		}
 	}
 
 	/**

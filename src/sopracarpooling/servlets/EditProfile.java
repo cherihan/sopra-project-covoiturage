@@ -59,7 +59,7 @@ public class EditProfile extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		//do edit profile. 
-		RequestDispatcher rd = request.getRequestDispatcher("edit_profile.jsp");
+		
 		HttpSession s = request.getSession();
 		User user = (User) s.getAttribute("user");
 		DataBaseAccess dB = new DataBaseAccess();
@@ -108,7 +108,13 @@ public class EditProfile extends HttpServlet {
 		}catch (Exception e){//changer pour RequestDidNotWork
 			s.setAttribute("performAction", "error");
 		}finally{
-			rd.forward(request, response);
+			User admin = (User) s.getAttribute("administrator");
+			if(admin != null && admin instanceof Admin){
+				s.setAttribute("user", admin);
+				response.sendRedirect("UserManagement");
+			}else{
+				response.sendRedirect("EditProfile");
+			}
 		}
 		
 		

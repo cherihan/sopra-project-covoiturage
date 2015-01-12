@@ -41,7 +41,7 @@
 <div id="bg">
   <div class="route_module">
 			<form class="form" action="/SopraCarPooling/Search" method="post">
-				<select name="Search-service">
+				<select name="search-jour">
 					<%for(int i = 0; i < joursPossible.size(); i++){ 
           			JourDeLaSemaine jour = joursPossible.get(i); %>
 					<option value="<%=jour.getJour() %>">
@@ -54,7 +54,7 @@
 				<input type="text" name="cp-search" placeholder='Code Postal'>
 				<input type="text" name="ville-search" placeholder='City'> 
 				
-				<select	name="Search-service">
+				<select	name="search-service">
 					<%
 						for (int k = 0; k < sopraOff.size(); k++) {
 					%>

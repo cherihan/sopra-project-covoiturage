@@ -18,9 +18,9 @@ public class DataBaseAccess {
 	
 
 	// Connexion à la db
-	private Connection Connexion() {
+	protected Connection Connexion() {
 		try {
-			String url = "jdbc:mysql://localhost/sopra_testing";
+			String url = "jdbc:mysql://localhost/sopra";
 			String utilisateur = "root";
 			String motDePasse = "soprabg31";
 			Class.forName("com.mysql.jdbc.Driver");
@@ -33,9 +33,10 @@ public class DataBaseAccess {
 		}
 
 	}
+	
 
 	// fermeture connexion etc.
-	private void Close(ResultSet resultat, Statement statement,
+	protected void Close(ResultSet resultat, Statement statement,
 			Connection connexion) {
 		if (resultat != null) {
 			try {
@@ -328,6 +329,28 @@ public class DataBaseAccess {
 			Close(resultat, statement, connexion);
 		}
 		return jours;
+	}
+	public JourDeLaSemaine getJour(int id) throws RequestDidNotWork{
+		JourDeLaSemaine res;
+		Connection connexion = null;
+		Statement statement = null;
+		ResultSet resultat = null;
+		
+		try{
+			connexion = Connexion();
+			statement = connexion.createStatement();
+			resultat = statement.executeQuery("SELECT * FROM jours where id='"+id+"'");
+			resultat.next();
+			String nom = resultat.getString(2);
+			res = new JourDeLaSemaine(id, nom);
+			
+		}catch(Exception e){
+			System.err.println("Erreur lors de la recherche d'un JOURS : " + e);
+			throw new RequestDidNotWork("Pas de jour trouvé dans la database (dur dur...)");
+		}finally{
+			Close(resultat, statement, connexion);
+		}
+		return res;
 	}
 	
 	/////////////// LISTER SERVICES ////////////////////
