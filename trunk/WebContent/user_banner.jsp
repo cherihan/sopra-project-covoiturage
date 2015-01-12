@@ -10,7 +10,8 @@
 </head>
 
 <body>
-
+<br>
+<h1><img src="./images/logo_small.png" /></h1>
 <h1><br>${user.getFirstName()}</h1>
 <h1>${user.getLastName()}</h1>
 <br>
