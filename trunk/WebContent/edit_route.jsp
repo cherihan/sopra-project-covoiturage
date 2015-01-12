@@ -11,9 +11,7 @@
 
 	
 	//dev usage only 
-	if(user == null){
-		user = new User(1000, "Charlie", "Hebdo", new EmailAdresse("ch@gmail.com"),"Journal",new NumeroTelephone("07012015"));
-	}
+	
 	/*jours = new ArrayList<JourDeLaSemaine>();
 	jours.add(new JourDeLaSemaine(1,"lundi"));
 	jours.add(new JourDeLaSemaine(2,"mardi"));
@@ -115,7 +113,8 @@
                             Office<br><br>
 					    	<select name="<%=j %>-service">
 					    		<%for(int k =0 ; k < sopraOff.size(); k++){ %>
-					  				<option value="<%=sopraOff.get(k).getId() %>"					  				
+					  				<option value="<%=sopraOff.get(k).getId() %>"
+					  						
 					  				<%=(duJour != null && duJour.getOffice().equals(sopraOff.get(k)))? "selected" : "" %>>
 					  				<%=sopraOff.get(k).getNom() %>
 					  				</option>					 			
@@ -141,9 +140,7 @@
                         </td>                
                     </tr>
                  </table>
-                 <textarea name="<%=j%>-com" placeholder='Comment'>
-					<%=(duJour != null)? duJour.getComment(): "" %>
-                  </textarea><br>
+                 <textarea name="<%=j%>-com" placeholder='Comment'><%=(duJour != null)? duJour.getComment(): "" %></textarea><br>
                  
               
                <%}%>

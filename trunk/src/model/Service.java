@@ -49,6 +49,9 @@ public class Service {
 	public void setAddr(Adresse addr) {
 		this.addr = addr;
 	}
+	public boolean equals (Service serv){
+		return this.id == serv.getId();
+	}
 	
 	
 	/*

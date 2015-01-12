@@ -50,36 +50,44 @@ public class Home extends HttpServlet {
 
 		HttpSession s = request.getSession();
 		User user = (User)  s.getAttribute("user");
-		
-		
-		
-		//tous les tableaux sont rempli
-		//On a donc tous les trajets qui partes de vers chez lui, à son travail, et les gens qui fonts ce trajet. 
-		try{
 			
+		Boolean search = (Boolean) s.getAttribute("search");
+		System.out.println(search);
+		
+		
+		try {
 			if(user == null){
-				user = dB.requestUserIsRegistered(new EmailAdresse("superman@gmail.com"), new MotDePass("superman"));
+				user = dB.requestUserIsRegistered(new EmailAdresse("dd@yopmail.com"), new MotDePass("millieu"));
 				s.setAttribute("user", user);
 			}
 			
-			ArrayList <Ride> matchingRides = dB.requestMatchingRides(user);
+			if(search == null || search == false){
+				
+				ArrayList<Ride> matchingRides = dB.requestMatchingRides(user);
+				s.setAttribute("matchingRides", matchingRides);
+				s.setAttribute("jours", dB.requestJours());
+				System.out.println("###DEBUG ### (servlet, Home) : size mR : "
+						+ matchingRides.size());
+				
+			}
+				
 			
-			s.setAttribute("matchingRides", matchingRides); 
-			s.setAttribute("jours", dB.requestJours());
-			System.out.println("###DEBUG ### (servlet, Home) : size mR : "+matchingRides.size());
+				
+				
+				
 			
-			
-		}catch (RequestDidNotWork e){
+						
+			s.setAttribute("joursPossible", dB.requestJours());
+			s.setAttribute("sopraSite", dB.requestServices());
+		} catch (RequestDidNotWork e) {
 			request.setAttribute("performAction", "error");
-		}finally {
+		} finally {
+			
+			
 			RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
 			rd.forward(request, response);
 		}
 		
-		
-		
-		
-		//demander à alex le rides possible.
 		
 		
 		
@@ -90,7 +98,9 @@ public class Home extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		
+		
 	
 	}
 
