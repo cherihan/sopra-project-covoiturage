@@ -29,7 +29,9 @@
   <div id="login-form">
 
 
-    <h3>Connection</h3>
+    <h3>
+    <img src="./images/logo.png"/><br><br>
+    Connection</h3>
 
 <html>
 
