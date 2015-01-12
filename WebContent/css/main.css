@@ -1,33 +1,21 @@
 body {
-	background-color: #404040;
-	color: #49697c;
+	background-color: white;
+	color: #404040;
 	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 	font-weight: 300;
 	font-size: 15px;
     width : 100% ;
     margin-top : 0;
 	margin-left : 0 ;
-	background: #ffffff; /* Old browsers */
-background: rgb(255,255,255); /* Old browsers */
-background: -moz-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 0%, rgba(245,245,247,1) 47%, rgba(236,236,238,1) 100%); /* FF3.6+ */
-background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(255,255,255,1)), color-stop(47%,rgba(245,245,247,1)), color-stop(100%,rgba(236,236,238,1))); /* Chrome,Safari4+ */
-background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 0%,rgba(245,245,247,1) 47%,rgba(236,236,238,1) 100%); /* Chrome10+,Safari5.1+ */
-background: -o-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 0%,rgba(245,245,247,1) 47%,rgba(236,236,238,1) 100%); /* Opera 12+ */
-background: -ms-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 0%,rgba(245,245,247,1) 47%,rgba(236,236,238,1) 100%); /* IE10+ */
-background: radial-gradient(ellipse at center,  rgba(255,255,255,1) 0%,rgba(245,245,247,1) 47%,rgba(236,236,238,1) 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ececee',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-	background-repeat : no-repeat ;
-	background-attachment: fixed;
-	background-position : center ;
 }
 
 .button{
 	background: #00ACE9;
-	color: #222930;
+	color: #404040;
 	margin-left : 40%;
 	margin-top: 20px;
 	padding: 12px 20px;
-    border : 1px solid #a3b9c9;
+    border : 1px solid #595a7b;
     text-shadow : -0.5px -0.5px 1px #dde4ec ;
     border-radius : 5px;	
 	background: rgb(255,255,255); /* Old browsers */
@@ -38,11 +26,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(242,240,240,1) 82%,rgba(242,240,240,1) 82%,rgba(228,222,222,1) 82%,rgba(228,222,222,1) 82%,rgba(247,245,245,1) 100%); /* IE10+ */
 	background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(242,240,240,1) 82%,rgba(242,240,240,1) 82%,rgba(228,222,222,1) 82%,rgba(228,222,222,1) 82%,rgba(247,245,245,1) 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f7f5f5',GradientType=0 ); /* IE6-9 */
-
+	transition : 1s;
 }
 
 .button:hover{
-		transition : 0.5s;
-  	    border : 1px solid #595a7b ;
+  	    border : 1px solid #755152 ;
 
 }
