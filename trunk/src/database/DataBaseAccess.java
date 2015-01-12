@@ -20,7 +20,7 @@ public class DataBaseAccess {
 	// Connexion à la db
 	private Connection Connexion() {
 		try {
-			String url = "jdbc:mysql://localhost/sopra";
+			String url = "jdbc:mysql://localhost/sopra_testing";
 			String utilisateur = "root";
 			String motDePasse = "soprabg31";
 			Class.forName("com.mysql.jdbc.Driver");
@@ -222,6 +222,84 @@ public class DataBaseAccess {
 		}
 		return rides;
 	}
+	
+	/////////////// RECHERCHER RIDES ////////////////////
+
+	public ArrayList<Ride> requestSearchRides(PostCode p, JourDeLaSemaine j, Service s) throws RequestDidNotWork{
+		Connection connexion = null;
+		Statement statement = null;
+		ResultSet resultat = null;
+		Statement statement2 = null;
+		ResultSet resultat2 = null;
+
+		ArrayList<Ride> rides = new ArrayList<Ride>();
+		try{
+			connexion = Connexion();
+			statement = connexion.createStatement();
+			statement2 = connexion.createStatement();
+			//rides avec même cp, même sopra_site et même jour
+			resultat = statement.executeQuery("SELECT rides.id,user.id,rue,ville,cp,sopra_site.name,description,sopra_site.id,sens,jours.id,jours.name,heure,commentaire,rides.adresse "
+												+ "FROM user,rides,adresse,sopra_site,jours "
+												+ "WHERE jour='"+j.getJour()+"' "
+												+ "AND cp='"+p.toString()+"' "
+												+ "AND sopra_site='"+s.getId()+"' "
+												+ "AND rides.jour=jours.id "
+												+ "AND sopra_site.adresse=adresse.id "
+												+ "AND rides.sopra_site=sopra_site.id "
+												+ "AND user.id=rides.id_user;");
+			System.out.println("j:"+j.getJour()+"      p:"+p.toString()+"        s:"+s.getId());
+			while(resultat.next()){
+				int id = resultat.getInt(1);
+				int uid = resultat.getInt(2);
+				String h = resultat.getString("heure");
+				String commentaire = resultat.getString("commentaire");
+				int se = resultat.getInt("sens");
+				boolean sens=false;
+				if (se==0){
+					sens=false;
+				}
+				else if (se==1){
+					sens=true;
+				}
+							
+				resultat2 = statement2.executeQuery("SELECT user.*,rue,cp,ville FROM adresse,rides,user "
+													+ "WHERE id_user='"+uid+"' "
+													+ "AND rides.id='"+id+"' "
+													+ "AND rides.id_user=user.id "
+													+ "AND adresse.id=rides.adresse ");
+				resultat2.next();
+				String lastName = resultat2.getString("lastname");
+				String firstName = resultat2.getString("firstname");
+				String mail = resultat2.getString("mail");
+				String bio = resultat2.getString("bio");
+				String tel = resultat2.getString("phone");
+				String uRue = resultat2.getString("rue");
+				String uVille = resultat2.getString("ville");
+				EmailAdresse email = new EmailAdresse(mail);
+				NumeroTelephone telNum = new NumeroTelephone(tel);
+				
+				User user = new User(id, lastName, firstName, email, bio, telNum);
+				System.out.println("### DEBUG ### (DataBAseAccess) user   : "+user);
+				Adresse home = new Adresse(p, uRue, uVille);
+				System.out.println("### DEBUG ### (DataBAseAccess) home   : "+home);
+				Heure heure = new Heure(h);			
+				Ride ride = new Ride(id, user, home, s, j, heure, sens, commentaire);
+				System.out.println("### DEBUG ### (DataBAseAccess) ride   : "+ride);
+				rides.add(ride);
+			}
+
+		}catch(Exception e){
+			System.err.println("Erreur lors de la recherche des rides : " + e);
+			throw new RequestDidNotWork(
+					"Pas de ride trouvé");
+		}finally{
+			Close(resultat, statement, connexion);
+			Close(resultat2, statement2, connexion);
+		}
+		return rides;
+	}
+	
+	
 	
 ////////////////////// JOURS SEMAINE /////////////////////////////////
 	
