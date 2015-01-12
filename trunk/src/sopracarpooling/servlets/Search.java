@@ -45,16 +45,30 @@ public class Search extends HttpServlet {
 		DataBaseAccess dB = new DataBaseAccess();
 		HttpSession s = request.getSession();
 		User user = (User) s.getAttribute("user");
+		
+		String jour = request.getParameter("search-jour");
+		String street =request.getParameter("address-search");
+		String cp = request.getParameter("cp-search");
+		String ville =  request.getParameter("ville-search");
+		String site = request.getParameter("search-service");
+		
+		
 
 		try{
-			//demander à alex les rides
-			ArrayList <Ride> matchingRides = dB.requestMatchingRides(user);
+			JourDeLaSemaine j = dB.getJour(Integer.parseInt(jour));
+			PostCode codePost = new PostCode(Integer.parseInt(cp));
+			Adresse addr = new Adresse(codePost, street, ville);
+			Service office = new Service(Integer.parseInt(site));
 			
-			//System.out.println("###DEBUG ### (servlet, Search) : size mR : "+matchingRides.size());
+			//demander à alex les rides
+			
+			ArrayList <Ride> matchingRides = dB.requestSearchRides(addr, j, office);
+			
+			System.out.println("###DEBUG ### (servlet, Search) : size mR : "+matchingRides.size());
 			s.setAttribute("matchingRides", matchingRides); 
-			ArrayList <JourDeLaSemaine> jour = new ArrayList<JourDeLaSemaine>();
-			jour.add(new JourDeLaSemaine(1,"lundi"));
-			s.setAttribute("jours", jour);
+			ArrayList <JourDeLaSemaine> jours = new ArrayList<JourDeLaSemaine>();
+			jours.add(j);
+			s.setAttribute("jours", jours);
 			
 		}catch (RequestDidNotWork e){
 			request.setAttribute("performAction", "error");

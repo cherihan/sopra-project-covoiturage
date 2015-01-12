@@ -52,7 +52,7 @@ public class RidesUpdate extends HttpServlet {
 			//get user rides.
 			User u =(User) s.getAttribute("user");
 			u.setWeekRides(dB.requestUserRides(u));
-			s.setAttribute("user", u);
+			//s.setAttribute("user", u);
 
 		} catch (RequestDidNotWork e) {
 			System.err
@@ -143,8 +143,8 @@ public class RidesUpdate extends HttpServlet {
 				//la base de donner doit suprimer tous les rides du user
 				dB.deletAllUserRides (user);
 			}
-			user.setWeekRides(dB.requestUserRides(user));
-			s.setAttribute("user", user);
+			//user.setWeekRides(dB.requestUserRides(user));
+			//s.setAttribute("user", user);
 			// envoyer tout ca à alex qui nous renvoi les trajets du mec
 		} catch (RequestDidNotWork e) {
 			// ça n'a pas marché
@@ -153,10 +153,16 @@ public class RidesUpdate extends HttpServlet {
 		} finally {
 			// System.out.println("###DEBUG ### (UpdateRides, servlets) : On s'en va !");
 			// chargerLaPage(request, response);
+			User admin = (User) s.getAttribute("administrator");
+			if( admin != null && admin instanceof Admin){
+				//s.invalidate();
+				s.setAttribute("user", admin);
+				response.sendRedirect("UserManagement");				
+			}else{
+				response.sendRedirect("RidesUpdate");
+			}
 			
-			String nextPage = "edit_route.jsp";
-			RequestDispatcher rd = request.getRequestDispatcher(nextPage);
-			rd.forward(request, response);
+			
 
 		}
 
