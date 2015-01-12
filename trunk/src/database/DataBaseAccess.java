@@ -225,7 +225,7 @@ public class DataBaseAccess {
 	
 	/////////////// RECHERCHER RIDES ////////////////////
 
-	public ArrayList<Ride> requestSearchRides(PostCode p, JourDeLaSemaine j, Service s) throws RequestDidNotWork{
+	public ArrayList<Ride> requestSearchRides(Adresse a, JourDeLaSemaine j, Service s) throws RequestDidNotWork{
 		Connection connexion = null;
 		Statement statement = null;
 		ResultSet resultat = null;
@@ -241,13 +241,12 @@ public class DataBaseAccess {
 			resultat = statement.executeQuery("SELECT rides.id,user.id,rue,ville,cp,sopra_site.name,description,sopra_site.id,sens,jours.id,jours.name,heure,commentaire,rides.adresse "
 												+ "FROM user,rides,adresse,sopra_site,jours "
 												+ "WHERE jour='"+j.getJour()+"' "
-												+ "AND cp='"+p.toString()+"' "
+												+ "AND cp='"+a.getPostCode().toString()+"' "
 												+ "AND sopra_site='"+s.getId()+"' "
 												+ "AND rides.jour=jours.id "
 												+ "AND sopra_site.adresse=adresse.id "
 												+ "AND rides.sopra_site=sopra_site.id "
 												+ "AND user.id=rides.id_user;");
-			System.out.println("j:"+j.getJour()+"      p:"+p.toString()+"        s:"+s.getId());
 			while(resultat.next()){
 				int id = resultat.getInt(1);
 				int uid = resultat.getInt(2);
@@ -280,7 +279,7 @@ public class DataBaseAccess {
 				
 				User user = new User(id, lastName, firstName, email, bio, telNum);
 				System.out.println("### DEBUG ### (DataBAseAccess) user   : "+user);
-				Adresse home = new Adresse(p, uRue, uVille);
+				Adresse home = new Adresse(a.getPostCode(), uRue, uVille);
 				System.out.println("### DEBUG ### (DataBAseAccess) home   : "+home);
 				Heure heure = new Heure(h);			
 				Ride ride = new Ride(id, user, home, s, j, heure, sens, commentaire);

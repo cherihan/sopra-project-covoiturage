@@ -34,12 +34,12 @@
 	//out.println("1111");
 	//out.println("<p>"+rides.get(1)+"</p>");
 	//db.editUserPassword(test,newmdp);
-	PostCode cp = new PostCode(31770);
-	JourDeLaSemaine j = new JourDeLaSemaine(1,"lundi");
-	Service s = new Service(5);
-	ArrayList<Ride> rides = db.requestSearchRides(cp,j,s);
-	for(int i=0;i<rides.size();i++){
-	out.println("<p>"+rides.get(i)+"</p>");
+	//PostCode cp = new PostCode(31770);
+	//JourDeLaSemaine j = new JourDeLaSemaine(1,"lundi");
+	//Service s = new Service(5);
+	//ArrayList<Ride> rides = db.requestSearchRides(cp,j,s);
+	//for(int i=0;i<rides.size();i++){
+	//out.println("<p>"+rides.get(i)+"</p>");
 	}
 %>
 
