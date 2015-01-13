@@ -20,8 +20,7 @@
  <link rel="stylesheet" type="text/css" href="./css/main.css" />
  <link rel="stylesheet" type="text/css" href="./css/side_panels.css" />
  <link rel="stylesheet" type="text/css" href="./css/header.css" />
- <link rel="stylesheet" type="text/css" href="./css/route_table.css" /> 
- <link rel="stylesheet" type="text/css" href="./css/footer.css" />
+ <link rel="stylesheet" type="text/css" href="./css/route_table.css" />
 </head>
 
 <body>
@@ -41,6 +40,7 @@
 <div id="bg">
   <div class="route_module">
 			<form class="form" action="/SopraCarPooling/Search" method="post">
+			
 				<select name="search-jour">
 					<%for(int i = 0; i < joursPossible.size(); i++){ 
           			JourDeLaSemaine jour = joursPossible.get(i); %>
@@ -50,9 +50,9 @@
 
 					<%} %>
 				</select> 
-				<input type="text" name="address-search" placeholder='Street'>
-				<input type="text" name="cp-search" placeholder='Code Postal'>
-				<input type="text" name="ville-search" placeholder='City'> 
+				<input type="text" name="address-search" placeholder='Street' class="textbox">
+				<input type="text" name="cp-search" placeholder='Code Postal' class="textbox">
+				<input type="text" name="ville-search" placeholder='City' class="textbox"> 
 				
 				<select	name="search-service">
 					<%
@@ -68,33 +68,10 @@
 				<input type="submit" value="New research" class="button" /> 
 			</form>
 
-
-			Ici : options de recherche
 	   
     <div class="route_table" >
    
-    
-                <table >
-                    <!--<tr>
-                        <td>
-                            From
-                        </td>
-                        <td >
-                            To
-                        </td>
-                        <td>
-                            Round trip
-                        </td>                
-                        <td >
-                            Driver
-                        </td>                        
-                        <td>
-                            Contact
-                        </td>
-                        <td>
-                        	Maps
-                        </td>
-                    </tr>  -->
+             
                     
                     <%for(int i = 0; i < jours.size(); i++){ 
                     	JourDeLaSemaine jour = jours.get(i);
@@ -106,15 +83,17 @@
  							if(mR.get(k).getJour().equals(jour)){
  								rJ.add(mR.get(k));
  							} 							
- 						}
-                    	                   	
+ 						}                   	
                     	
  						if(rJ.size()>0){
  							
                     %>
-                    <tr> 
+                  
                     	
-                    	<td><h2><%=jour %></h2>
+                    
+                    <table class="table table-hover">
+                    <h2><%=jour %></h2>
+                    <tr>
                     	<td> <%=rJ.get(0).getHome().getPostCode()%>  </td>
                     	<td> <%=rJ.get(0).getOffice().getNom() %> </td>
                     </tr>
