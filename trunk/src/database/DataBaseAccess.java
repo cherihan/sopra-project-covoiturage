@@ -116,6 +116,7 @@ public class DataBaseAccess {
 		}
 	}
 
+	//////////// comtper selon le code postal et le site sopra (list de cp et de site sopra) ////////
 	/////////////// RequestRides ///////////////////
 
 	public ArrayList<Ride> requestMatchingRides(User user) throws RequestDidNotWork {
@@ -279,12 +280,9 @@ public class DataBaseAccess {
 				NumeroTelephone telNum = new NumeroTelephone(tel);
 				
 				User user = new User(id, lastName, firstName, email, bio, telNum);
-				System.out.println("### DEBUG ### (DataBAseAccess) user   : "+user);
 				Adresse home = new Adresse(a.getPostCode(), uRue, uVille);
-				System.out.println("### DEBUG ### (DataBAseAccess) home   : "+home);
 				Heure heure = new Heure(h);			
 				Ride ride = new Ride(id, user, home, s, j, heure, sens, commentaire);
-				System.out.println("### DEBUG ### (DataBAseAccess) ride   : "+ride);
 				rides.add(ride);
 			}
 
@@ -452,7 +450,6 @@ public class DataBaseAccess {
 				int uCp = resultat2.getInt("cp");
 				PostCode uCode = new PostCode(uCp);
 				Adresse home = new Adresse(uCode, uRue, uVille);
-				System.out.println("### DEBUG ### (DataBAseAccess, requestUserRides)  home : "+home);
 				JourDeLaSemaine jour = new JourDeLaSemaine(j,jname);
 				Heure heure = new Heure(h);
 				Service service = new Service(id_sopra,site,description,adresse);
@@ -618,7 +615,6 @@ public class DataBaseAccess {
 						+strings.get("homeVille")+"';");
 				res.next();
 				if( res.getInt(1) == 0){//si on a pas l'adresse dans la base rentre	
-					System.out.println("###DEBUG ### (DataBaseAccess, addUserRides) : pas trouvé l'adress");
 					adressID = statement.executeUpdate("INSERT INTO adresse  values(null,'"+strings.get("homeRue")+"','"
 					+strings.get("homeVille")+"','"+strings.get("homeCP")+"')");
 				}
@@ -628,7 +624,7 @@ public class DataBaseAccess {
 						+strings.get("homeVille")+"'");
 				res.next();
 				adressID = res.getInt("id");
-				System.out.println("###DEBUG ### (DataBaseAccess, addUserRides) : id de l'adress : "+adressID);
+				
 				
 				//check sopra site existe
 				//check si jour in bound
@@ -641,7 +637,6 @@ public class DataBaseAccess {
 						+ strings.get("commentaire")+"', '"
 						+ride.getUser().getID() +"' )");
 				
-				System.out.println("###DEBUG ### (DataBaseAccess, addUserRides) : "+update);
 			}
 		} catch (Exception e) {
 			System.err.println("Erreur requête trajets : " + e);
@@ -656,7 +651,7 @@ public class DataBaseAccess {
 		
 	}
 	
-	
+
 	
 	
 	
