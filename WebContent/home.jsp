@@ -94,9 +94,19 @@
                     <table class="table table-hover">
                     <h2><%=jour %></h2>
                     <tr>
-						<td><b>Point 1 :</b> <%=rJ.get(0).getHome().getPostCode()%></td>
-                    	<td><b>Point 2 :</b> <%=rJ.get(0).getOffice().getNom() %></td>
+						<td><b>Home :</b> <%=rJ.get(0).getHome().getPostCode()%><br></td>
+                    	<td><b>Office :</b> <%=rJ.get(0).getOffice().getNom() %><br></td>     
+                    	<td>
+                    	</td>
+                    	<td></td>
+                    	<td></td>             	
                     </tr>
+                    <tr>
+                    	<td><br>Name<br><br></td>
+                    	<td><br>Contact<br><br></td>
+                    	<td><br>Address<br><br></td>
+                    	<td><br>Time<br><br></td>
+                    	<td><br>Comment<br><br></td>
                     <%
                     	ArrayList<Ride> aller = new ArrayList<Ride>();
                    		ArrayList<Ride> retour = new ArrayList<Ride>();
@@ -112,11 +122,16 @@
                     	
                    		<tr>
                        		 <td >
-                          	  <%=aller.get(k).getUser().getLastName() %> <%=aller.get(k).getUser().getFirstName()  %> <br>
-                          	  <i><%=aller.get(k).getUser().getEmail() %></i>
+                          	  <%=aller.get(k).getUser().getLastName() %> <%=aller.get(k).getUser().getFirstName()%> 
+                          	  </td>
+                          	  <td>
+                          	  <%=aller.get(k).getUser().getEmail() %>
                        		 </td>
                        		 <td>
-                         	   <%=aller.get(k).getAtOfficeAt()%> - <%=rJ.get(0).getHome().getRue()%> - 
+                       		 <%=rJ.get(0).getHome().getRue()%>
+                       		 </td>
+                       		 <td>
+                         	   <%=aller.get(k).getAtOfficeAt()%>
                        		</td>
                        		 <td>
                         		<%=aller.get(k).getComment() %>
@@ -129,16 +144,21 @@
                     	for(int k = 0 ; k <retour.size(); k++){%>
                     	
                     	<tr>
-                      		 <td >
-                         	  <%=retour.get(k).getUser().getLastName() %> <%=retour.get(k).getUser().getFirstName()  %> <br>
-                          	  <i><%=retour.get(k).getUser().getEmail() %></i>
-                      		 </td>
-                      		 <td>
-                        	   <%=retour.get(k).getAtOfficeAt() %>
-                      		</td>
-                      		 <td>
-                       			<%=retour.get(k).getComment() %>
+                       		 <td >
+                          	  <%=retour.get(k).getUser().getLastName() %> <%=retour.get(k).getUser().getFirstName()%> 
+                          	  </td>
+                          	  <td>
+                          	  <%=retour.get(k).getUser().getEmail() %>
+                       		 </td>
+                       		 <td>
+                       		 <%=rJ.get(0).getHome().getRue()%>
+                       		 </td>
+                       		 <td>
+                         	   <%=retour.get(k).getAtOfficeAt()%>
                        		</td>
+                       		 <td>
+                        		<%=retour.get(k).getComment() %>
+                        	</td>
                        	
                   		 </tr>
                     	
