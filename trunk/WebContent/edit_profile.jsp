@@ -43,8 +43,8 @@ function checkProfileForm()
 <div id="bg">
   <div class="module">
     <ul>
-      <li class="tab activeTab"><a href="edit_profile.jsp"><img src="./images/user.png" alt="" class="icon"/></a></li>
-      <li class="tab sleepyTab" ><a href="RidesUpdate"><img src="./images/milestone.png" alt="abra" class="icon"/></a></li>
+      <li class="tab activeTab"><a href="u/EditProfile"><img src="./images/user.png" alt="" class="icon"/></a></li>
+      <li class="tab sleepyTab" ><a href="u/RidesUpdate"><img src="./images/milestone.png" alt="abra" class="icon"/></a></li>
     </ul>
     <form class="form" action="/SopraCarPooling/EditProfile" method="post"><br><br>
       <input type="text" name="firstName" value="${user.getFirstName()}" class="textbox" />
