@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet Filter implementation class LoginUserOnly
  */
-@WebFilter("/u/*")
+@WebFilter("/reserved/")
 public class LoginUserOnly implements Filter {
 
     /**
