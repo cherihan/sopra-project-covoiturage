@@ -25,7 +25,6 @@ header{
         padding: 0 24px;
         text-decoration: none;
         position : top ;
-        transition : 1s ;
       }
 
         header > ul > li:hover {
