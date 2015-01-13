@@ -3,7 +3,7 @@
 
 <%
 	HttpSession s = request.getSession();
-	User u = (User) s.getAttribute("user");
+	User user = (User) s.getAttribute("user");
 %>
 <html>
 <head>

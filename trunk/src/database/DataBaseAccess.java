@@ -98,7 +98,7 @@ public class DataBaseAccess {
 					registeredUser = new Admin(registeredUser);
 					System.out.println("c'est scarface!");
 				}
-
+				registeredUser.setWeekRides(this.requestUserRides(registeredUser));
 			} else {
 				// le mec/la gente demoiselle n'existe pas
 				throw new RequestDidNotWork(
@@ -232,17 +232,27 @@ public class DataBaseAccess {
 		ResultSet resultat = null;
 		Statement statement2 = null;
 		ResultSet resultat2 = null;
-
+		
+		Statement statement3 = null;
+		ResultSet resultat3 = null;
+		
 		ArrayList<Ride> rides = new ArrayList<Ride>();
 		try{
 			connexion = Connexion();
 			statement = connexion.createStatement();
 			statement2 = connexion.createStatement();
+			
+			
+			resultat3 = statement3.executeQuery("select nom from sopra.sopra_site where id='"+s.getId()+"';");
+			resultat3.next();
+			s.setNom(resultat.getString(1));
+			resultat3.close();
+			
 			//rides avec même cp, même sopra_site et même jour
 			resultat = statement.executeQuery("SELECT rides.id,user.id,rue,ville,cp,sopra_site.name,description,sopra_site.id,sens,jours.id,jours.name,heure,commentaire,rides.adresse "
 												+ "FROM user,rides,adresse,sopra_site,jours "
 												+ "WHERE jour='"+j.getJour()+"' "
-												+ "AND cp='"+a.getPostCode().toString()+"' "
+												+ "AND adresse.cp='"+a.getPostCode().toString()+"' "
 												+ "AND sopra_site='"+s.getId()+"' "
 												+ "AND rides.jour=jours.id "
 												+ "AND sopra_site.adresse=adresse.id "

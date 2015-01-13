@@ -48,6 +48,7 @@ public class Administration extends HttpServlet {
 		}catch (RequestDidNotWork e){
 			s.setAttribute("performAction", "error");
 		}finally{
+								
 			RequestDispatcher rd = request.getRequestDispatcher("administration.jsp");
 			rd.forward(request, response);
 		}

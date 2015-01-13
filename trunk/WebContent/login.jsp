@@ -53,7 +53,7 @@
         <footer class="clearfix">
 
         <p><span class="info">?</span><a href="#">Forgot Password</a></p>
-        <p><span class="info">+</span><a href="signup.jsp"">Sign up</a></p>
+        <p><span class="info">+</span><a href="CreatAccount">Sign up</a></p>
 
         </footer>
 

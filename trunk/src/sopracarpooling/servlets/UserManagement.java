@@ -51,6 +51,7 @@ public class UserManagement extends HttpServlet {
 			AdminDataBaseAccess adminDB = new AdminDataBaseAccess(u);
 			ArrayList<User> allUsers = adminDB.requestAllUsers();
 			s.setAttribute("allUsers", allUsers);
+			s.setAttribute("action", "user");
 			
 		}catch (RequestDidNotWork e){
 			s.setAttribute("performAction", "error");
@@ -58,8 +59,7 @@ public class UserManagement extends HttpServlet {
 			s.setAttribute("performAction", "error");
 		}finally{
 		
-			RequestDispatcher rd = request.getRequestDispatcher("UserManagement.jsp");
-			rd.forward(request, response);
+			response.sendRedirect("Administration");
 		}
 	}
 
