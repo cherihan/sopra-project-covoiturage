@@ -12,7 +12,7 @@
 <body>
 	<ul>	
 		<li><a href="Home">Home</a></li>
-		<li><a href="EditProfile">Profile</a></li>
+		<li><a href="RidesUpdate">Profile</a></li>
 		<li><a href="faq.jsp">FAQ</a></li>		
 		<li><a href="Logout">Log out</a></li>
 	</ul>
