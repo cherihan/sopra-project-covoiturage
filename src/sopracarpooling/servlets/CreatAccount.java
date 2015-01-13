@@ -75,15 +75,13 @@ public class CreatAccount extends HttpServlet {
 				HttpSession s = request.getSession();
 				s.setAttribute("user", newUser);
 				s.setAttribute("newAccount", "yes");				
-				response.sendRedirect("/SopraCarPooling/Home");
+				response.sendRedirect("Home");
 			}catch (Exception e){
-				RequestDispatcher rd = request.getRequestDispatcher("signup.jsp");
-				 rd.forward(request, response);
+				response.sendRedirect("CreatAccont");
 			}
 			
 		}else{
-			RequestDispatcher rd = request.getRequestDispatcher("signup.jsp");
-			 rd.forward(request, response);
+			response.sendRedirect("CreatAccont");
 		}
 		
 		
