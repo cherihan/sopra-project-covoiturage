@@ -20,7 +20,7 @@ import model.*;
 /**
  * Servlet implementation class RidesUpdate
  */
-@WebServlet("/u/RidesUpdate")
+@WebServlet("/RidesUpdate")
 public class RidesUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
