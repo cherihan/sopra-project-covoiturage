@@ -19,9 +19,9 @@
 
 <body>
 	<ul>	
-		<li><a href="u/Home">Home</a></li>
-		<li><a href="u/RidesUpdate">Profile</a></li>
-		<li><a href="u/faq.jsp">FAQ</a></li>		
+		<li><a href="Home">Home</a></li>
+		<li><a href="RidesUpdate">Profile</a></li>
+		<li><a href="faq.jsp">FAQ</a></li>		
 		<li><a href="Logout">Log out</a></li>
 	</ul>
 
