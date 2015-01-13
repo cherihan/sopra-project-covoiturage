@@ -27,7 +27,7 @@ import java.util.*;
 /**
  * Servlet implementation class Home
  */
-@WebServlet("/Home")
+@WebServlet("/u/Home")
 public class Home extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

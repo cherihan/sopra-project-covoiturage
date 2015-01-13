@@ -141,6 +141,7 @@ public class AdminDataBaseAccess extends DataBaseAccess{
 			while(sites.next()){
 				sitesID.add(sites.getInt(1));
 				System.out.println("###DEBUG ### (AdminDataBaseAccess, getRidesRepartition) : "+sites.getInt(1));
+			
 			}
 			sites.close();
 			codePosts = statement.executeQuery("SELECT DISTINCT cp FROM sopra.adresse;");
@@ -151,6 +152,9 @@ public class AdminDataBaseAccess extends DataBaseAccess{
 			codePosts.close();
 			
 			//Continuer ici ! 
+			
+			
+			
 			
 			
 		}catch (Exception e){

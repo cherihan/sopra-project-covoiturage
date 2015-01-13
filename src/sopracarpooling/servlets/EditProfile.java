@@ -17,7 +17,7 @@ import database.*;
 /**
  * Servlet implementation class EditProfile
  */
-@WebServlet("/EditProfile")
+@WebServlet("/u/EditProfile")
 public class EditProfile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
