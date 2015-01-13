@@ -59,8 +59,8 @@
 
   <div class="module">
     <ul>
-      <li class="tab sleepyTab"><a href="u/EditProfile"><img src="./images/user.png" alt="" class="icon"/></a></li>
-      <li class="tab activeTab" ><a href="u/RidesUpdate"><img src="./images/milestone.png" alt="abra" class="icon"/></a></li>
+      <li class="tab sleepyTab"><a href="EditProfile"><img src="./images/user.png" alt="" class="icon"/></a></li>
+      <li class="tab activeTab" ><a href="RidesUpdate"><img src="./images/milestone.png" alt="abra" class="icon"/></a></li>
     </ul>
     
     	<form class="form"  action="/SopraCarPooling/RidesUpdate" method="post">
