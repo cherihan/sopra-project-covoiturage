@@ -32,15 +32,17 @@
 	//out.println("1111");
 	//out.println("<p>"+rides.get(1)+"</p>");
 	//db.editUserPassword(test,newmdp);
-	PostCode cp = new PostCode(31130);
-	//JourDeLaSemaine j = new JourDeLaSemaine(1,"lundi");
+	PostCode cp = new PostCode(31490);
+	Adresse a = new Adresse(cp);
+	JourDeLaSemaine j = new JourDeLaSemaine(1,"lundi");
 	Service s = new Service(3);
-	//Adresse a = new Adresse(cp)
-	//ArrayList<Ride> rides = db.requestSearchRides(cp,j,s);
-	//for(int i=0;i<rides.size();i++){
-	//out.println("<p>"+rides.get(i)+"</p>");
-	int c = adb.requestCountRides(cp, s);
-	out.println(c);
+	
+	ArrayList<Ride> rides = db.requestSearchRides(a,j,s);
+	for(int i=0;i<rides.size();i++){
+	out.println("<p>"+rides.get(i)+"</p>");
+	}
+	//int c = adb.requestCountRides(cp, s);
+	//out.println(c);
 %>
 
 </body>

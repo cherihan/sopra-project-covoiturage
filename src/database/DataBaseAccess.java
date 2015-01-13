@@ -249,13 +249,13 @@ public class DataBaseAccess {
 			resultat3.close();
 			
 			//rides avec même cp, même sopra_site et même jour
-			resultat = statement.executeQuery("SELECT rides.id,user.id,rue,ville,cp,sopra_site.name,description,sopra_site.id,sens,jours.id,jours.name,heure,commentaire,rides.adresse "
+			resultat = statement.executeQuery("SELECT rides.id,user.id,rue,ville,cp,sopra_site.name,description,sopra_site.id,sens,jours.id,jours.name,heure,commentaire,rides.adresse,sopra_site.name "
 												+ "FROM user,rides,adresse,sopra_site,jours "
 												+ "WHERE jour='"+j.getJour()+"' "
 												+ "AND adresse.cp='"+a.getPostCode().toString()+"' "
 												+ "AND sopra_site='"+s.getId()+"' "
 												+ "AND rides.jour=jours.id "
-												+ "AND sopra_site.adresse=adresse.id "
+												+ "AND rides.adresse=adresse.id "
 												+ "AND rides.sopra_site=sopra_site.id "
 												+ "AND user.id=rides.id_user;");
 			while(resultat.next()){
@@ -264,6 +264,8 @@ public class DataBaseAccess {
 				String h = resultat.getString("heure");
 				String commentaire = resultat.getString("commentaire");
 				int se = resultat.getInt("sens");
+				String name = resultat.getString("name");
+				s.setNom(name);
 				boolean sens=false;
 				if (se==0){
 					sens=false;
@@ -271,7 +273,7 @@ public class DataBaseAccess {
 				else if (se==1){
 					sens=true;
 				}
-							
+				System.out.println(id);
 				resultat2 = statement2.executeQuery("SELECT user.*,rue,cp,ville FROM adresse,rides,user "
 													+ "WHERE id_user='"+uid+"' "
 													+ "AND rides.id='"+id+"' "
