@@ -94,8 +94,8 @@
                     <table class="table table-hover">
                     <h2><%=jour %></h2>
                     <tr>
-                    	<td> <%=rJ.get(0).getHome().getPostCode()%>  </td>
-                    	<td> <%=rJ.get(0).getOffice().getNom() %> </td>
+						<td><b>Point 1 :</b> <%=rJ.get(0).getHome().getPostCode()%></td>
+                    	<td><b>Point 2 :</b> <%=rJ.get(0).getOffice().getNom() %></td>
                     </tr>
                     <%
                     	ArrayList<Ride> aller = new ArrayList<Ride>();
@@ -113,7 +113,7 @@
                    		<tr>
                        		 <td >
                           	  <%=aller.get(k).getUser().getLastName() %> <%=aller.get(k).getUser().getFirstName()  %> <br>
-                          	  <%=aller.get(k).getUser().getEmail() %>
+                          	  <i><%=aller.get(k).getUser().getEmail() %></i>
                        		 </td>
                        		 <td>
                          	   <%=aller.get(k).getAtOfficeAt()%> - <%=rJ.get(0).getHome().getRue()%> - 
@@ -130,7 +130,8 @@
                     	
                     	<tr>
                       		 <td >
-                         	  <%=retour.get(k).getUser().getLastName() %> <%=retour.get(k).getUser().getFirstName()  %>
+                         	  <%=retour.get(k).getUser().getLastName() %> <%=retour.get(k).getUser().getFirstName()  %> <br>
+                          	  <i><%=retour.get(k).getUser().getEmail() %></i>
                       		 </td>
                       		 <td>
                         	   <%=retour.get(k).getAtOfficeAt() %>
