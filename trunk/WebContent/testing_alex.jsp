@@ -9,10 +9,11 @@
 <body>
 	
 <h2>RequestUserRides</h2>
-<% 
-
+<%
 	DataBaseAccess db = new DataBaseAccess();
-	//AdminDataBaseAccess adb = new AdminDataBaseAccess(user);
+	User user = db.requestUserIsRegistered(new EmailAdresse(
+			"al.dauriac@gmail.com"), new MotDePass("alexandre"));
+	AdminDataBaseAccess adb = new AdminDataBaseAccess(user);
 	//MotDePass mdp = new MotDePass("millieu");
 	//User test = db.requestUserIsRegistered(email,mdp);
 	//out.println("<p>salut</p><br>"+test);
@@ -32,15 +33,15 @@
 	//out.println("1111");
 	//out.println("<p>"+rides.get(1)+"</p>");
 	//db.editUserPassword(test,newmdp);
-	//PostCode cp = new PostCode(31130);
+	PostCode cp = new PostCode(31130);
 	//JourDeLaSemaine j = new JourDeLaSemaine(1,"lundi");
-	//Service s = new Service(3);
+	Service s = new Service(3);
 	//Adresse a = new Adresse(cp)
 	//ArrayList<Ride> rides = db.requestSearchRides(cp,j,s);
 	//for(int i=0;i<rides.size();i++){
 	//out.println("<p>"+rides.get(i)+"</p>");
-
-	
+	int c = adb.requestCountRides(cp, s);
+	out.println(c);
 %>
 
 </body>
