@@ -164,6 +164,34 @@ public class AdminDataBaseAccess extends DataBaseAccess{
 		}
 		return res;
 	}
+	
+	////////////compter selon le code postal et le site sopra (list de cp et de site sopra) ////////
+
+	public int requestCountRides (PostCode cp, Service s) throws RequestDidNotWork {
+		Connection connexion = null;
+		Statement statement = null;
+		ResultSet resultat = null;
+		int count = -1;
+		try{
+			connexion = Connexion();
+			statement = connexion.createStatement();
+			resultat = statement.executeQuery("SELECT COUNT(*) FROM rides,adresse "
+					+ "WHERE cp='"+cp.toString()+"' "
+					+ "AND sopra_site='"+s.getId()+"' "
+					+ "AND rides.adresse=adresse.id");
+			resultat.next();
+
+			count = resultat.getInt(1);
+
+
+		}catch(Exception e){
+			System.err.println("Erreur compte ride : " + e);
+			throw new RequestDidNotWork("Could not count the rides : "+e);
+		}finally{
+			Close(resultat, statement, connexion);
+		}
+		return count;
+	}
 
 
 	
