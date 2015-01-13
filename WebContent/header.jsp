@@ -23,6 +23,15 @@
 		<li><a href="RidesUpdate">Profil</a></li>
 		<li><a href="faq.jsp">FAQ</a></li>		
 		<li><a href="Logout">Déconnexion</a></li>
+		
+		<%
+		HttpSession es = request.getSession();
+		User u = (User) es.getAttribute("user");
+		if(u instanceof Admin){ %>
+		
+		<li><a href="Administration">Administartion</a></li>
+		
+		<%} %>
 	</ul>
 
 </body>

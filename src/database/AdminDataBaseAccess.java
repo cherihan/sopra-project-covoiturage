@@ -124,14 +124,14 @@ public class AdminDataBaseAccess extends DataBaseAccess{
 		
 		return user;
 	}
-	public HashMap<Service,HashMap<PostCode,Integer>> getRidesRepartition() throws RequestDidNotWork{
+	public HashMap<PostCode,HashMap<Service,Integer>> getRidesRepartition() throws RequestDidNotWork{
 		Connection connexion = null;
 		Statement statement = null;	
 		ResultSet sites= null;
 		ResultSet codePosts= null;
-		ArrayList<Integer> sitesID = new ArrayList<Integer>();
-		ArrayList<String> codes = new ArrayList<String>();
-		HashMap<Service,HashMap<PostCode,Integer>> res = new  HashMap<Service,HashMap<PostCode,Integer>>();  
+		ArrayList<Service> sitesID = new ArrayList<Service>();
+		ArrayList<PostCode> codes = new ArrayList<PostCode>();
+		HashMap<PostCode,HashMap<Service,Integer>> res = new HashMap<PostCode,HashMap<Service,Integer>>();  
 		try {
 			
 			connexion = Connexion();
@@ -139,27 +139,37 @@ public class AdminDataBaseAccess extends DataBaseAccess{
 			sites = statement.executeQuery("SELECT id FROM sopra.sopra_site ;");	
 			
 			while(sites.next()){
-				sitesID.add(sites.getInt(1));
-				System.out.println("###DEBUG ### (AdminDataBaseAccess, getRidesRepartition) : "+sites.getInt(1));
-			
+				sitesID.add(new Service(sites.getInt(1)));
+				//System.out.println("###DEBUG ### (AdminDataBaseAccess, getRidesRepartition) : "+sites.getInt(1));			
 			}
 			sites.close();
 			codePosts = statement.executeQuery("SELECT DISTINCT cp FROM sopra.adresse;");
 			while(codePosts.next()){
-				codes.add(codePosts.getString(1));
-				System.out.println("###DEBUG ### (AdminDataBaseAccess, getRidesRepartition) : "+codePosts.getInt(1));
+				codes.add(new PostCode(Integer.parseInt(codePosts.getString(1))));
+				
 			}
 			codePosts.close();
 			
 			//Continuer ici ! 
 			
 			
-			
-			
+			for (int c = 0;c<codes.size() ;c++){
+				HashMap<Service, Integer> intermed = new HashMap<Service, Integer>();
+				for(int s = 0; s<sitesID.size(); s++){
+					
+					System.out.println("###DEBUG ### (AdminDataBaseAccess, getRidesRepartition) : "
+					+this.requestCountRides(codes.get(c), sitesID.get(s)));
+					int count = this.requestCountRides(codes.get(c), sitesID.get(s));
+					intermed.put(sitesID.get(s), count );
+					
+				}
+				res.put(codes.get(c), intermed);
+			}
 			
 		}catch (Exception e){
 			throw new RequestDidNotWork("Respartission des rides a échoué.");
 		}finally{
+		
 			Close(sites, statement, connexion);
 		}
 		return res;

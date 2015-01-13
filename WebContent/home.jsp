@@ -91,22 +91,26 @@
                   
                     	
                     
-                    <table class="table table-hover">
-                    <h2><%=jour %></h2>
-                    <tr>
+                   
+                    <h2 style="text-transform: capitalize;"><%=jour %></h2>
+                    <p><b>Home :</b> <%=rJ.get(0).getHome().getPostCode()%> - 
+                    <b>Office :</b> <%=rJ.get(0).getOffice().getNom() %></p>
+                    <!--  <tr>
 						<td><b>Home :</b> <%=rJ.get(0).getHome().getPostCode()%><br></td>
                     	<td><b>Office :</b> <%=rJ.get(0).getOffice().getNom() %><br></td>     
                     	<td>
                     	</td>
                     	<td></td>
                     	<td></td>             	
-                    </tr>
+                    </tr>-->
+                    <table class="table table-hover">
                     <tr>
-                    	<td><br>Name<br><br></td>
-                    	<td><br>Contact<br><br></td>
-                    	<td><br>Address<br><br></td>
-                    	<td><br>Time<br><br></td>
-                    	<td><br>Comment<br><br></td>
+                    	<th>Name</th>
+                    	<th>Contact</th>
+                    	<th>Addresse</th>
+                    	<th>Heure</th>
+                    	<th>Comment</th>
+                    </tr>
                     <%
                     	ArrayList<Ride> aller = new ArrayList<Ride>();
                    		ArrayList<Ride> retour = new ArrayList<Ride>();
@@ -128,7 +132,8 @@
                           	  <%=aller.get(k).getUser().getEmail() %>
                        		 </td>
                        		 <td>
-                       		 <%=rJ.get(0).getHome().getRue()%>
+                       		 <%=aller.get(k).getHome().getRue()%><br>
+                       		 <%=aller.get(k).getHome().getPostCode()%> - <%=aller.get(k).getHome().getVille() %>
                        		 </td>
                        		 <td>
                          	   <%=aller.get(k).getAtOfficeAt()%>
@@ -151,7 +156,8 @@
                           	  <%=retour.get(k).getUser().getEmail() %>
                        		 </td>
                        		 <td>
-                       		 <%=rJ.get(0).getHome().getRue()%>
+                       		 <%=retour.get(k).getHome().getRue()%><br>
+                       		 <%=retour.get(k).getHome().getPostCode()%> - <%=retour.get(k).getHome().getVille() %>
                        		 </td>
                        		 <td>
                          	   <%=retour.get(k).getAtOfficeAt()%>
@@ -164,12 +170,16 @@
                     	
                     	<%
                     	}
+                    %>
+                    </table>
+                    <%
+                    
                     
  						}
                     }
                     %>
                     
-                </table>
+                
             </div>
   </div>
 </div>
