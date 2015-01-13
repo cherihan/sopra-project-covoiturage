@@ -50,9 +50,9 @@
 
 					<%} %>
 				</select> 
-				<input type="text" name="address-search" placeholder='Street' class="textbox">
+				<input type="text" name="address-search" placeholder='Rue' class="textbox">
 				<input type="text" name="cp-search" placeholder='Code Postal' class="textbox">
-				<input type="text" name="ville-search" placeholder='City' class="textbox"> 
+				<input type="text" name="ville-search" placeholder='Ville' class="textbox"> 
 				
 				<select	name="search-service">
 					<%
@@ -65,7 +65,7 @@
 						}
 					%>
 				</select>
-				<input type="submit" value="New research" class="button" /> 
+				<input type="submit" value="Nouvelle recherche" class="button" /> 
 			</form>
 
 	   

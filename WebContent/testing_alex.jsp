@@ -11,8 +11,7 @@
 <h2>RequestUserRides</h2>
 <%
 	DataBaseAccess db = new DataBaseAccess();
-	User user = db.requestUserIsRegistered(new EmailAdresse(
-			"al.dauriac@gmail.com"), new MotDePass("alexandre"));
+	User user = db.requestUserIsRegistered(new EmailAdresse("al.dauriac@gmail.com"), new MotDePass("alexandre"));
 	AdminDataBaseAccess adb = new AdminDataBaseAccess(user);
 	//MotDePass mdp = new MotDePass("millieu");
 	//User test = db.requestUserIsRegistered(email,mdp);
