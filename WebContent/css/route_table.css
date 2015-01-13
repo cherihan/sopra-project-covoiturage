@@ -16,13 +16,13 @@ body{
   text-align:center;
 }
 
-.table:table-hover{
-	top : 100px;
+.route_module{
+        top : 100px;
   position:relative;
   width:79%;
   height:100%;
   margin-left:20%;
-  background: yellow; 
+  background: transparent; 
   color : #222930;
 }
 
