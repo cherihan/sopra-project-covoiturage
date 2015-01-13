@@ -12,9 +12,7 @@
 <% 
 
 	DataBaseAccess db = new DataBaseAccess();
-	//EmailAdresse email = new EmailAdresse("dd@yopmail.com");
-	//NumeroTelephone tel = new NumeroTelephone("0");
-	//User test = new User(2,"Superman","clark",email,"Superman.",tel);
+	//AdminDataBaseAccess adb = new AdminDataBaseAccess(user);
 	//MotDePass mdp = new MotDePass("millieu");
 	//User test = db.requestUserIsRegistered(email,mdp);
 	//out.println("<p>salut</p><br>"+test);
@@ -34,12 +32,14 @@
 	//out.println("1111");
 	//out.println("<p>"+rides.get(1)+"</p>");
 	//db.editUserPassword(test,newmdp);
-	//PostCode cp = new PostCode(31770);
+	//PostCode cp = new PostCode(31130);
 	//JourDeLaSemaine j = new JourDeLaSemaine(1,"lundi");
-	//Service s = new Service(5);
+	//Service s = new Service(3);
+	//Adresse a = new Adresse(cp)
 	//ArrayList<Ride> rides = db.requestSearchRides(cp,j,s);
 	//for(int i=0;i<rides.size();i++){
 	//out.println("<p>"+rides.get(i)+"</p>");
+
 	
 %>
 
