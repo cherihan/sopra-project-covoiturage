@@ -153,7 +153,7 @@ public class RidesUpdate extends HttpServlet {
 		} finally {
 			// System.out.println("###DEBUG ### (UpdateRides, servlets) : On s'en va !");
 			// chargerLaPage(request, response);
-			User admin = (User) s.getAttribute("administrator");
+			User admin = (User) s.getAttribute("adminitrate");
 			if( admin != null && admin instanceof Admin){
 				//s.invalidate();
 				s.setAttribute("user", admin);

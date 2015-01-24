@@ -51,11 +51,11 @@ function checkProfileForm()
       <input type="text" name="lastName" value="${user.getLastName()}" class="firstnamebox" /><br>
       <input type="email" name="email" value="${user.getEmail()}" class="longbox" />
       <input type="text" name="tel" value="${user.getTel()}" class="phonebox" /><br>
-      <textarea type="bio" name="bio" value="${user.getBio()}"></textarea><br><br>
+      <textarea type="bio" name="bio"><%=user.getBio()%></textarea><br><br>
       <div class="pwdtxt">New password :
-      <input type="password" name="pwd" value="Password" class="pwdbox" /> </div>
+      <input type="password" name="pwd" placeholder="Password" class="pwdbox" /> </div>
       <div class="pwdtxt">Confirm password :
-      <input type="password" name="pwd_confirm" value="Password" class="pwdbox" /></div>
+      <input type="password" name="pwd_confirm" placeholder="Password" class="pwdbox" /></div>
 
       <input type="submit" onClick="checkProfileForm()" value="Save changes" class="button" />     
     </form>

@@ -233,8 +233,7 @@ public class DataBaseAccess {
 		Statement statement2 = null;
 		ResultSet resultat2 = null;
 		
-		Statement statement3 = null;
-		ResultSet resultat3 = null;
+		
 		
 		ArrayList<Ride> rides = new ArrayList<Ride>();
 		try{
@@ -242,11 +241,8 @@ public class DataBaseAccess {
 			statement = connexion.createStatement();
 			statement2 = connexion.createStatement();
 			
+			//System.out.println("###DEBUG ### (databaseaccess, resquestSearch) s.getID :"+s.getId());
 			
-			resultat3 = statement3.executeQuery("select nom from sopra.sopra_site where id='"+s.getId()+"';");
-			resultat3.next();
-			s.setNom(resultat.getString(1));
-			resultat3.close();
 			
 			//rides avec même cp, même sopra_site et même jour
 			resultat = statement.executeQuery("SELECT rides.id,user.id,rue,ville,cp,sopra_site.name,description,sopra_site.id,sens,jours.id,jours.name,heure,commentaire,rides.adresse,sopra_site.name "
@@ -273,7 +269,7 @@ public class DataBaseAccess {
 				else if (se==1){
 					sens=true;
 				}
-				System.out.println(id);
+				//System.out.println("###DEBUG ### (databaseaccess, resquestSearch) id of found ride "+id);
 				resultat2 = statement2.executeQuery("SELECT user.*,rue,cp,ville FROM adresse,rides,user "
 													+ "WHERE id_user='"+uid+"' "
 													+ "AND rides.id='"+id+"' "
@@ -299,8 +295,8 @@ public class DataBaseAccess {
 
 		}catch(Exception e){
 			System.err.println("Erreur lors de la recherche des rides : " + e);
-			throw new RequestDidNotWork(
-					"Pas de ride trouvé");
+			e.printStackTrace();
+			throw new RequestDidNotWork("Pas de ride trouvé");
 		}finally{
 			Close(resultat, statement, connexion);
 			Close(resultat2, statement2, connexion);

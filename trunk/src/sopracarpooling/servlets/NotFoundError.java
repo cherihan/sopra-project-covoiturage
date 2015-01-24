@@ -1,27 +1,23 @@
 package sopracarpooling.servlets;
 
 import java.io.IOException;
-
-import model.*;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class AccountManagement
+ * Servlet implementation class NotFoundError
  */
-@WebServlet("/AccountManagement")
-public class AccountManagement extends HttpServlet {
+@WebServlet("/NotFoundError")
+public class NotFoundError extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AccountManagement() {
+    public NotFoundError() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,13 +27,9 @@ public class AccountManagement extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession s = request.getSession();
-		User user = (User) s.getAttribute("user");
-		if(user == null){response.sendRedirect("Login.html");}
 		
-		Admin admin = new Admin(user);
+		response.sendRedirect("Home");
 		
-		//dessider de que l'on donne au type 
 	}
 
 	/**

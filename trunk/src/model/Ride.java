@@ -28,7 +28,7 @@ public class Ride {
 		this.comment = com;
 		
 		
-		System.out.println("###DEBUG ### (Ride, constructeur) : ride créer");
+		//System.out.println("###DEBUG ### (Ride, constructeur) : ride créer");
 	}
 	public Ride (int id){
 		this.id = id;
