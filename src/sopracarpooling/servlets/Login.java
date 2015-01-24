@@ -18,7 +18,7 @@ import model.*;
  * Servlet implementation class Login
  */
 // change if necessary
-@WebServlet("/Login")
+
 /**
  * This Servlets aims to check that you really are a registered user of site. If you are you will be redirected to 
  * your rides proposition. Otherwise you will be sent back to the login page. 
@@ -43,15 +43,10 @@ public class Login extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
-		//si onis user loged in ?
-		HttpSession s = request.getSession();
-		
-		if(s.getAttribute("user")!= null){
-			response.sendRedirect("Home");
-		}else{			
+		//login verification done by the filters		
 			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 			rd.forward(request, response);
-		}
+		
 	}
 
 	/**
@@ -60,7 +55,8 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		//login form recieved.
 		DataBaseAccess dB = new DataBaseAccess();		
 		String loginPage = "Login";
 		String nextPage = "Home";// bien envoyer vers home (servlet)
@@ -78,12 +74,14 @@ public class Login extends HttpServlet {
 				System.out.println("###DEBUG ### (servlets, Login) = user : "+user);
 				response.sendRedirect(nextPage);
 			}catch (Exception e){
-				s.setAttribute("actionPerform", "errorNologIN");
-				response.sendRedirect(loginPage);
+				request.setAttribute("actionPerform", "errorNologIN");
+				RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+				rd.forward(request, response);;
 			}
 		} else {
-			s.setAttribute("actionPerform", "errorNologIN");
-			response.sendRedirect(loginPage);
+			request.setAttribute("actionPerform", "errorNologIN");
+			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+			rd.forward(request, response);
 		}
 
 	}

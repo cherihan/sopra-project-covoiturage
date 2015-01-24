@@ -35,7 +35,8 @@ public class Search extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/Home");
+		dispatcher.forward(request, response);
 	}
 
 	/**
@@ -51,7 +52,7 @@ public class Search extends HttpServlet {
 		String cp = request.getParameter("cp-search");
 		String ville =  request.getParameter("ville-search");
 		String site = request.getParameter("search-service");
-		
+		ArrayList <JourDeLaSemaine> jours = new ArrayList<JourDeLaSemaine>();
 		
 
 		try{
@@ -64,18 +65,19 @@ public class Search extends HttpServlet {
 			
 			ArrayList <Ride> matchingRides = dB.requestSearchRides(addr, j, office);
 			
-			System.out.println("###DEBUG ### (servlet, Search) : size mR : "+matchingRides.size());
-			s.setAttribute("matchingRides", matchingRides); 
-			ArrayList <JourDeLaSemaine> jours = new ArrayList<JourDeLaSemaine>();
+			//System.out.println("###DEBUG ### (servlet, Search) : size mR : "+matchingRides.size());
+			request.setAttribute("matchingRides", matchingRides); 
+			
 			jours.add(j);
-			s.setAttribute("jours", jours);
 			
-		}catch (RequestDidNotWork e){
-			request.setAttribute("performAction", "error");
+		}catch (Exception e){
+			request.setAttribute("actionPerform", "error");
 		}finally {
-			s.setAttribute("search", true);
-			
-			response.sendRedirect("Home");
+			System.out.println("###DEBUG ### (servlet, Search) : errorATT : "+request.getAttribute("actionPerform"));
+			request.setAttribute("jours", jours);
+			request.setAttribute("search", true);	
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/Home");
+			dispatcher.forward(request, response);
 			
 		}
 		

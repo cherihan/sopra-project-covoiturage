@@ -1,9 +1,11 @@
 <html>
 <head>
-
+<title>Connection</title>
 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
 <link rel="stylesheet" type="text/css" href="./css/login_signup.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
 </head>
 
 <body>
@@ -22,7 +24,10 @@
 <div id="identification">
 </div>
 
-<title>Connection</title>
+
+
+
+
 
 <div class="container">
 

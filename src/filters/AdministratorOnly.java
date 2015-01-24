@@ -13,16 +13,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- * Servlet Filter implementation class LoginUserOnly
- */
+import model.*;
 
-public class LoginUserOnly implements Filter {
+/**
+ * Servlet Filter implementation class AdministratorOnly
+ */
+@WebFilter("/AdministratorOnly")
+public class AdministratorOnly implements Filter {
 
     /**
      * Default constructor. 
      */
-    public LoginUserOnly() {
+    public AdministratorOnly() {
         // TODO Auto-generated constructor stub
     }
 
@@ -37,18 +39,16 @@ public class LoginUserOnly implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-
-		System.out.println("###DEBUG ### (filters, LoginUserOnly) ");
+		System.out.println("###DEBUG ### (filters, AdminOnly) ");
 		HttpServletResponse res = (HttpServletResponse) response;
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession s = req.getSession();
-		;
-		if(s.getAttribute("user") == null){//If the user is not loged in then he can not access ! 
-			res.sendRedirect("Login");
-		}else{
+		User u = (User) s.getAttribute("user");
+		if(u != null && u instanceof Admin){//If the user is not loged in then he can not access ! 
 			chain.doFilter(request, response);
+		}else{
+			res.sendRedirect("Home");
 		}
-	
 		
 	}
 

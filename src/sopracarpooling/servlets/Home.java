@@ -26,8 +26,8 @@ import java.util.*;
 
 /**
  * Servlet implementation class Home
- */
-@WebServlet("/Home")
+*/
+
 public class Home extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -51,34 +51,33 @@ public class Home extends HttpServlet {
 		HttpSession s = request.getSession();
 		User user = (User)  s.getAttribute("user");
 			
-		Boolean search = (Boolean) s.getAttribute("search");
-		System.out.println(search);
+		Boolean search = (Boolean) request.getAttribute("search");
+		//System.out.println("###DEBUG ### (servlet, Home) searsh : "+search);
 		
 		
 		try {
-			if(user == null){
+			//FOR DEBUG ONLY
+			/*if(user == null){
 				user = dB.requestUserIsRegistered(new EmailAdresse("dd@yopmail.com"), new MotDePass("millieu"));
 				s.setAttribute("user", user);
-			}
-			
+			}*/
+			System.out.println("###DEBUG ### (servlet, Home) : search = "+search); 
 			if(search == null || search == false){
 				
 				ArrayList<Ride> matchingRides = dB.requestMatchingRides(user);
-				s.setAttribute("matchingRides", matchingRides);
-				s.setAttribute("jours", dB.requestJours());
-				System.out.println("###DEBUG ### (servlet, Home) : size mR : "
-						+ matchingRides.size());
+				request.setAttribute("matchingRides", matchingRides);
+				request.setAttribute("jours", dB.requestJours());
+				//System.out.println("###DEBUG ### (servlet, Home) : size mR : "+ matchingRides.size());
 				
 			}
 			
 						
-			s.setAttribute("joursPossible", dB.requestJours());
-			s.setAttribute("sopraSite", dB.requestServices());
+			request.setAttribute("joursPossible", dB.requestJours());
+			request.setAttribute("sopraSite", dB.requestServices());
 		} catch (RequestDidNotWork e) {
 			request.setAttribute("performAction", "error");
 		} finally {
-			
-			
+						
 			RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
 			rd.forward(request, response);
 		}
@@ -94,7 +93,7 @@ public class Home extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
+		this.doGet(request, response);
 	
 	}
 

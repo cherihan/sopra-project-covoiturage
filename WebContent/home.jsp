@@ -6,10 +6,10 @@
 <% 
 	HttpSession s = request.getSession();
 	User user =(User) s.getAttribute("user"); 
-	ArrayList <Ride> mR	= (ArrayList <Ride>) s.getAttribute("matchingRides");
-	ArrayList <JourDeLaSemaine> jours	= (ArrayList <JourDeLaSemaine>) s.getAttribute("jours");
-	ArrayList <JourDeLaSemaine> joursPossible	= (ArrayList <JourDeLaSemaine>) s.getAttribute("joursPossible");
-	ArrayList <Service> sopraOff = (ArrayList <Service>) s.getAttribute("sopraSite");
+	ArrayList <Ride> mR	= (ArrayList <Ride>) request.getAttribute("matchingRides");
+	ArrayList <JourDeLaSemaine> jours	= (ArrayList <JourDeLaSemaine>) request.getAttribute("jours");
+	ArrayList <JourDeLaSemaine> joursPossible	= (ArrayList <JourDeLaSemaine>) request.getAttribute("joursPossible");
+	ArrayList <Service> sopraOff = (ArrayList <Service>) request.getAttribute("sopraSite");
 %>
 
 <html>
@@ -23,6 +23,8 @@
  <link rel="stylesheet" type="text/css" href="./css/route_table.css" />
 </head>
 
+<%@ include file="head.jsp" %>
+
 <body>
 
 
@@ -30,7 +32,7 @@
 <header>
 	<%@ include file="header.jsp" %>
 </header>
-       
+      
 <left_side>
 
 	<%@ include file="user_banner.jsp" %>
@@ -38,7 +40,10 @@
 </left_side>      
 
 <div id="bg">
+
   <div class="route_module">
+  
+  <%@ include file="ErrorPaceHolder.jsp" %>
 			<form class="form" action="/SopraCarPooling/Search" method="post">
 			
 				<select name="search-jour">
@@ -70,8 +75,7 @@
 
 	   
     <div class="route_table" >
-   
-             
+                		          		
                     
                     <%for(int i = 0; i < jours.size(); i++){ 
                     	JourDeLaSemaine jour = jours.get(i);
