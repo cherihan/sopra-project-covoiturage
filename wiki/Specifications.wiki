@@ -1,0 +1,8 @@
+#specifications of this web application 
+
+= Introduction =
+
+You will find on this page the specification documents of our project. 
+
+= Details =
+
