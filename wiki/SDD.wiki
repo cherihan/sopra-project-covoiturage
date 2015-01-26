@@ -7,11 +7,9 @@ An informal Software Design Description document.
 
 = Contains =
 
- * An Overview
  * High level decomposition diagrams
  * White box sequence diagrams
  * Component diagrams
- * White box class diagrams
 
 = URL =
 
