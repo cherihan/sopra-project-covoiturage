@@ -1,7 +1,17 @@
-#specification of this web application.
+#summary Software Requirements Specification document
+#labels Phase-Requirements,Phase-Design
+
 
 = Introduction =
 
-You will find on this page the specification documents of our project. 
+This informal Software Requirements Specification document specifies and analyses the requirements of the software.
 
-= Details =
+= Contains =
+
+ * Use case diagrams
+ * Sequence diagrams
+ * Class diagrams
+
+= URL =
+
+https://drive.google.com/open?id=1PRX7c5-8hsBSj8wFZzZwweWkVag1_XBnzxObDGOS8Kg&authuser=0
