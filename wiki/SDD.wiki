@@ -1,13 +1,18 @@
-#summary One-sentence summary of this page.
+#summary Software Design Description
+#labels Phase-Requirements,Phase-Design
 
 = Introduction =
 
-Add your content here.
+An informal Software Design Description document.
 
+= Contains =
 
-= Details =
+ * An Overview
+ * High level decomposition diagrams
+ * White box sequence diagrams
+ * Component diagrams
+ * White box class diagrams
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+= URL =
+
+https://drive.google.com/open?id=1_VvgjQMImrWT4Fina01wxCQl7qU7uJWJFvQxO3eFgX4&authuser=0
