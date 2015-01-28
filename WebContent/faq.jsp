@@ -23,29 +23,15 @@
 
 <faq>
 <br><br><question>How do I modify my profile ?</question><br><br>   
-<answer>Simple click on <i>"Profile"</i> in the menu bar, then on <i>"Edit"</i>.</answer>
+<answer>Simply click on <i>"Profile"</i> in the menu bar, then on the second tab.</answer>
 
-<br><br><br><question>How do I delete my account ?</question><br><br>   
-<answer>Go in <i>"Profile", then "Edit"</i>. Check the <i>"Delete Account"</i> option in the <i>"Parameter"</i> tab, and click on <i>"Save changes"</i>.</answer>
+<br><br><br><question>How do I add a route ?</question><br><br>   
+<answer>Go in <i>"Profile". The route edit panel is the first to show up.</answer>
 
-<br><br><br><question>Question 3 ?</question><br><br>   
-<answer>Answer 3.</answer>
+<br><br><br><question>How can I find the other's routes ?</question><br><br>   
+<answer>First of all, you will need to add your own routes. Once it is done,<br> go back to the home page. You will now able to use the <i>Search>/i> button.</answer>
 
 
-<br><br><br><question>Question 4 ?</question><br><br>   
-<answer>Answer 4.</answer>
-
-<br><br><br><question>Question 5 ?</question><br><br>   
-<answer>Answer 5.</answer>
-
-<br><br><br><question>Question 6 ?</question><br><br>   
-<answer>Answer 6.</answer>
-
-<br><br><br><question>Question 7 ?</question><br><br>   
-<answer>Answer 7.</answer>
-
-<br><br><br><question>Question 8 ?</question><br><br>   
-<answer>Answer 8.</answer>
 </faq>
 </body>
 
